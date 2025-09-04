@@ -101,24 +101,17 @@ export function ExpertiseSection(): ReactElement {
             <motion.div variants={itemVariants} className="lg:col-span-8 space-y-6">
               <div className="space-y-2">
                 <div className="flex items-center space-x-3">
-                  <h2 className="text-2xl font-bold">WELTIVATION™</h2>
-                  <motion.div
-                    className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground text-xs font-bold"
-                    animate={{ scale: [1, 1.1, 1] }}
-                    transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-                  >
-                    99+
-                  </motion.div>
+                  <h2 className="text-2xl font-bold">Nova Generation</h2>
+                  
                 </div>
-                <p className="text-primary text-sm">Trusted by industry leaders</p>
+                <p className="text-primary text-sm">Trusted by Industry Leaders</p>
                 <div className="flex text-primary">
                   <span>★★★★★</span>
                 </div>
               </div>
 
               <h3 className="text-3xl sm:text-4xl font-bold leading-tight">
-                We help brands grow with strategic design that's thoughtful, visually bold, and built to make an
-                impression.
+                We help businesses innovate and scale with smart, cutting-edge software solutions that are efficient, future-ready, and built to leave an impact.
               </h3>
             </motion.div>
           </div>
@@ -148,7 +141,7 @@ export function ExpertiseSection(): ReactElement {
                     </motion.div>
                   </div>
 
-                  <ViewportTriggered45Percent />
+                  <ViewportTriggered85Percent />
 
                   <p className="text-muted-foreground">of clients recommend us to other clients</p>
 
@@ -239,17 +232,17 @@ export function ExpertiseSection(): ReactElement {
                 <div className="relative z-10 p-6 h-full flex flex-col justify-between">
                   <div>
                     <Badge variant="outline" className="bg-background/20 text-white border-white/20 mb-4">
-                      GLASSPATCH
+                      Nova Legal
                     </Badge>
                   </div>
 
                   <div className="space-y-2">
                     <h3 className="text-xl font-bold text-white">
-                      $2M raised: the strategy behind Glass Patch's growth
+                      Nova Legal is a modern law firm committed to delivering clear, efficient, and client-focused legal solutions.
                     </h3>
                     <button className="text-primary flex items-center text-sm group-hover:underline">
                       <ChevronRight className="w-4 h-4 mr-1" />
-                      See case study
+                      Visit Site
                     </button>
                   </div>
                 </div>
@@ -257,73 +250,13 @@ export function ExpertiseSection(): ReactElement {
             </motion.div>
           </div>
 
-          {/* Second row of cards */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Card 4: Animated Timeline Process */}
-            <motion.div variants={itemVariants} className="group">
-              <div className="h-full rounded-lg border border-border bg-background/50 p-6 hover:border-primary/50 transition-all duration-300">
-                <div className="space-y-6">
-                  <div className="space-y-4">
-                    <h3 className="text-2xl font-bold">A streamlined process, executed with methodical care.</h3>
-                    <p className="text-muted-foreground">
-                      We transform overwhelming brands into standout experiences, built to reflect the quality,
-                      ambition, and greatness
-                    </p>
-                  </div>
-
-                  <div className="space-y-4">
-                    <div className="space-y-1">
-                      <p className="text-sm text-muted-foreground">Timeline</p>
-                      <p className="text-sm">Website & branding for Sony</p>
-                    </div>
-
-                    <AnimatedTimelineChart />
-                  </div>
-
-                  <div className="pt-4">
-                    <button className="text-primary flex items-center text-sm group-hover:underline">
-                      <ChevronRight className="w-4 h-4 mr-1" />
-                      Learn about our process
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Card 5: Fixed $12M chart */}
-            <motion.div variants={itemVariants} className="group">
-              <div className="h-full rounded-lg border border-border bg-background/50 p-6 hover:border-primary/50 transition-all duration-300 relative overflow-hidden">
-                <div className="absolute top-6 right-6">
-                  <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                </div>
-
-                <div className="space-y-4">
-                  <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-                    <div>
-                      <p className="text-sm text-muted-foreground">Fact 02</p>
-                      <ViewportTriggeredCountUp />
-                      <p className="text-muted-foreground">Raised by the brands we've partnered with</p>
-                    </div>
-                    <div className="flex items-center space-x-2 px-3 py-2 bg-background/50 backdrop-blur-sm border border-border/30 rounded-full self-start lg:self-center">
-                      <span className="text-xs text-muted-foreground">powered by</span>
-                      <img src="/images/weltivation-logo.png" alt="Weltivation" className="h-6" />
-                    </div>
-                  </div>
-
-                  <div className="pt-6 h-[350px] relative">
-                    <DashboardChart />
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </motion.div>
+                  </motion.div>
       </div>
     </section>
   )
 }
 
-function ViewportTriggered45Percent(): ReactElement {
+function ViewportTriggered85Percent(): ReactElement {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.5 })
   const [count, setCount] = useState(0)
@@ -332,11 +265,11 @@ function ViewportTriggered45Percent(): ReactElement {
     if (isInView) {
       const timer = setInterval(() => {
         setCount((prev) => {
-          if (prev < 45) {
+          if (prev < 85) {
             return prev + 1
           }
           clearInterval(timer)
-          return 45
+          return 85
         })
       }, 50)
 
@@ -445,9 +378,8 @@ function AnimatedTimelineChart(): ReactElement {
         >
           {/* Circle marker */}
           <motion.div
-            className={`w-5 h-5 rounded-full border-2 border-background relative z-10 transition-colors duration-500 ${
-              index <= activeStage ? "bg-primary" : "bg-muted/50"
-            }`}
+            className={`w-5 h-5 rounded-full border-2 border-background relative z-10 transition-colors duration-500 ${index <= activeStage ? "bg-primary" : "bg-muted/50"
+              }`}
             animate={index === activeStage ? { scale: [1, 1.3, 1] } : {}}
             transition={{ duration: 0.5 }}
           />
@@ -455,9 +387,8 @@ function AnimatedTimelineChart(): ReactElement {
           {/* Stage label above */}
           <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 text-center">
             <motion.div
-              className={`px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-colors duration-500 ${
-                index <= activeStage ? "bg-primary text-primary-foreground" : "bg-muted/50 text-muted-foreground"
-              }`}
+              className={`px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-colors duration-500 ${index <= activeStage ? "bg-primary text-primary-foreground" : "bg-muted/50 text-muted-foreground"
+                }`}
             >
               {stage.name}
             </motion.div>
@@ -691,8 +622,8 @@ function ServiceSelectionCard(): ReactElement {
 
   const services = [
     {
-      id: "mechanical",
-      name: "Mechanical",
+      id: "uiux",
+      name: "UI/UX Design",
       icon: <Cog className="w-6 h-6" />,
       color: "from-orange-500 to-orange-600",
       hoverColor: "from-orange-400 to-orange-500",
@@ -700,8 +631,8 @@ function ServiceSelectionCard(): ReactElement {
       textColor: "text-orange-400",
     },
     {
-      id: "digital",
-      name: "Digital Systems",
+      id: "web app",
+      name: "Web & Mobile App Development",
       icon: <Laptop className="w-6 h-6" />,
       color: "from-blue-500 to-blue-600",
       hoverColor: "from-blue-400 to-blue-500",
@@ -710,7 +641,7 @@ function ServiceSelectionCard(): ReactElement {
     },
     {
       id: "website",
-      name: "Website",
+      name: "Website Development",
       icon: <Globe className="w-6 h-6" />,
       color: "from-green-500 to-green-600",
       hoverColor: "from-green-400 to-green-500",
@@ -718,8 +649,8 @@ function ServiceSelectionCard(): ReactElement {
       textColor: "text-green-400",
     },
     {
-      id: "mobile",
-      name: "Mobile App",
+      id: "desktop",
+      name: "Desktop App Development",
       icon: <Smartphone className="w-6 h-6" />,
       color: "from-purple-500 to-purple-600",
       hoverColor: "from-purple-400 to-purple-500",
@@ -727,8 +658,8 @@ function ServiceSelectionCard(): ReactElement {
       textColor: "text-purple-400",
     },
     {
-      id: "product",
-      name: "Product Dev",
+      id: "cloud",
+      name: "Cloud Solutions",
       icon: <Package className="w-6 h-6" />,
       color: "from-red-500 to-red-600",
       hoverColor: "from-red-400 to-red-500",
@@ -736,8 +667,8 @@ function ServiceSelectionCard(): ReactElement {
       textColor: "text-red-400",
     },
     {
-      id: "architecture",
-      name: "Architecture Design",
+      id: "consultation",
+      name: "IT",
       icon: <Building2 className="w-6 h-6" />,
       color: "from-cyan-500 to-cyan-600",
       hoverColor: "from-cyan-400 to-cyan-500",

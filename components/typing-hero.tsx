@@ -11,9 +11,9 @@ export function TypingHero() {
   const [showCursor, setShowCursor] = useState(true)
 
   const phrases = [
-    { text: "technology", color: "text-emerald-400", cursorColor: "bg-emerald-400" },
-    { text: "digital solutions", color: "text-blue-400", cursorColor: "bg-blue-400" },
-    { text: "free consultation", color: "text-orange-400", cursorColor: "bg-orange-400" },
+    { text: "technology", color: "text-[#009699]", cursorColor: "bg-[#009699]" },
+    { text: "digital solutions", color: "text-[#009699]", cursorColor: "bg-[#009699]" },
+    { text: "the future", color: "text-[#009699]", cursorColor: "bg-[#009699]" },
   ]
 
   const baseText = "Let's create tomorrow's "
@@ -61,8 +61,7 @@ export function TypingHero() {
   return (
     <h1 className="text-5xl sm:text-7xl font-bold tracking-tighter font-mono">
       <div className="flex flex-wrap justify-center">
-        <span className="text-white mr-2">{">"}</span>
-        <div className="relative">
+                <div className="relative">
           <span className="text-white">{baseText}</span>
           <span className={`${phrases[currentPhraseIndex].color} drop-shadow-[0_0_20px_rgba(52,211,153,0.5)]`}>
             {displayText}

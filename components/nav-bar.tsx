@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { Menu, X, Monitor, Handshake, Zap } from "lucide-react"
+import { Menu, X, Handshake, Zap } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { LanguageSelector } from "@/components/language-selector"
 import { useLanguage } from "@/contexts/language-context"
@@ -26,9 +26,9 @@ export function NavBar() {
 
   const navItems = [
     { name: "Services", href: "/services" },
-    { name: t("nav.projects"), href: "/projects" },
-    { name: t("nav.process"), href: "/process" },
-    { name: t("nav.support"), href: "/support" },
+  { name: t("nav.projects"), href: "/projects" },
+  { name: t("nav.process"), href: "/process" },
+  { name: t("nav.support"), href: "/supportremove co" },
     { name: "Partnership", href: "/partnership", icon: <Handshake className="w-4 h-4" /> },
   ]
 
@@ -50,8 +50,8 @@ export function NavBar() {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2" onClick={scrollToTop}>
             <Image
-              src="/images/weltivation-logo.png"
-              alt="Weltivation"
+              src="/images/NOVA GEN.svg"
+              alt="Nova Logo"
               width={200}
               height={50}
               className="h-12 w-auto"
@@ -77,16 +77,8 @@ export function NavBar() {
 
           {/* Right side items - Desktop */}
           <div className="hidden lg:flex items-center space-x-4">
-            <LanguageSelector />
-            <Link
-              href="/corporate-login"
-              onClick={scrollToTop}
-              className="text-gray-300 hover:text-white transition-colors"
-            >
-              <Monitor className="w-5 h-5" />
-            </Link>
             <Link href="/consultation" onClick={scrollToTop}>
-              <Button className="bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white font-medium">
+              <Button className="bg-[#009699] hover:bg-[#00b3b3] text-white font-medium">
                 <Zap className="w-4 h-4 mr-2" />
                 Free Consultation
               </Button>
@@ -98,7 +90,7 @@ export function NavBar() {
             <Link href="/consultation" onClick={scrollToTop}>
               <Button
                 size="sm"
-                className="bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white font-medium text-xs px-3 py-2"
+                className="bg-[#009699] hover:bg-[#00b3b3] text-white font-medium text-xs px-3 py-2"
               >
                 <Zap className="w-3 h-3 mr-1" />
                 Free
@@ -147,7 +139,7 @@ export function NavBar() {
                       scrollToTop()
                     }}
                   >
-                    <Button className="w-full bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white font-medium">
+                    <Button className="w-full bg-[#009699] hover:bg-[#00b3b3] text-white font-medium">
                       <Zap className="w-4 h-4 mr-2" />
                       Free Consultation
                     </Button>

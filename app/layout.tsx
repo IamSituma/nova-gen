@@ -9,10 +9,9 @@ import { BusinessProfileHeader } from "@/components/business-profile-header"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Weltivation - Transform Your Business",
-  description: "Revolutionary technology solutions that drive growth and innovation",
-    generator: 'v0.app'
-}
+  title: "Nova Generation - Automate, Innovate, Empower",
+  description: "At Nova Generation we convey a transition to digital solutions to streamline various aspects of business operations, processes, and services.",
+   }
 
 export default function RootLayout({
   children,

@@ -386,8 +386,12 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     if (newLang) {
       setCurrentLanguage(newLang)
       localStorage.setItem("language", code)
-      document.documentElement.lang = code
+      // document.documentElement.lang will be set in useEffect below
     }
+  // Sync <html lang> with currentLanguage on client only
+  useEffect(() => {
+    document.documentElement.lang = currentLanguage.code
+  }, [currentLanguage])
   }
 
   // Translation function
