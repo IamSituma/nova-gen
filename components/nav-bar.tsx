@@ -5,9 +5,8 @@ import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { Menu, X, Handshake, Zap } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { LanguageSelector } from "@/components/language-selector"
 import { useLanguage } from "@/contexts/language-context"
 
 export function NavBar() {
@@ -17,48 +16,47 @@ export function NavBar() {
   const { t } = useLanguage()
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20)
-    }
+    const handleScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   const navItems = [
     { name: "Services", href: "/services" },
-  { name: t("nav.projects"), href: "/projects" },
-  { name: t("nav.process"), href: "/process" },
-  { name: t("nav.support"), href: "/supportremove co" },
-    { name: "Partnership", href: "/partnership", icon: <Handshake className="w-4 h-4" /> },
+    { name: t("nav.projects"), href: "/projects" },
+    { name: t("nav.process"), href: "/process" },
+    { name: "Partnership", href: "/partnership" },
+    { name: t("nav.contact"), href: "/contact" },
   ]
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  }
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" })
 
   return (
     <motion.nav
+      initial={false}               // 👈 prevents hiding on reload
+      animate={{ y: 0 }}            // keep it visible
+      transition={{ duration: 0.3 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-black/70 backdrop-blur-md border-b border-gray-800/50" : "bg-black/30 backdrop-blur-sm"
+        scrolled
+          ? "bg-black/70 backdrop-blur-md border-b border-gray-800/50"
+          : "bg-black/30 backdrop-blur-sm"
       }`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6 }}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
+
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2" onClick={scrollToTop}>
             <Image
               src="/images/NOVA GEN.svg"
               alt="Nova Logo"
-              width={200}
-              height={50}
-              className="h-12 w-auto"
+              width={100}
+              height={30}
+              className="h-6 w-auto"
             />
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Nav */}
           <div className="hidden lg:flex items-center space-x-8">
             {navItems.map((item) => (
               <Link
@@ -66,43 +64,43 @@ export function NavBar() {
                 href={item.href}
                 onClick={scrollToTop}
                 className={`flex items-center space-x-1 text-sm font-medium transition-colors duration-200 ${
-                  pathname === item.href ? "text-emerald-400" : "text-gray-300 hover:text-white"
+                  pathname === item.href
+                    ? "text-emerald-400"
+                    : "text-gray-300 hover:text-white"
                 }`}
               >
-                {item.icon && item.icon}
                 <span>{item.name}</span>
               </Link>
             ))}
           </div>
 
-          {/* Right side items - Desktop */}
+          {/* Desktop CTA */}
           <div className="hidden lg:flex items-center space-x-4">
             <Link href="/consultation" onClick={scrollToTop}>
               <Button className="bg-[#009699] hover:bg-[#00b3b3] text-white font-medium">
-                <Zap className="w-4 h-4 mr-2" />
                 Free Consultation
               </Button>
             </Link>
           </div>
 
-          {/* Mobile menu button and Free Consultation */}
+          {/* Mobile */}
           <div className="lg:hidden flex items-center space-x-3">
             <Link href="/consultation" onClick={scrollToTop}>
               <Button
                 size="sm"
                 className="bg-[#009699] hover:bg-[#00b3b3] text-white font-medium text-xs px-3 py-2"
               >
-                <Zap className="w-3 h-3 mr-1" />
                 Free
               </Button>
             </Link>
+
             <button onClick={() => setIsOpen(!isOpen)} className="text-gray-300 hover:text-white">
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Menu */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
@@ -124,13 +122,15 @@ export function NavBar() {
                       scrollToTop()
                     }}
                     className={`flex items-center space-x-2 text-base font-medium transition-colors duration-200 ${
-                      pathname === item.href ? "text-emerald-400" : "text-gray-300 hover:text-white"
+                      pathname === item.href
+                        ? "text-emerald-400"
+                        : "text-gray-300 hover:text-white"
                     }`}
                   >
-                    {item.icon && item.icon}
                     <span>{item.name}</span>
                   </Link>
                 ))}
+
                 <div className="pt-4 border-t border-gray-700">
                   <Link
                     href="/consultation"
@@ -140,7 +140,6 @@ export function NavBar() {
                     }}
                   >
                     <Button className="w-full bg-[#009699] hover:bg-[#00b3b3] text-white font-medium">
-                      <Zap className="w-4 h-4 mr-2" />
                       Free Consultation
                     </Button>
                   </Link>

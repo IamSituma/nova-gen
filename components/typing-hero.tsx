@@ -12,8 +12,8 @@ export function TypingHero() {
 
   const phrases = [
     { text: "technology", color: "text-[#009699]", cursorColor: "bg-[#009699]" },
-    { text: "digital solutions", color: "text-[#009699]", cursorColor: "bg-[#009699]" },
-    { text: "the future", color: "text-[#009699]", cursorColor: "bg-[#009699]" },
+    { text: "solutions", color: "text-[#009699]", cursorColor: "bg-[#009699]" },
+    { text: "future", color: "text-[#009699]", cursorColor: "bg-[#009699]" },
   ]
 
   const baseText = "Let's create tomorrow's "

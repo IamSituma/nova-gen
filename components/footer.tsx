@@ -2,10 +2,7 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ChevronDown, ChevronUp, MessageSquare } from "lucide-react"
-import { NewsletterForm } from "./newsletter-form"
-import { FooterPopup } from "./footer-popup"
-import { Button } from "@/components/ui/button"
+import { ChevronDown, ChevronUp, ExternalLink, Mail, Phone, MapPin } from "lucide-react"
 
 export function Footer() {
   const [expandedSection, setExpandedSection] = useState<string | null>(null)
@@ -14,154 +11,149 @@ export function Footer() {
     setExpandedSection(expandedSection === sectionId ? null : sectionId)
   }
 
-  const footerSections = [
+  const sections = [
     {
       id: "services",
       title: "Services",
-      items: ["Web Development", "Mobile Apps", "Physical Products", "SEO", "Google Ads", "Patent Services"],
+      items: [
+        { label: "Enterprise Web Development", href: "/services/web-development" },
+        { label: "Mobile App Development", href: "/services/mobile-apps" },
+        { label: "Physical Product Development", href: "/services/physical-products" },
+        { label: "SEO Optimization", href: "/services/seo" },
+        { label: "Google Ads Management", href: "/services/google-ads" },
+        { label: "Patent Services", href: "/services/patents" },
+      ],
     },
     {
       id: "company",
       title: "Company",
-      items: ["About", "Portfolio", "Projects", "Process", "Careers", "Blog"],
+      items: [
+        { label: "About Us", href: "/about" },
+        { label: "Our Process", href: "/process" },
+        { label: "Portfolio", href: "/portfolio" },
+        { label: "Careers", href: "/careers" },
+        { label: "Blog", href: "/blog" },
+        { label: "Contact", href: "/contact" },
+      ],
     },
     {
       id: "resources",
       title: "Resources",
-      items: ["Documentation", "Support", "API", "Status", "Security", "Downloads"],
+      items: [
+        { label: "Documentation", href: "/docs" },
+        { label: "Case Studies", href: "/case-studies" },
+        { label: "White Papers", href: "/white-papers" },
+        { label: "Technical Guides", href: "/guides" },
+        { label: "API Reference", href: "/api" },
+        { label: "Downloads", href: "/downloads" },
+      ],
     },
     {
-      id: "legal",
-      title: "Legal",
-      items: ["Privacy", "Terms", "Cookies", "GDPR", "Accessibility", "Licenses"],
+      id: "support",
+      title: "Support",
+      items: [
+        { label: "Help Center", href: "/help" },
+        { label: "Free Consultation", href: "/consultation" },
+        { label: "Technical Support", href: "/tech-support" },
+        { label: "Training", href: "/training" },
+        { label: "Community", href: "/community" },
+        { label: "System Status", href: "/status" },
+      ],
     },
   ]
 
+  const contactInfo = [
+    { icon: Mail, value: "hello@weltivation.com", href: "mailto:hello@weltivation.com" },
+    { icon: Phone, value: "+1 (555) 123-4567", href: "tel:+15551234567" },
+    { icon: MapPin, value: "San Francisco, CA", href: "#" },
+  ]
+
   return (
-    <footer className="py-8 px-4 sm:px-6 border-t border-border/50 relative overflow-hidden">
-      {/* Code background */}
-      <div className="absolute inset-0 opacity-5">
-        <pre className="text-xs text-primary/30 font-mono leading-relaxed transform rotate-6 scale-150 absolute -top-20 -left-20">
-          {`function innovate() {
-  const solutions = [];
-  
-  // Web Development
-  solutions.push({
-    framework: 'Next.js',
-    backend: 'Node.js',
-    database: 'PostgreSQL',
-    deployment: 'Vercel'
-  });
-  
-  // Mechanical Engineering
-  solutions.push({
-    design: 'SolidWorks',
-    simulation: 'ANSYS',
-    manufacturing: 'CNC',
-    materials: 'Advanced Composites'
-  });
-}`}
-        </pre>
-      </div>
-
-      <div className="max-w-7xl mx-auto relative z-10">
-        {/* Desktop Footer */}
-        <div className="hidden md:flex flex-col sm:flex-row justify-between items-center gap-8">
+    <footer className="bg-background border-t border-border/50">
+      <div className="max-w-7xl mx-auto px-4 py-10">
+        {/* Top */}
+        <div className="flex flex-col md:flex-row justify-between items-start mb-10 gap-6">
           <div className="flex items-center space-x-4">
-            <img src="/images/weltivation-logo.png" alt="Weltivation" className="h-14" />
-            <FooterPopup />
-          </div>
-
-          <div className="flex flex-col sm:flex-row items-center gap-8">
-            <div className="text-muted-foreground text-xs">
-              &copy; {new Date().getFullYear()} Weltivation. All rights reserved.
-            </div>
-
-            <div className="flex items-center gap-4">
-              <Button
-                onClick={() => (window.location.href = "/support")}
-                className="bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white font-medium px-4 py-2 text-sm"
-              >
-                <MessageSquare className="w-4 h-4 mr-2" />
-                Start Chat
-              </Button>
-
-              <div className="flex items-center gap-2">
-                <span className="text-xs text-muted-foreground">Subscribe to our newsletter</span>
-                <NewsletterForm />
-              </div>
-            </div>
+            <img src="/images/weltivation-logo.png" alt="Weltivation" className="h-12" />
+            <p className="text-sm text-muted-foreground">
+              Ready to build the future together?
+            </p>
           </div>
         </div>
 
-        {/* Mobile Footer - Stacked with collapsible sections */}
-        <div className="md:hidden space-y-6">
-          {/* Logo and main info */}
-          <div className="text-center space-y-4">
-            <img src="/images/weltivation-logo.png" alt="Weltivation" className="h-12 mx-auto" />
-            <div className="text-muted-foreground text-xs">
-              &copy; {new Date().getFullYear()} Weltivation. All rights reserved.
-            </div>
-          </div>
-
-          {/* Collapsible sections */}
-          <div className="space-y-2">
-            {footerSections.map((section) => (
-              <div key={section.id} className="border border-border/30 rounded-lg overflow-hidden">
-                <button
-                  onClick={() => toggleSection(section.id)}
-                  className="w-full flex items-center justify-between p-4 bg-background/50 hover:bg-muted/30 transition-colors"
-                >
-                  <span className="font-medium text-sm">{section.title}</span>
-                  {expandedSection === section.id ? (
-                    <ChevronUp className="w-4 h-4" />
-                  ) : (
-                    <ChevronDown className="w-4 h-4" />
-                  )}
-                </button>
-
-                <AnimatePresence>
-                  {expandedSection === section.id && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                      className="overflow-hidden"
-                    >
-                      <div className="p-4 pt-0 space-y-2 border-t border-border/30">
-                        {section.items.map((item, index) => (
-                          <motion.div
-                            key={index}
-                            className="text-sm text-muted-foreground hover:text-primary transition-colors py-1"
-                            initial={{ x: -10, opacity: 0 }}
-                            animate={{ x: 0, opacity: 1 }}
-                            transition={{ delay: index * 0.05 }}
-                          >
-                            {item}
-                          </motion.div>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+        {/* Desktop */}
+        <div className="hidden md:grid grid-cols-4 gap-10 mb-10">
+          {sections.map(section => (
+            <div key={section.id}>
+              <h4 className="font-semibold text-primary text-lg mb-4">{section.title}</h4>
+              <div className="space-y-3">
+                {section.items.map((item, i) => (
+                  <a key={i} href={item.href}
+                     className="flex items-center text-sm text-muted-foreground hover:text-primary transition group">
+                    <span>{item.label}</span>
+                    <ExternalLink className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100" />
+                  </a>
+                ))}
               </div>
-            ))}
+            </div>
+          ))}
+        </div>
+
+        {/* Mobile collapsible */}
+        <div className="md:hidden space-y-3 mb-10">
+          {sections.map(section => (
+            <div key={section.id} className="border border-border/30 rounded-lg">
+              <button
+                onClick={() => toggleSection(section.id)}
+                className="w-full flex justify-between items-center p-4"
+              >
+                <h4 className="font-semibold text-primary">{section.title}</h4>
+                {expandedSection === section.id ? <ChevronUp /> : <ChevronDown />}
+              </button>
+
+              <AnimatePresence>
+                {expandedSection === section.id && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    className="overflow-hidden"
+                  >
+                    <div className="p-4 border-t border-border/30 space-y-2">
+                      {section.items.map((item, i) => (
+                        <a key={i} href={item.href}
+                           className="flex items-center text-sm text-muted-foreground hover:text-primary">
+                          {item.label}
+                        </a>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom */}
+        <div className="pt-6 border-t border-border/50 flex flex-col lg:flex-row justify-between items-center gap-4">
+          <div className="flex flex-col md:flex-row items-center gap-4 text-sm">
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+              All systems operational
+            </span>
+            <span className="text-muted-foreground">
+              © {new Date().getFullYear()} Weltivation. All rights reserved.
+            </span>
           </div>
 
-          {/* Newsletter signup and chat button */}
-          <div className="text-center space-y-4 pt-4 border-t border-border/30">
-            <span className="text-sm text-muted-foreground">Stay updated</span>
-            <div className="px-4">
-              <NewsletterForm />
-            </div>
-            <Button
-              onClick={() => (window.location.href = "/support")}
-              className="w-full bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white font-medium px-4 py-2 text-sm"
-            >
-              <MessageSquare className="w-4 h-4 mr-2" />
-              Start Chat
-            </Button>
+          <div className="flex flex-wrap gap-6">
+            {contactInfo.map((c, i) => (
+              <a key={i} href={c.href}
+                 className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary">
+                <c.icon className="w-4 h-4" />
+                {c.value}
+              </a>
+            ))}
           </div>
         </div>
       </div>

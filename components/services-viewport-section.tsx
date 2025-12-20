@@ -28,6 +28,10 @@ import {
   Lock,
   Gauge,
   Activity,
+  ShoppingBag,
+  CloudDownload,
+  CloudUpload,
+  LucideCloudUpload,
 } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 
@@ -50,7 +54,7 @@ const services = [
       { label: "Conversion Rate Boost", value: "127%" },
       { label: "Client Satisfaction", value: "98%" },
     ],
-    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Vercel"],
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "HTML", "CSS", "Javascript"],
     gradient: "from-blue-500 via-cyan-400 to-blue-600",
     bgGradient: "from-blue-500/20 via-cyan-400/10 to-blue-600/20",
     accentColor: "text-blue-400",
@@ -79,43 +83,43 @@ const services = [
     accentColor: "text-purple-400",
   },
   {
-    id: "digital",
-    title: "Digital Systems",
-    subtitle: "Automation & Integration",
+    id: "ecommerce",
+    title: "E-Commerce Solutions",
+    subtitle: "Your Complete Online Selling Platform",
     description:
-      "Streamline your operations with intelligent digital systems that automate workflows, integrate seamlessly, and scale with your business growth.",
-    icon: <Laptop className="w-8 h-8" />,
+      "Complete e-commerce platforms with payment integration, inventory management, and customer analytics.",
+    icon: <ShoppingBag className="w-8 h-8" />,
     features: [
-      { icon: <Cog className="w-5 h-5" />, text: "Workflow automation" },
-      { icon: <Database className="w-5 h-5" />, text: "Data integration" },
-      { icon: <Cloud className="w-5 h-5" />, text: "Cloud-native architecture" },
-      { icon: <Layers className="w-5 h-5" />, text: "API-first design" },
+      { icon: <Cog className="w-5 h-5" />, text: "Online Stores" },
+      { icon: <Database className="w-5 h-5" />, text: "Payment Gateway" },
+      { icon: <Cloud className="w-5 h-5" />, text: "Inventory System" },
+      { icon: <Layers className="w-5 h-5" />, text: "Analytics Dashboard" },
     ],
     stats: [
       { label: "Efficiency Increase", value: "250%" },
       { label: "Cost Reduction", value: "60%" },
       { label: "Error Reduction", value: "95%" },
     ],
-    technologies: ["Node.js", "Python", "AWS", "Docker", "Kubernetes"],
+    technologies: ["Node.js", "React.js", "Python", "AWS", "Angular", "PostgreSQL"],
     gradient: "from-emerald-500 via-teal-400 to-emerald-600",
     bgGradient: "from-emerald-500/20 via-teal-400/10 to-emerald-600/20",
     accentColor: "text-emerald-400",
   },
   {
-    id: "mechanical",
-    title: "Mechanical Engineering",
-    subtitle: "Design & Prototyping",
+    id: "enterprise",
+    title: "Enterprise Software",
+    subtitle: "Powering Productivity for the Modern Enterprise",
     description:
-      "Bring your physical products to life with precision engineering, rapid prototyping, and manufacturing-ready designs that meet the highest industry standards.",
+      "Scalable enterprise solutions including ERP, CRM, and custom business applications tailored to your needs.",
     icon: <Cog className="w-8 h-8" />,
     features: [
-      { icon: <Lightbulb className="w-5 h-5" />, text: "Innovative design solutions" },
-      { icon: <Code className="w-5 h-5" />, text: "CAD modeling & simulation" },
-      { icon: <Package className="w-5 h-5" />, text: "Rapid prototyping" },
-      { icon: <Award className="w-5 h-5" />, text: "Quality assurance" },
+      { icon: <Lightbulb className="w-5 h-5" />, text: "ERP Systems" },
+      { icon: <Code className="w-5 h-5" />, text: "CRM Solutions" },
+      { icon: <Package className="w-5 h-5" />, text: "Business Intelligence" },
+      { icon: <Award className="w-5 h-5" />, text: "Workflow" },
     ],
     stats: [
-      { label: "Design Accuracy", value: "99.7%" },
+      { label: "Design Accuracy", value: "99.9%" },
       { label: "Time to Prototype", value: "72hrs" },
       { label: "Manufacturing Ready", value: "100%" },
     ],
@@ -125,47 +129,46 @@ const services = [
     accentColor: "text-orange-400",
   },
   {
-    id: "product",
-    title: "Product Development",
-    subtitle: "From Idea to Market",
+    id: "cloud",
+    title: "Cloud Solutions",
+    subtitle: "Scalable, Secure, and Smarter in the Cloud",
     description:
-      "Transform innovative ideas into market-ready products with our comprehensive development process, from initial concept through successful launch.",
-    icon: <Package className="w-8 h-8" />,
+      "Cloud-native applications, migration services, and infrastructure management on AWS, Azure, and Google Cloud.",
+    icon: <LucideCloudUpload className="w-8 h-8" />,
     features: [
-      { icon: <Target className="w-5 h-5" />, text: "Market research & validation" },
-      { icon: <Rocket className="w-5 h-5" />, text: "MVP development" },
-      { icon: <TrendingUp className="w-5 h-5" />, text: "Go-to-market strategy" },
-      { icon: <Star className="w-5 h-5" />, text: "Post-launch optimization" },
+      { icon: <Target className="w-5 h-5" />, text: "Cloud Migration" },
+      { icon: <Rocket className="w-5 h-5" />, text: "Serverless Apps" },
+      { icon: <TrendingUp className="w-5 h-5" />, text: "Infrastructure Setup" },
+      { icon: <Star className="w-5 h-5" />, text: "DevOps Solutions" },
     ],
     stats: [
       { label: "Success Rate", value: "92%" },
       { label: "Time to Market", value: "40% Faster" },
       { label: "ROI Average", value: "3.2x" },
     ],
-    technologies: ["Lean Startup", "Agile", "Design Thinking", "Analytics", "A/B Testing"],
+    technologies: ["AWS", "Microsoft Azure", "Google Cloud", "Digital Ocean", "Oracle Cloud", "Vercel"],
     gradient: "from-indigo-500 via-purple-400 to-indigo-600",
     bgGradient: "from-indigo-500/20 via-purple-400/10 to-indigo-600/20",
     accentColor: "text-indigo-400",
   },
   {
-    id: "architecture",
-    title: "Architecture Design",
-    subtitle: "Spaces That Inspire",
+    id: "uiux",
+    title: "UI/UX Design",
+    subtitle: "Designing Experiences that Delight",
     description:
-      "Create stunning architectural designs that blend functionality with aesthetics, delivering spaces that inspire and environments that enhance human experience.",
+      "We create user-friendly interfaces and engaging experienxes that make your product easy to use and visually appealing to your clients. We transform ideas into interactive designs that help drive engagement and growth",
     icon: <Building2 className="w-8 h-8" />,
     features: [
-      { icon: <Lightbulb className="w-5 h-5" />, text: "Sustainable design principles" },
-      { icon: <Layers className="w-5 h-5" />, text: "3D visualization & VR" },
-      { icon: <Shield className="w-5 h-5" />, text: "Building code compliance" },
-      { icon: <Award className="w-5 h-5" />, text: "Award-winning designs" },
+      { icon: <Lightbulb className="w-5 h-5" />, text: "High Fiedlity UI Designs" },
+      { icon: <Layers className="w-5 h-5" />, text: "Wireframing" },
+      { icon: <Shield className="w-5 h-5" />, text: "Prototyping" },
     ],
     stats: [
       { label: "Projects Completed", value: "150+" },
       { label: "Client Satisfaction", value: "96%" },
       { label: "On-Time Delivery", value: "98%" },
     ],
-    technologies: ["AutoCAD", "Revit", "SketchUp", "3ds Max", "Lumion"],
+    technologies: ["Adobe XD", "Figma", "Sketch", "InVision"],
     gradient: "from-pink-500 via-rose-400 to-pink-600",
     bgGradient: "from-pink-500/20 via-rose-400/10 to-pink-600/20",
     accentColor: "text-pink-400",
@@ -213,10 +216,10 @@ export function ServicesViewportSection() {
   }
 
   return (
-    <section ref={containerRef} className="relative py-20 px-4 sm:px-6 bg-black overflow-hidden">
+    <section ref={containerRef} className="relative py-20 px-4 sm:px-6 bg-white overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900" />
+        <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-white" />
         <motion.div
           className="absolute inset-0 opacity-5"
           animate={{
@@ -248,15 +251,14 @@ export function ServicesViewportSection() {
             <button
               key={service.id}
               onClick={() => scrollToService(index)}
-              className={`group relative w-3 h-3 rounded-full transition-all duration-300 ${
-                activeService === index
+              className={`group relative w-3 h-3 rounded-full transition-all duration-300 ${activeService === index
                   ? "bg-white scale-125 shadow-lg"
                   : "bg-white/30 hover:bg-white/60 hover:scale-110"
-              }`}
+                }`}
             >
               {/* Tooltip */}
               <div className="absolute left-6 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                <div className="bg-black/90 text-white px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap border border-white/20">
+                <div className="bg-white text-black px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap border border-black/20">
                   {service.title}
                 </div>
               </div>
@@ -267,30 +269,19 @@ export function ServicesViewportSection() {
 
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <motion.div
-            className="inline-flex items-center space-x-2 px-6 py-3 bg-gray-800/50 rounded-full border border-gray-700 mb-6 backdrop-blur-sm"
-            animate={{ scale: [1, 1.02, 1] }}
-            transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
-          >
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center space-x-2 px-6 py-3 bg-gray-800/50 rounded-full border border-gray-700 mb-6 backdrop-blur-sm">
             <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
-            <span className="text-sm font-medium text-gray-300">Premium Services</span>
-          </motion.div>
-
-          <h2 className="text-5xl sm:text-6xl font-black mb-6 leading-tight">
+            <span className="text-sm font-medium text-white">Premium Services</span>
+          </div>
+          <h2 className="text-5xl sm:text-6xl font-black mb-6 leading-tight text-white">
             <span className="text-white">Services That </span>
             <span className="text-white font-light italic">Transform</span>
           </h2>
-
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Comprehensive solutions designed to accelerate your business growth and digital transformation
           </p>
-        </motion.div>
+        </div>
 
         <div className="relative">
           {/* Services Content */}
@@ -779,11 +770,10 @@ function MechanicalUIGraphic({ service }: { service: any }) {
             {["Rotate", "Zoom", "Pan"].map((tool, index) => (
               <motion.button
                 key={tool}
-                className={`px-3 py-1 text-xs rounded shadow-sm border transition-colors ${
-                  index === 0
+                className={`px-3 py-1 text-xs rounded shadow-sm border transition-colors ${index === 0
                     ? "bg-gray-700 text-white border-gray-800"
                     : "bg-gray-200 text-gray-700 border-gray-300 hover:bg-gray-300"
-                }`}
+                  }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -834,9 +824,8 @@ function ProductUIGraphic({ service }: { service: any }) {
               transition={{ delay: index * 0.3 }}
             >
               <motion.div
-                className={`w-8 h-8 rounded-full flex items-center justify-center shadow-md ${
-                  index <= 2 ? "bg-gradient-to-r from-gray-600 to-gray-800 text-white" : "bg-gray-300 text-gray-600"
-                }`}
+                className={`w-8 h-8 rounded-full flex items-center justify-center shadow-md ${index <= 2 ? "bg-gradient-to-r from-gray-600 to-gray-800 text-white" : "bg-gray-300 text-gray-600"
+                  }`}
                 animate={index <= 2 ? { scale: [1, 1.1, 1] } : {}}
                 transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, delay: index * 0.5 }}
               >
@@ -858,9 +847,8 @@ function ProductUIGraphic({ service }: { service: any }) {
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2 mt-1 shadow-inner">
                   <motion.div
-                    className={`h-2 rounded-full shadow-sm ${
-                      index <= 2 ? "bg-gradient-to-r from-gray-600 to-gray-800" : "bg-gray-300"
-                    }`}
+                    className={`h-2 rounded-full shadow-sm ${index <= 2 ? "bg-gradient-to-r from-gray-600 to-gray-800" : "bg-gray-300"
+                      }`}
                     initial={{ width: 0 }}
                     animate={{ width: index <= 2 ? "100%" : "60%" }}
                     transition={{ duration: 1.5, ease: "easeOut", delay: index * 0.2 }}
@@ -969,11 +957,10 @@ function ArchitectureUIGraphic({ service }: { service: any }) {
             {["2D", "3D", "VR"].map((view, index) => (
               <motion.button
                 key={view}
-                className={`px-3 py-1 text-xs rounded shadow-sm border transition-colors ${
-                  index === 1
+                className={`px-3 py-1 text-xs rounded shadow-sm border transition-colors ${index === 1
                     ? "bg-gray-700 text-white border-gray-800"
                     : "bg-gray-200 text-gray-700 border-gray-300 hover:bg-gray-300"
-                }`}
+                  }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

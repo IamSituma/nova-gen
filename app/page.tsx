@@ -1,13 +1,11 @@
 "use client"
 
 import Link from "next/link"
-import { CodeRain } from "@/components/code-rain"
 import { NavBar } from "@/components/nav-bar"
 import { Footer } from "@/components/footer"
 import { ExpertiseSection } from "@/components/expertise-section"
 import { SpinningEarth } from "@/components/spinning-earth"
 import { TypingHero } from "@/components/typing-hero"
-import { motion } from "framer-motion"
 import { Zap } from "lucide-react"
 import { ProfileDropdown } from "@/components/profile-dropdown"
 import { ServicesViewportSection } from "@/components/services-viewport-section"
@@ -22,18 +20,15 @@ export default function Home() {
             <div className="opacity-10">
               <SpinningEarth />
             </div>
-            <div className="opacity-10">
-              <CodeRain />
-            </div>
           </div>
 
           {/* Content container */}
-          <div className="relative z-10">
+          <div className="relative z-10 bg-white">
             <NavBar />
             <ProfileDropdown />
 
             {/* Hero section */}
-            <section className="relative flex flex-col items-center justify-center min-h-[100vh] px-4 sm:px-6 overflow-hidden">
+            <section className="relative flex flex-col items-center justify-center min-h-[75vh] px-4 sm:px-6 overflow-hidden">
               {/* Hero Video */}
               <video
                 autoPlay
@@ -58,17 +53,12 @@ export default function Home() {
                 <TypingHero />
 
                 <div className="h-px w-24 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto my-8"></div>
-
-                <p className="text-muted-foreground max-w-xl mx-auto font-medium">
-                  Transforming ideas into powerful digital solutions that drive growth and innovation for forward-thinking businesses.
-                </p>
-
                 <div className="pt-8 flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
                   <Link
                     href="/services"
                     className="px-6 py-3 bg-gray-800 text-white rounded-lg font-medium text-base hover:bg-gray-700 transition-all duration-300 transform hover:scale-105 border border-gray-700"
                   >
-                    Services
+                    Our Services
                   </Link>
 
                   <Link
@@ -82,8 +72,8 @@ export default function Home() {
               </div>
             </section>
 
-            {/* Other sections with dark gradient blue background */}
-            <div className="bg-gradient-to-b from-[#020617] via-[#0f172a] to-[#1e293b]">
+            {/* Other sections with white background */}
+            <div className="bg-white">
               {/* Expertise section */}
               <ExpertiseSection />
 
@@ -93,38 +83,18 @@ export default function Home() {
               {/* Contact section */}
               <section id="contact" className="py-20 px-4 sm:px-6 relative">
                 <div className="max-w-4xl mx-auto text-center space-y-12">
-                  <motion.h2
-                    className="text-4xl sm:text-5xl font-bold"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                  >
+                  <h2 className="text-4xl sm:text-5xl font-bold">
                     <span className="text-foreground">Ready to </span>
                     <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-green-600">
                       innovate?
                     </span>
-                  </motion.h2>
-                  <motion.div
-                    className="h-px w-24 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto"
-                    initial={{ scaleX: 0 }}
-                    whileInView={{ scaleX: 1 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                  />
-                  <motion.p
-                    className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
-                  >
+                  </h2>
+                  <div className="h-px w-24 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
+                  <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                     Let's discuss how we can transform your vision into reality with cutting-edge technology and strategic innovation.
-                  </motion.p>
+                  </p>
 
-                  <motion.div
-                    className="pt-8 flex flex-col items-center space-y-6"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.5 }}
-                  >
+                  <div className="pt-8 flex flex-col items-center space-y-6">
                     <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
                       <Link
                         href="/services"
@@ -143,7 +113,7 @@ export default function Home() {
 
                       <Link
                         href="/consultation"
-                        className="px-6 py-3 bg-[#009699] text-white rounded-lg font-medium text-base hover:bg-[#009699] transition-all duration-300 transform hover:scale-105 border border-[#009699] hover:shadow-[0_0_20px_rgba(0,150,153,0.3)]"
+                        className="px-6 py-3 bg-[#009699] text-white rounded-lg font-medium text-base hover:bg-[#00b3b3] transition-all duration-300 transform hover:scale-105 border border-[#009699] hover:shadow-[0_0_20px_rgba(0,150,153,0.3)]"
                       >
                         <Zap className="w-5 h-5 inline-block mr-1" />
                         Free Consultation
@@ -170,7 +140,7 @@ export default function Home() {
                         <p className="text-sm text-muted-foreground">Expert guidance</p>
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 </div>
               </section>
 

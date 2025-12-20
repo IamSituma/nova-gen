@@ -5,7 +5,6 @@ import { useState, useRef, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { NavBar } from "@/components/nav-bar"
 import { Footer } from "@/components/footer"
-import { CodeRain } from "@/components/code-rain"
 import {
   Mail,
   Phone,
@@ -175,9 +174,7 @@ export default function ContactPage() {
 
   return (
     <main className="min-h-screen bg-background text-foreground relative overflow-hidden">
-      <div className="absolute inset-0 z-0">
-        <CodeRain />
-      </div>
+
       <NavBar />
 
       <div className="container mx-auto px-4 pt-24 pb-16 relative z-10">

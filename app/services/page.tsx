@@ -14,6 +14,8 @@ import {
   Globe,
   ArrowRight,
   CheckCircle,
+  ShoppingBag,
+  LucideFileQuestion,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -34,7 +36,6 @@ export default function ServicesPage() {
       title: "Web Development",
       description: "Custom websites and web applications built with cutting-edge technologies",
       features: ["React & Next.js", "Full-Stack Development", "API Integration", "Database Design"],
-      price: "Starting at $5,000",
       graphic: <WebDevGraphic />,
       color: "emerald",
     },
@@ -43,16 +44,14 @@ export default function ServicesPage() {
       title: "Mobile App Development",
       description: "Native and cross-platform mobile applications for iOS and Android",
       features: ["React Native", "iOS & Android", "App Store Deployment", "Push Notifications"],
-      price: "Starting at $8,000",
       graphic: <IoTGraphic />,
       color: "blue",
     },
     {
-      icon: <Search className="w-8 h-8" />,
-      title: "SEO & Digital Marketing",
+      icon: <ShoppingBag className="w-8 h-8" />,
+      title: "E-Commerce Solutions",
       description: "Boost your online presence and drive organic traffic to your business",
       features: ["SEO Optimization", "Content Strategy", "Analytics Setup", "Performance Tracking"],
-      price: "Starting at $2,000/mo",
       graphic: <SEOGraphic />,
       color: "purple",
     },
@@ -61,7 +60,6 @@ export default function ServicesPage() {
       title: "UI/UX Design",
       description: "Beautiful, intuitive designs that convert visitors into customers",
       features: ["User Research", "Wireframing", "Prototyping", "Design Systems"],
-      price: "Starting at $3,000",
       graphic: <DigitalTransformationGraphic />,
       color: "pink",
     },
@@ -70,7 +68,6 @@ export default function ServicesPage() {
       title: "Cloud Solutions",
       description: "Scalable cloud infrastructure and deployment solutions",
       features: ["AWS/Vercel Setup", "CI/CD Pipelines", "Database Hosting", "Performance Monitoring"],
-      price: "Starting at $1,500",
       graphic: <PatentGraphic />,
       color: "cyan",
     },
@@ -79,9 +76,32 @@ export default function ServicesPage() {
       title: "E-commerce Development",
       description: "Complete online stores with payment processing and inventory management",
       features: ["Shopify/Custom", "Payment Integration", "Inventory Management", "Order Processing"],
-      price: "Starting at $7,000",
       graphic: <MechanicalGraphic />,
-      color: "orange",
+      color: "black",
+    },
+    {
+      icon: <LucideFileQuestion className="w-8 h-8"/>,
+      title: "IT Consultation",
+      description: "We offer IT Consultation services to both individuals, SMEs and large organizations",
+      features: ["Consultation", "Consultation", "Consultation", "Consultation"],
+      graphic: <MechanicalGraphic/>,
+      color: "Teal",
+    },
+    {
+      icon: <ShoppingCart className="w-8 h-8" />,
+      title: "E-commerce Development",
+      description: "Complete online stores with payment processing and inventory management",
+      features: ["Shopify/Custom", "Payment Integration", "Inventory Management", "Order Processing"],
+      graphic: <MechanicalGraphic />,
+      color: "black",
+    },
+    {
+      icon: <LucideFileQuestion className="w-8 h-8"/>,
+      title: "IT Consultation",
+      description: "We offer IT Consultation services to both individuals, SMEs and large organizations",
+      features: ["Consultation", "Consultation", "Consultation", "Consultation"],
+      graphic: <MechanicalGraphic/>,
+      color: "Teal",
     },
   ]
 
@@ -107,6 +127,16 @@ export default function ServicesPage() {
       description: "Go live with ongoing maintenance and support",
     },
   ]
+
+  const colorMap: Record<string, string> = {
+    emerald: "text-emerald-400",
+    blue: "text-blue-400",
+    purple: "text-purple-400",
+    pink: "text-pink-400",
+    cyan: "text-cyan-400",
+    black: "text-black",
+    Teal: "text-teal-400",
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white">
@@ -148,7 +178,7 @@ export default function ServicesPage() {
                   {service.graphic}
 
                   <div className="relative z-10">
-                    <div className={`text-${service.color}-400 mb-6`}>{service.icon}</div>
+                    <div className={`${colorMap[service.color] ?? "text-white"} mb-6`}>{service.icon}</div>
                     <h3 className="text-2xl font-bold text-white mb-4">{service.title}</h3>
                     <p className="text-gray-400 mb-6 leading-relaxed">{service.description}</p>
 
@@ -162,7 +192,6 @@ export default function ServicesPage() {
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <div className={`text-${service.color}-400 font-bold text-lg`}>{service.price}</div>
                       <Link href="/consultation">
                         <Button
                           size="sm"
@@ -226,15 +255,6 @@ export default function ServicesPage() {
                 <Button className="bg-black text-white hover:bg-gray-800 px-8 py-4 text-lg">
                   <Zap className="w-5 h-5 mr-2" />
                   Free Consultation
-                </Button>
-              </Link>
-              <Link href="/portfolio">
-                <Button
-                  variant="outline"
-                  className="border-black text-black hover:bg-black hover:text-white px-8 py-4 text-lg"
-                >
-                  <Globe className="w-5 h-5 mr-2" />
-                  View Portfolio
                 </Button>
               </Link>
             </div>
