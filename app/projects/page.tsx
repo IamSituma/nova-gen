@@ -31,30 +31,22 @@ export default function ProjectsPage() {
   const [projectLikes, setProjectLikes] = useState<{ [key: string]: { liked: boolean; disliked: boolean } }>({})
 
   const filters = [
-    { id: "all", label: "All Projects", count: 9 },
-    { id: "web", label: "Web Development", count: 6 },
-    { id: "mobile", label: "Mobile Apps", count: 1 },
-    { id: "product", label: "Physical Products", count: 2 },
+    { id: "all", label: "All Projects", count: 3 },
   ]
 
   const projects = [
-    // Top 3 projects as requested
     {
-      id: "glasspatch",
-      name: "GlassPatch",
-      client: "GlassPatch LLC",
+      id: "nova-legal",
+      name: "Nova Legal",
       category: "web",
       status: "completed",
-      budget: "$95K",
-      timeline: "6 months",
       completion: 100,
       rating: 5,
       description: "Bay Area glass repair service platform with mobile booking and expert technician network",
       image: "/images/glasspatch-screenshot.png",
       logo: "/images/glasspatch-logo-new.png",
-      tags: ["Glass Repair", "Mobile Service", "Bay Area", "Professional"],
+      tags: ["legal management", "SAAS legal software", "Uganda", "Professional", "Kampala", "Matters"],
       metrics: {
-        revenue: "$1.1M",
         users: "12K+",
         satisfaction: "97%",
       },
@@ -65,7 +57,6 @@ export default function ProjectsPage() {
         overview: "Professional glass repair service platform connecting customers with certified technicians.",
         features: ["Mobile booking", "Real-time tracking", "Expert network", "Insurance claims"],
         technologies: ["React", "Node.js", "Google Maps API", "Stripe"],
-        team: ["Full-stack Developer", "Mobile Developer", "Business Analyst"],
         milestones: [
           { name: "Platform Architecture", date: "2023-03", status: "completed" },
           { name: "Booking System", date: "2023-05", status: "completed" },
@@ -75,13 +66,10 @@ export default function ProjectsPage() {
       },
     },
     {
-      id: "norams-auto",
-      name: "Noram's Auto",
-      client: "Noram's Electronics",
+      id: "nova-suite",
+      name: "Nova Suite",
       category: "web",
       status: "completed",
-      budget: "$85K",
-      timeline: "5 months",
       completion: 100,
       rating: 5,
       description: "Professional auto repair website with booking system and service management for Santa Cruz",
@@ -89,7 +77,6 @@ export default function ProjectsPage() {
       logo: "/images/norams-logo-new.png",
       tags: ["Auto Services", "Booking System", "Local Business", "Reviews"],
       metrics: {
-        revenue: "$650K",
         users: "8K+",
         satisfaction: "95%",
       },
@@ -100,7 +87,6 @@ export default function ProjectsPage() {
         overview: "Complete digital solution for auto repair shop with online booking and customer management.",
         features: ["Online booking", "Service tracking", "Customer reviews", "Mobile optimization"],
         technologies: ["Next.js", "Stripe", "Google APIs", "Tailwind CSS"],
-        team: ["Full-stack Developer", "UI/UX Designer", "Local SEO Specialist"],
         milestones: [
           { name: "Website Design", date: "2023-08", status: "completed" },
           { name: "Booking System", date: "2023-10", status: "completed" },
@@ -110,13 +96,10 @@ export default function ProjectsPage() {
       },
     },
     {
-      id: "dreambox",
-      name: "Dreambox",
-      client: "Dreambox AI",
+      id: "nova-coding",
+      name: "Nova Coding Club",
       category: "web",
       status: "completed",
-      budget: "$120K",
-      timeline: "6 months",
       completion: 100,
       rating: 5,
       description: "AI platform for creating cinematic episodes from scripts with automated video generation",
@@ -124,7 +107,6 @@ export default function ProjectsPage() {
       logo: "/images/dreambox-logo-new.png",
       tags: ["AI", "Video Generation", "React", "Machine Learning"],
       metrics: {
-        revenue: "$1.2M",
         users: "12K+",
         satisfaction: "97%",
       },
@@ -136,7 +118,6 @@ export default function ProjectsPage() {
           "Revolutionary AI platform that transforms scripts into cinematic episodes using advanced machine learning.",
         features: ["Script analysis", "Automated video generation", "Character creation", "Scene composition"],
         technologies: ["React", "Python", "TensorFlow", "AWS", "FFmpeg"],
-        team: ["AI Engineer", "Frontend Developer", "Video Processing Specialist"],
         milestones: [
           { name: "AI Model Training", date: "2023-01", status: "completed" },
           { name: "Platform Development", date: "2023-03", status: "completed" },
@@ -145,224 +126,11 @@ export default function ProjectsPage() {
         ],
       },
     },
-    // Rest of the projects
-    {
-      id: "nicfound",
-      name: "Nicfound",
-      client: "Nicfound Inc.",
-      category: "product",
-      status: "completed",
-      budget: "$150K",
-      timeline: "8 months",
-      completion: 100,
-      rating: 5,
-      description: "Smart tracking case for nicotine products with IoT integration and mobile app connectivity",
-      image: "/placeholder.svg?height=300&width=500",
-      logo: "/images/nicfound-logo.png",
-      tags: ["IoT", "Hardware", "Mobile App", "Cloud"],
-      metrics: {
-        revenue: "$2.1M",
-        users: "15K+",
-        satisfaction: "98%",
-      },
-      featured: true,
-      previewUrl: "https://nicfound.com",
-      hasLivePreview: true,
-      details: {
-        overview:
-          "Revolutionary smart case that tracks nicotine product usage with precision sensors and cloud analytics.",
-        features: ["Real-time tracking", "Mobile app integration", "Cloud analytics", "Battery optimization"],
-        technologies: ["IoT sensors", "React Native", "AWS IoT", "Node.js"],
-        team: ["Hardware Engineer", "Mobile Developer", "Cloud Architect"],
-        milestones: [
-          { name: "Hardware Design", date: "2023-01", status: "completed" },
-          { name: "Mobile App", date: "2023-03", status: "completed" },
-          { name: "Cloud Platform", date: "2023-05", status: "completed" },
-          { name: "Production", date: "2023-07", status: "completed" },
-        ],
-      },
-    },
-    {
-      id: "pufftrak",
-      name: "Pufftrak",
-      client: "Health Tech Solutions",
-      category: "product",
-      status: "completed",
-      budget: "$200K",
-      timeline: "10 months",
-      completion: 100,
-      rating: 5,
-      description: "Advanced taper device for smoking cessation with precision control and health monitoring",
-      image: "/images/pufftrak-device-1.png",
-      logo: "/images/pufftrak-logo.png",
-      tags: ["Medical Device", "Precision Engineering", "App Integration"],
-      metrics: {
-        revenue: "$1.8M",
-        users: "8K+",
-        satisfaction: "96%",
-      },
-      featured: true,
-      previewUrl: "https://pufftrak.com",
-      hasLivePreview: true,
-      details: {
-        overview:
-          "Medical-grade device designed to help users gradually reduce nicotine intake with precision control.",
-        features: ["Precision dosing", "Health tracking", "Progress analytics", "Medical compliance"],
-        technologies: ["Precision mechanics", "Bluetooth", "React Native", "Health APIs"],
-        team: ["Mechanical Engineer", "Software Developer", "Medical Consultant"],
-        milestones: [
-          { name: "Medical Research", date: "2022-08", status: "completed" },
-          { name: "Device Design", date: "2022-12", status: "completed" },
-          { name: "App Development", date: "2023-04", status: "completed" },
-          { name: "FDA Approval", date: "2023-06", status: "completed" },
-        ],
-      },
-    },
-    {
-      id: "motion-records",
-      name: "Motion Records",
-      client: "Motion Records LLC",
-      category: "web",
-      status: "completed",
-      budget: "$110K",
-      timeline: "7 months",
-      completion: 100,
-      rating: 5,
-      description: "Full-service marketing agency platform for artists with campaign management and analytics",
-      image: "/images/motion-records-screenshot.png",
-      logo: "/images/motion-records-logo.png",
-      tags: ["Marketing Agency", "Artists", "Campaigns", "Analytics"],
-      metrics: {
-        revenue: "$900K",
-        users: "5K+",
-        satisfaction: "96%",
-      },
-      featured: true,
-      previewUrl: "https://v0-streamline-landing-page-gules-two.vercel.app/",
-      hasLivePreview: false,
-      details: {
-        overview: "Comprehensive marketing agency platform designed specifically for artists of all sizes.",
-        features: ["Campaign management", "Analytics dashboard", "Artist onboarding", "Success tracking"],
-        technologies: ["Next.js", "React", "Analytics APIs", "CRM Integration"],
-        team: ["Full-stack Developer", "Marketing Strategist", "UI/UX Designer"],
-        milestones: [
-          { name: "Platform Design", date: "2024-01", status: "completed" },
-          { name: "Campaign Tools", date: "2024-03", status: "completed" },
-          { name: "Analytics Integration", date: "2024-05", status: "completed" },
-          { name: "Launch", date: "2024-07", status: "completed" },
-        ],
-      },
-    },
-    {
-      id: "sperm-league",
-      name: "Sperm League",
-      client: "Entertainment Ventures",
-      category: "web",
-      status: "completed",
-      budget: "$75K",
-      timeline: "4 months",
-      completion: 100,
-      rating: 5,
-      description: "Interactive racing game platform with competitive leaderboards and real-time multiplayer",
-      image: "/placeholder.svg?height=300&width=500",
-      logo: "/images/sperm-league-logo.png",
-      tags: ["Gaming", "Interactive", "Real-time", "Entertainment"],
-      metrics: {
-        revenue: "$400K",
-        users: "25K+",
-        satisfaction: "94%",
-      },
-      featured: false,
-      previewUrl: "https://v0-sperm-racing-website-orpin.vercel.app/",
-      hasLivePreview: false,
-      details: {
-        overview: "Unique interactive racing game platform featuring competitive gameplay and social features.",
-        features: ["Real-time racing", "Leaderboards", "Multiplayer support", "Achievement system"],
-        technologies: ["React", "WebSocket", "Node.js", "Real-time APIs"],
-        team: ["Game Developer", "Frontend Developer", "Backend Engineer"],
-        milestones: [
-          { name: "Game Mechanics", date: "2024-03", status: "completed" },
-          { name: "Multiplayer System", date: "2024-05", status: "completed" },
-          { name: "UI/UX Polish", date: "2024-06", status: "completed" },
-          { name: "Launch", date: "2024-07", status: "completed" },
-        ],
-      },
-    },
-    {
-      id: "chatchill",
-      name: "ChatChill",
-      client: "ChatChill Inc.",
-      category: "mobile",
-      status: "completed",
-      budget: "$140K",
-      timeline: "7 months",
-      completion: 100,
-      rating: 5,
-      description: "Social messaging app with advanced privacy features and interest-based community matching",
-      image: "/images/chatchill-screenshot.png",
-      logo: "/images/chatchill-logo-new.png",
-      tags: ["Mobile App", "Social", "Privacy", "Real-time"],
-      metrics: {
-        revenue: "$600K",
-        users: "50K+",
-        satisfaction: "95%",
-      },
-      previewUrl: "https://chatchill.io",
-      hasLivePreview: true,
-      details: {
-        overview: "Next-generation messaging app with focus on privacy, security, and interest-based connections.",
-        features: ["End-to-end encryption", "Interest matching", "Group management", "Media sharing"],
-        technologies: ["React Native", "Node.js", "Socket.io", "MongoDB"],
-        team: ["Mobile Developer", "Backend Developer", "Security Engineer"],
-        milestones: [
-          { name: "Core Features", date: "2023-01", status: "completed" },
-          { name: "Security Implementation", date: "2023-03", status: "completed" },
-          { name: "Interest System", date: "2023-05", status: "completed" },
-          { name: "App Store Launch", date: "2023-07", status: "completed" },
-        ],
-      },
-    },
-    {
-      id: "bevel-razors",
-      name: "Bevel",
-      client: "Bevel Inc.",
-      category: "web",
-      status: "completed",
-      budget: "$95K",
-      timeline: "5 months",
-      completion: 100,
-      rating: 4,
-      description: "Premium e-commerce platform and brand website for luxury shaving products and grooming essentials",
-      image: "/images/bevel-screenshot.png",
-      logo: "/images/bevel-logo-new.svg",
-      tags: ["E-commerce", "Branding", "Premium", "Grooming"],
-      metrics: {
-        revenue: "$800K",
-        users: "18K+",
-        satisfaction: "89%",
-      },
-      previewUrl: "https://getbevel.com/",
-      hasLivePreview: true,
-      details: {
-        overview:
-          "Premium e-commerce experience for luxury shaving products with focus on user experience and brand storytelling.",
-        features: ["Product showcase", "Subscription service", "User accounts", "Mobile optimization"],
-        technologies: ["Shopify Plus", "React", "GraphQL", "Stripe"],
-        team: ["E-commerce Developer", "UI/UX Designer", "Brand Strategist"],
-        milestones: [
-          { name: "Brand Strategy", date: "2023-02", status: "completed" },
-          { name: "Platform Development", date: "2023-04", status: "completed" },
-          { name: "Subscription System", date: "2023-06", status: "completed" },
-          { name: "Launch", date: "2023-07", status: "completed" },
-        ],
-      },
-    },
   ]
 
   const filteredProjects = projects.filter((project) => {
     const matchesSearch =
       project.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      project.client.toLowerCase().includes(searchTerm.toLowerCase()) ||
       project.description.toLowerCase().includes(searchTerm.toLowerCase())
 
     const matchesFilter = selectedFilter === "all" || project.category === selectedFilter
@@ -487,7 +255,6 @@ export default function ProjectsPage() {
                       />
                       <div className="flex-1">
                         <h2 className="text-xl font-bold text-white">{project.name}</h2>
-                        <p className="text-sm text-gray-400">{project.client}</p>
                         <div className="flex items-center space-x-2 mt-2">
                           <span
                             className={`px-2 py-1 rounded-full text-xs font-medium border ${getStatusColor(
@@ -496,7 +263,6 @@ export default function ProjectsPage() {
                           >
                             {project.status === "in-progress" ? "In Progress" : "Completed"}
                           </span>
-                          <span className="text-xs text-green-400 font-semibold">{project.metrics.revenue}</span>
                         </div>
                       </div>
                     </div>
@@ -554,7 +320,6 @@ export default function ProjectsPage() {
                     {/* Stats */}
                     <div className="grid grid-cols-3 gap-2">
                       <div className="bg-gray-950 border border-gray-800 rounded-lg p-2 text-center">
-                        <div className="text-sm font-bold text-green-400">{project.metrics.revenue}</div>
                         <div className="text-xs text-gray-400">Revenue</div>
                       </div>
                       <div className="bg-gray-950 border border-gray-800 rounded-lg p-2 text-center">
@@ -626,19 +391,6 @@ export default function ProjectsPage() {
               </div>
 
               {/* Stats Overview */}
-              <div className="grid grid-cols-1 gap-3 mb-6">
-                <div className="bg-gray-950 border border-gray-800 rounded-lg p-3">
-                  <div className="flex items-center space-x-2">
-                    <div className="w-8 h-8 bg-green-500/10 rounded-lg flex items-center justify-center">
-                      <DollarSign className="w-4 h-4 text-green-500" />
-                    </div>
-                    <div>
-                      <p className="text-lg font-bold text-white">$12M+</p>
-                      <p className="text-xs text-gray-400">Revenue</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
 
               {/* Search */}
               <div className="relative mb-4">
@@ -697,7 +449,6 @@ export default function ProjectsPage() {
                               </span>
                             )}
                           </div>
-                          <p className="text-xs text-gray-400 mb-1">{project.client}</p>
                           <p className="text-xs text-gray-500 line-clamp-2 mb-2">{project.description}</p>
 
                           <div className="flex items-center justify-between">
@@ -824,67 +575,7 @@ export default function ProjectsPage() {
                           ))}
                         </div>
                       </div>
-
-                      {/* Team */}
-                      <div>
-                        <h3 className="text-xl font-semibold text-white mb-4">Team</h3>
-                        <div className="space-y-2">
-                          {selectedProject.details.team.map((member: string, index: number) => (
-                            <div key={index} className="flex items-center text-gray-300">
-                              <User className="w-4 h-4 text-gray-400 mr-3" />
-                              {member}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Milestones */}
-                      <div>
-                        <h3 className="text-xl font-semibold text-white mb-4">Project Milestones</h3>
-                        <div className="space-y-3">
-                          {selectedProject.details.milestones.map((milestone: any, index: number) => (
-                            <div key={index} className="flex items-center justify-between">
-                              <div className="flex items-center">
-                                <div
-                                  className={`w-3 h-3 rounded-full mr-3 ${
-                                    milestone.status === "completed" ? "bg-green-400" : "bg-gray-600"
-                                  }`}
-                                />
-                                <span className="text-gray-300">{milestone.name}</span>
-                              </div>
-                              <span className="text-sm text-gray-500">{milestone.date}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Metrics */}
-                      <div>
-                        <h3 className="text-xl font-semibold text-white mb-4">Project Metrics</h3>
-                        <div className="grid grid-cols-1 gap-4">
-                          <div className="bg-gray-950 border border-gray-800 rounded-lg p-4">
-                            <div className="flex items-center justify-between">
-                              <span className="text-gray-400">Revenue Generated</span>
-                              <span className="text-green-400 font-semibold">{selectedProject.metrics.revenue}</span>
-                            </div>
-                          </div>
-                          <div className="bg-gray-950 border border-gray-800 rounded-lg p-4">
-                            <div className="flex items-center justify-between">
-                              <span className="text-gray-400">Active Users</span>
-                              <span className="text-blue-400 font-semibold">{selectedProject.metrics.users}</span>
-                            </div>
-                          </div>
-                          <div className="bg-gray-950 border border-gray-800 rounded-lg p-4">
-                            <div className="flex items-center justify-between">
-                              <span className="text-gray-400">Satisfaction</span>
-                              <span className="text-purple-400 font-semibold">
-                                {selectedProject.metrics.satisfaction}
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
+                      
                       {/* Action Buttons */}
                       <div className="flex space-x-3">
                         <Button

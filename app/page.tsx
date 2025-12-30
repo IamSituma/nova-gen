@@ -60,14 +60,6 @@ export default function Home() {
                   >
                     Our Services
                   </Link>
-
-                  <Link
-                    href="/support"
-                    className="px-6 py-3 bg-gradient-to-r from-emerald-500 to-green-600 text-white rounded-lg font-medium text-base hover:from-emerald-400 hover:to-green-500 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_20px_rgba(52,211,153,0.3)]"
-                  >
-                    <Zap className="w-5 h-5 inline-block mr-1" />
-                    Get in Touch
-                  </Link>
                 </div>
               </div>
             </section>

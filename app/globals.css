@@ -77,8 +77,27 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Prevent content shift on page load */
+/* Prevent content shift on page load and horizontal overflow */
 html,
 body {
   overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+}
+
+/* Ensure all elements stay within viewport */
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Prevent fixed/absolute elements from causing overflow */
+.fixed,
+.absolute {
+  max-width: 100vw;
+  box-sizing: border-box;
 }

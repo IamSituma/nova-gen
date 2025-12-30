@@ -63,33 +63,27 @@ export function Footer() {
   ]
 
   const contactInfo = [
-    { icon: Mail, value: "hello@weltivation.com", href: "mailto:hello@weltivation.com" },
-    { icon: Phone, value: "+1 (555) 123-4567", href: "tel:+15551234567" },
-    { icon: MapPin, value: "San Francisco, CA", href: "#" },
+    { icon: Mail, value: "info@novageneration.tech", href: "info@novageneration.tech" },
+    { icon: Phone, value: "+256 741 004 466", href: "tel:+256 741 004 466" },
+    { icon: MapPin, value: "Bandali Rise, Studio House", href: "#" },
   ]
 
   return (
-    <footer className="bg-background border-t border-border/50">
+    <footer className="bg-[#009696] text-white">
       <div className="max-w-7xl mx-auto px-4 py-10">
-        {/* Top */}
-        <div className="flex flex-col md:flex-row justify-between items-start mb-10 gap-6">
-          <div className="flex items-center space-x-4">
-            <img src="/images/weltivation-logo.png" alt="Weltivation" className="h-12" />
-            <p className="text-sm text-muted-foreground">
-              Ready to build the future together?
-            </p>
-          </div>
-        </div>
-
+        
         {/* Desktop */}
         <div className="hidden md:grid grid-cols-4 gap-10 mb-10">
           {sections.map(section => (
             <div key={section.id}>
-              <h4 className="font-semibold text-primary text-lg mb-4">{section.title}</h4>
+              <h4 className="font-semibold text-white text-lg mb-4">{section.title}</h4>
               <div className="space-y-3">
                 {section.items.map((item, i) => (
-                  <a key={i} href={item.href}
-                     className="flex items-center text-sm text-muted-foreground hover:text-primary transition group">
+                  <a
+                    key={i}
+                    href={item.href}
+                    className="flex items-center text-sm text-white/80 hover:text-white transition group"
+                  >
                     <span>{item.label}</span>
                     <ExternalLink className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100" />
                   </a>
@@ -102,12 +96,12 @@ export function Footer() {
         {/* Mobile collapsible */}
         <div className="md:hidden space-y-3 mb-10">
           {sections.map(section => (
-            <div key={section.id} className="border border-border/30 rounded-lg">
+            <div key={section.id} className="border border-white/30 rounded-lg">
               <button
                 onClick={() => toggleSection(section.id)}
                 className="w-full flex justify-between items-center p-4"
               >
-                <h4 className="font-semibold text-primary">{section.title}</h4>
+                <h4 className="font-semibold text-white">{section.title}</h4>
                 {expandedSection === section.id ? <ChevronUp /> : <ChevronDown />}
               </button>
 
@@ -119,10 +113,13 @@ export function Footer() {
                     exit={{ height: 0, opacity: 0 }}
                     className="overflow-hidden"
                   >
-                    <div className="p-4 border-t border-border/30 space-y-2">
+                    <div className="p-4 border-t border-white/30 space-y-2">
                       {section.items.map((item, i) => (
-                        <a key={i} href={item.href}
-                           className="flex items-center text-sm text-muted-foreground hover:text-primary">
+                        <a
+                          key={i}
+                          href={item.href}
+                          className="flex items-center text-sm text-white/80 hover:text-white"
+                        >
                           {item.label}
                         </a>
                       ))}
@@ -135,21 +132,24 @@ export function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="pt-6 border-t border-border/50 flex flex-col lg:flex-row justify-between items-center gap-4">
+        <div className="pt-6 border-t border-white/40 flex flex-col lg:flex-row justify-between items-center gap-4">
           <div className="flex flex-col md:flex-row items-center gap-4 text-sm">
             <span className="flex items-center gap-2">
-              <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-              All systems operational
+              <span className="w-2 h-2 bg-green-300 rounded-full"></span>
+              All Systems Operational
             </span>
-            <span className="text-muted-foreground">
-              © {new Date().getFullYear()} Weltivation. All rights reserved.
+            <span className="text-white/80">
+              © {new Date().getFullYear()} Nova Generation Limited. All Rights Reserved.
             </span>
           </div>
 
           <div className="flex flex-wrap gap-6">
             {contactInfo.map((c, i) => (
-              <a key={i} href={c.href}
-                 className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary">
+              <a
+                key={i}
+                href={c.href}
+                className="flex items-center gap-2 text-sm text-white/80 hover:text-white"
+              >
                 <c.icon className="w-4 h-4" />
                 {c.value}
               </a>
