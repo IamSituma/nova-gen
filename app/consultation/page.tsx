@@ -249,7 +249,7 @@ export default function ConsultationPage() {
 
       {/* Main Content */}
       <div className="relative z-10 min-h-screen pt-20 pb-8 px-4">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center py-6">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-3">

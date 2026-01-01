@@ -221,7 +221,7 @@ export default function PortfolioPage() {
       </div>
       <NavBar />
 
-      <div className="container mx-auto px-4 py-24 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 py-24 relative z-10">
         <div className="max-w-7xl mx-auto">
           {/* Search and Filter */}
           <motion.div

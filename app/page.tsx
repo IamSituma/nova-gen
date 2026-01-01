@@ -12,9 +12,7 @@ import { ServicesViewportSection } from "@/components/services-viewport-section"
 
 export default function Home() {
   return (
-    <html lang="en" className="dark">
-      <body>
-        <main className="relative min-h-screen text-foreground overflow-x-hidden">
+    <main className="relative min-h-screen text-foreground overflow-x-hidden">
           {/* Background layers */}
           <div className="fixed inset-0 z-0">
             <div className="opacity-10">
@@ -140,7 +138,5 @@ export default function Home() {
             </div>
           </div>
         </main>
-      </body>
-    </html>
   )
 }

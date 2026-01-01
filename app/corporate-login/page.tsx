@@ -66,7 +66,7 @@ export default function CorporateLogin() {
         </Link>
       </div>
 
-      <div className="container mx-auto px-4 py-8 relative z-10 flex items-center justify-center min-h-[calc(100vh-200px)]">
+      <div className="max-w-7xl mx-auto px-4 py-8 relative z-10 flex items-center justify-center min-h-[calc(100vh-200px)]">
         <div className="w-full max-w-md">
           {/* Header */}
           <motion.div

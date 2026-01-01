@@ -274,11 +274,11 @@ export function ServicesViewportSection() {
             <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
             <span className="text-sm font-medium text-white">Premium Services</span>
           </div>
-          <h2 className="text-5xl sm:text-6xl font-black mb-6 leading-tight text-white">
-            <span className="text-white">Services That </span>
-            <span className="text-white font-light italic">Transform</span>
+          <h2 className="text-5xl sm:text-6xl font-black mb-6 leading-tight text-gray-900">
+            <span className="text-gray-900">Services That </span>
+            <span className="text-gray-900 font-light italic">Transform</span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Comprehensive solutions designed to accelerate your business growth and digital transformation
           </p>
         </div>
@@ -289,7 +289,9 @@ export function ServicesViewportSection() {
             {services.map((service, index) => (
               <motion.div
                 key={service.id}
-                ref={(el) => (serviceRefs.current[index] = el)}
+                ref={(el) => {
+                  serviceRefs.current[index] = el;
+                }}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
@@ -315,9 +317,9 @@ export function ServicesViewportSection() {
                         <span className={`text-sm font-medium ${service.accentColor}`}>{service.subtitle}</span>
                       </motion.div>
 
-                      <h3 className="text-4xl sm:text-5xl font-bold text-white mb-4 leading-tight">{service.title}</h3>
+                      <h3 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4 leading-tight">{service.title}</h3>
 
-                      <p className="text-lg text-gray-300 leading-relaxed mb-8">{service.description}</p>
+                      <p className="text-lg text-gray-600 leading-relaxed mb-8">{service.description}</p>
                     </div>
 
                     {/* Features */}
@@ -332,7 +334,7 @@ export function ServicesViewportSection() {
                           className="flex items-center space-x-3"
                         >
                           <div className={service.accentColor}>{feature.icon}</div>
-                          <span className="text-gray-300">{feature.text}</span>
+                          <span className="text-gray-700">{feature.text}</span>
                         </motion.div>
                       ))}
                     </div>
@@ -349,7 +351,7 @@ export function ServicesViewportSection() {
                           className={`text-center p-4 bg-gradient-to-br ${service.bgGradient} rounded-xl border border-white/10`}
                         >
                           <div className={`text-2xl font-bold ${service.accentColor} mb-1`}>{stat.value}</div>
-                          <div className="text-xs text-gray-400">{stat.label}</div>
+                          <div className="text-xs text-gray-600">{stat.label}</div>
                         </motion.div>
                       ))}
                     </div>
@@ -384,12 +386,12 @@ export function ServicesViewportSection() {
                           onClick={handleNavigateToProjects}
                           className="group flex items-center space-x-3 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/30 rounded-full transition-all duration-300"
                         >
-                          <span className="text-white font-medium">View Our Projects</span>
+                          <span className="text-gray-900 font-medium">View Our Projects</span>
                           <motion.div
                             animate={{ x: [0, 5, 0] }}
                             transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
                           >
-                            <ArrowRight className="w-5 h-5 text-white group-hover:translate-x-1 transition-transform" />
+                            <ArrowRight className="w-5 h-5 text-gray-900 group-hover:translate-x-1 transition-transform" />
                           </motion.div>
                         </button>
                       </motion.div>

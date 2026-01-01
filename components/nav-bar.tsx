@@ -42,7 +42,7 @@ export function NavBar() {
           : "bg-black/30 backdrop-blur-sm"
       }`}
     >
-      <div className="container mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
 
           {/* Logo */}
