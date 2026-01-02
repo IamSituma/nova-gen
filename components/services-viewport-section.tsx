@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { useRouter } from "next/navigation"
 import {
   Globe,
@@ -32,17 +32,17 @@ import {
   CloudDownload,
   CloudUpload,
   LucideCloudUpload,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 
 const services = [
   {
     id: "website",
-    title: "Website Development",
-    subtitle: "Modern, Fast & Scalable",
+    title: "Web Development",
     description:
       "Transform your digital presence with cutting-edge websites that convert visitors into customers. Built with the latest technologies for maximum performance and user experience.",
-    icon: <Globe className="w-8 h-8" />,
     features: [
       { icon: <Rocket className="w-5 h-5" />, text: "Lightning-fast loading speeds" },
       { icon: <Shield className="w-5 h-5" />, text: "Enterprise-grade security" },
@@ -55,17 +55,15 @@ const services = [
       { label: "Client Satisfaction", value: "98%" },
     ],
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "HTML", "CSS", "Javascript"],
-    gradient: "from-blue-500 via-cyan-400 to-blue-600",
-    bgGradient: "from-blue-500/20 via-cyan-400/10 to-blue-600/20",
-    accentColor: "text-blue-400",
+    gradient: "from-[#009696] via-teal-900 to-[#009696]",
+    bgGradient: "from-gray-400/20 via-gray-400/10 to-gray-400/20",
+    accentColor: "text-black",
   },
   {
     id: "mobile",
-    title: "Mobile App Development",
-    subtitle: "Native & Cross-Platform",
+    title: "App Development",
     description:
       "Create powerful mobile experiences that engage users and drive business growth. From concept to app store, we deliver apps that users love and businesses depend on.",
-    icon: <Smartphone className="w-8 h-8" />,
     features: [
       { icon: <Users className="w-5 h-5" />, text: "Cross-platform compatibility" },
       { icon: <Zap className="w-5 h-5" />, text: "Real-time synchronization" },
@@ -80,15 +78,13 @@ const services = [
     technologies: ["React Native", "Flutter", "Swift", "Kotlin", "Firebase"],
     gradient: "from-purple-500 via-pink-400 to-purple-600",
     bgGradient: "from-purple-500/20 via-pink-400/10 to-purple-600/20",
-    accentColor: "text-purple-400",
+    accentColor: "text-black",
   },
   {
     id: "enterprise",
     title: "Enterprise Software",
-    subtitle: "Powering Productivity for the Modern Enterprise",
     description:
       "Scalable enterprise solutions including ERP, CRM, and custom business applications tailored to your needs.",
-    icon: <Cog className="w-8 h-8" />,
     features: [
       { icon: <Lightbulb className="w-5 h-5" />, text: "ERP Systems" },
       { icon: <Code className="w-5 h-5" />, text: "CRM Solutions" },
@@ -103,15 +99,13 @@ const services = [
     technologies: ["SolidWorks", "AutoCAD", "ANSYS", "3D Printing", "CNC"],
     gradient: "from-orange-500 via-red-400 to-orange-600",
     bgGradient: "from-orange-500/20 via-red-400/10 to-orange-600/20",
-    accentColor: "text-orange-400",
+    accentColor: "text-black",
   },
   {
     id: "cloud",
     title: "Cloud Solutions",
-    subtitle: "Scalable, Secure, and Smarter in the Cloud",
     description:
       "Cloud-native applications, migration services, and infrastructure management on AWS, Azure, and Google Cloud.",
-    icon: <LucideCloudUpload className="w-8 h-8" />,
     features: [
       { icon: <Target className="w-5 h-5" />, text: "Cloud Migration" },
       { icon: <Rocket className="w-5 h-5" />, text: "Serverless Apps" },
@@ -126,15 +120,13 @@ const services = [
     technologies: ["AWS", "Microsoft Azure", "Google Cloud", "Digital Ocean", "Oracle Cloud", "Vercel"],
     gradient: "from-indigo-500 via-purple-400 to-indigo-600",
     bgGradient: "from-indigo-500/20 via-purple-400/10 to-indigo-600/20",
-    accentColor: "text-indigo-400",
+    accentColor: "text-black",
   },
   {
     id: "uiux",
     title: "UI/UX Design",
-    subtitle: "Designing Experiences that Delight",
     description:
       "We create user-friendly interfaces and engaging experienxes that make your product easy to use and visually appealing to your clients. We transform ideas into interactive designs that help drive engagement and growth",
-    icon: <Building2 className="w-8 h-8" />,
     features: [
       { icon: <Lightbulb className="w-5 h-5" />, text: "High Fiedlity UI Designs" },
       { icon: <Layers className="w-5 h-5" />, text: "Wireframing" },
@@ -148,12 +140,13 @@ const services = [
     technologies: ["Adobe XD", "Figma", "Sketch", "InVision"],
     gradient: "from-pink-500 via-rose-400 to-pink-600",
     bgGradient: "from-pink-500/20 via-rose-400/10 to-pink-600/20",
-    accentColor: "text-pink-400",
+    accentColor: "text-black",
   },
 ]
 
 export function ServicesViewportSection() {
   const [activeService, setActiveService] = useState(0)
+  const [isAnimating, setIsAnimating] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   const serviceRefs = useRef<(HTMLDivElement | null)[]>([])
   const router = useRouter()
@@ -185,11 +178,25 @@ export function ServicesViewportSection() {
     router.push("/projects")
   }
 
-  const scrollToService = (index: number) => {
-    serviceRefs.current[index]?.scrollIntoView({
-      behavior: "smooth",
-      block: "center",
-    })
+  const nextService = () => {
+    if (isAnimating) return
+    setIsAnimating(true)
+    setActiveService((prev) => (prev + 1) % services.length)
+    setTimeout(() => setIsAnimating(false), 300)
+  }
+
+  const prevService = () => {
+    if (isAnimating) return
+    setIsAnimating(true)
+    setActiveService((prev) => (prev - 1 + services.length) % services.length)
+    setTimeout(() => setIsAnimating(false), 300)
+  }
+
+  const goToService = (index: number) => {
+    if (isAnimating || index === activeService) return
+    setIsAnimating(true)
+    setActiveService(index)
+    setTimeout(() => setIsAnimating(false), 300)
   }
 
   return (
@@ -224,66 +231,75 @@ export function ServicesViewportSection() {
 
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-6">
           <h2 className="text-5xl sm:text-6xl font-black mb-6 leading-tight text-gray-900">
             <span className="text-gray-900">Services That We Offer</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Comprehensive solutions designed to accelerate your business growth and digital transformation
+          Innovative software solutions to boost efficiency, drive growth, and transform your business digitally.
           </p>
         </div>
 
         <div className="relative">
-          {/* Services Content */}
-          <div className="space-y-32">
-            {services.map((service, index) => (
-              <motion.div
-                key={service.id}
-                ref={(el) => {
-                  serviceRefs.current[index] = el;
-                }}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                viewport={{ once: false, amount: 0.3 }}
-                className="min-h-[80vh] flex items-center"
-              >
-                <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          {/* Services Carousel */}
+          <div className="relative min-h-[80vh] flex items-center">
+            {/* Navigation Buttons */}
+            <button
+              onClick={prevService}
+              disabled={isAnimating}
+              className="absolute left-50 z-20 w-12 h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              aria-label="Previous service"
+            >
+              <ChevronLeft className="w-6 h-6 text-gray-700" />
+            </button>
+
+            <button
+              onClick={nextService}
+              disabled={isAnimating}
+              className="absolute right-0 z-20 w-12 h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              aria-label="Next service"
+            >
+              <ChevronRight className="w-6 h-6 text-gray-700" />
+            </button>
+
+            {/* Current Service Display */}
+            <div className="w-full max-w-7xl mx-auto px-32">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeService}
+                  initial={{ opacity: 0, x: 100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -100 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+                >
                   {/* Content */}
                   <motion.div
-                    className={`space-y-8 ${index % 2 === 1 ? "lg:order-2" : ""}`}
-                    initial={{ opacity: 0, x: index % 2 === 1 ? 50 : -50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8 }}
-                    viewport={{ once: false, amount: 0.3 }}
+                    className="space-y-8"
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
                   >
                     <div>
-                      <motion.div
-                        className={`inline-flex items-center space-x-3 px-4 py-2 bg-gradient-to-r ${service.bgGradient} rounded-full border border-white/10 mb-6`}
-                        animate={{ scale: [1, 1.02, 1] }}
-                        transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, delay: index * 0.5 }}
-                      >
-                        <div className={service.accentColor}>{service.icon}</div>
-                        <span className={`text-sm font-medium ${service.accentColor}`}>{service.subtitle}</span>
-                      </motion.div>
-
-                      <h3 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4 leading-tight">{service.title}</h3>
-
-                      <p className="text-lg text-gray-600 leading-relaxed mb-8">{service.description}</p>
+                      <h3 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+                        {services[activeService].title}
+                      </h3>
+                      <p className="text-lg text-gray-600 leading-relaxed mb-8">
+                        {services[activeService].description}
+                      </p>
                     </div>
 
                     {/* Features */}
                     <div className="space-y-4">
-                      {service.features.map((feature, featureIndex) => (
+                      {services[activeService].features.map((feature, featureIndex) => (
                         <motion.div
                           key={featureIndex}
                           initial={{ opacity: 0, x: -20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
+                          animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: featureIndex * 0.1 }}
-                          viewport={{ once: false }}
                           className="flex items-center space-x-3"
                         >
-                          <div className={service.accentColor}>{feature.icon}</div>
+                          <div className={services[activeService].accentColor}>{feature.icon}</div>
                           <span className="text-gray-700">{feature.text}</span>
                         </motion.div>
                       ))}
@@ -291,16 +307,15 @@ export function ServicesViewportSection() {
 
                     {/* Stats */}
                     <div className="grid grid-cols-3 gap-4">
-                      {service.stats.map((stat, statIndex) => (
+                      {services[activeService].stats.map((stat, statIndex) => (
                         <motion.div
                           key={statIndex}
                           initial={{ opacity: 0, y: 20 }}
-                          whileInView={{ opacity: 1, y: 0 }}
+                          animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: statIndex * 0.1 }}
-                          viewport={{ once: false }}
-                          className={`text-center p-4 bg-gradient-to-br ${service.bgGradient} rounded-xl border border-white/10`}
+                          className={`text-center p-4 bg-gradient-to-br ${services[activeService].bgGradient} rounded-xl border border-white/10`}
                         >
-                          <div className={`text-2xl font-bold ${service.accentColor} mb-1`}>{stat.value}</div>
+                          <div className={`text-2xl font-bold ${services[activeService].accentColor} mb-1`}>{stat.value}</div>
                           <div className="text-xs text-gray-600">{stat.label}</div>
                         </motion.div>
                       ))}
@@ -308,16 +323,15 @@ export function ServicesViewportSection() {
 
                     {/* Technologies */}
                     <div className="flex flex-wrap gap-2">
-                      {service.technologies.map((tech, techIndex) => (
+                      {services[activeService].technologies.map((tech, techIndex) => (
                         <motion.div
                           key={techIndex}
                           initial={{ opacity: 0, scale: 0 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
+                          animate={{ opacity: 1, scale: 1 }}
                           transition={{ delay: techIndex * 0.05 }}
-                          viewport={{ once: false }}
                         >
                           <Badge
-                            className={`bg-gradient-to-r ${service.bgGradient} ${service.accentColor} border-white/20 hover:border-white/30`}
+                            className={`bg-gradient-to-r ${services[activeService].bgGradient} ${services[activeService].accentColor} border-white/20 hover:border-white/30`}
                           >
                             {tech}
                           </Badge>
@@ -325,8 +339,8 @@ export function ServicesViewportSection() {
                       ))}
                     </div>
 
-                    {/* Arrow Navigation */}
-                    {index === services.length - 1 && (
+                    {/* View Projects Button - Only show on last service */}
+                    {activeService === services.length - 1 && (
                       <motion.div
                         className="flex items-center space-x-4 pt-8"
                         whileHover={{ scale: 1.02 }}
@@ -350,17 +364,31 @@ export function ServicesViewportSection() {
 
                   {/* Enhanced UI Graphics */}
                   <motion.div
-                    className={`${index % 2 === 1 ? "lg:order-1" : ""}`}
                     initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8 }}
-                    viewport={{ once: false, amount: 0.3 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
                   >
-                    <ServiceUIGraphic service={service} index={index} />
+                    <ServiceUIGraphic service={services[activeService]} index={activeService} />
                   </motion.div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Indicators */}
+            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2">
+              {services.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToService(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === activeService
+                      ? 'bg-gray-900 scale-125'
+                      : 'bg-gray-400 hover:bg-gray-600'
+                  }`}
+                  aria-label={`Go to service ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -416,7 +444,7 @@ function WebsiteUIGraphic({ service }: { service: any }) {
           <div className="w-3 h-3 bg-gray-600 rounded-full animate-pulse" style={{ animationDelay: "0.2s" }}></div>
           <div className="w-3 h-3 bg-gray-700 rounded-full animate-pulse" style={{ animationDelay: "0.4s" }}></div>
           <div className="flex-1 bg-white rounded px-3 py-1 ml-4 shadow-inner">
-            <span className="text-xs text-gray-600">https://yourwebsite.com</span>
+            <span className="text-xs text-gray-600">https://club.novageneration.tech</span>
           </div>
           <div className="flex space-x-1">
             <div className="w-4 h-4 bg-gray-300 rounded hover:bg-gray-400 transition-colors"></div>
