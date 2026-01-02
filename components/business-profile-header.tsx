@@ -244,7 +244,7 @@ export function BusinessProfileHeader() {
                       size="sm"
                       variant="outline"
                       className="border-gray-600/30 bg-gray-800/20 text-gray-300 hover:bg-gray-700/30 text-xs backdrop-blur-sm h-7 px-3 flex items-center space-x-1"
-                      onClick={() => (window.location.href = "/consultation")}
+                      onClick={() => (window.location.href = "/")}
                     >
                       <span>Schedule</span>
                       <ArrowRight className="w-3 h-3" />

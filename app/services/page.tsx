@@ -192,7 +192,7 @@ export default function ServicesPage() {
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <Link href="/consultation">
+                      <Link href="/">
                         <Button
                           size="sm"
                           className="bg-emerald-500 hover:bg-emerald-600 text-white group-hover:scale-105 transition-transform"

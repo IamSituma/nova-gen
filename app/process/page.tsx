@@ -473,7 +473,7 @@ export default function ProcessPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="/consultation"
+                href="/"
                 className="inline-flex items-center px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-all duration-300 font-medium"
               >
                 <Calendar className="w-4 h-4 mr-2" />

@@ -165,7 +165,7 @@ export function ProfileDropdown() {
                 Complete
               </button>
               <button
-                onClick={() => (window.location.href = "/consultation")}
+                onClick={() => (window.location.href = "/")}
                 className="flex-1 px-3 py-1.5 bg-primary text-white rounded-md hover:bg-primary/90 transition-all text-xs font-medium"
               >
                 Schedule

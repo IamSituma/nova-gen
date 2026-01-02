@@ -83,29 +83,6 @@ const services = [
     accentColor: "text-purple-400",
   },
   {
-    id: "ecommerce",
-    title: "E-Commerce Solutions",
-    subtitle: "Your Complete Online Selling Platform",
-    description:
-      "Complete e-commerce platforms with payment integration, inventory management, and customer analytics.",
-    icon: <ShoppingBag className="w-8 h-8" />,
-    features: [
-      { icon: <Cog className="w-5 h-5" />, text: "Online Stores" },
-      { icon: <Database className="w-5 h-5" />, text: "Payment Gateway" },
-      { icon: <Cloud className="w-5 h-5" />, text: "Inventory System" },
-      { icon: <Layers className="w-5 h-5" />, text: "Analytics Dashboard" },
-    ],
-    stats: [
-      { label: "Efficiency Increase", value: "250%" },
-      { label: "Cost Reduction", value: "60%" },
-      { label: "Error Reduction", value: "95%" },
-    ],
-    technologies: ["Node.js", "React.js", "Python", "AWS", "Angular", "PostgreSQL"],
-    gradient: "from-emerald-500 via-teal-400 to-emerald-600",
-    bgGradient: "from-emerald-500/20 via-teal-400/10 to-emerald-600/20",
-    accentColor: "text-emerald-400",
-  },
-  {
     id: "enterprise",
     title: "Enterprise Software",
     subtitle: "Powering Productivity for the Modern Enterprise",
@@ -244,39 +221,12 @@ export function ServicesViewportSection() {
         </div>
       </div>
 
-      {/* Dot Navigation - Left Side */}
-      <div className="fixed left-6 top-1/2 transform -translate-y-1/2 z-20 hidden lg:block">
-        <div className="flex flex-col space-y-4">
-          {services.map((service, index) => (
-            <button
-              key={service.id}
-              onClick={() => scrollToService(index)}
-              className={`group relative w-3 h-3 rounded-full transition-all duration-300 ${activeService === index
-                  ? "bg-white scale-125 shadow-lg"
-                  : "bg-white/30 hover:bg-white/60 hover:scale-110"
-                }`}
-            >
-              {/* Tooltip */}
-              <div className="absolute left-6 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                <div className="bg-white text-black px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap border border-black/20">
-                  {service.title}
-                </div>
-              </div>
-            </button>
-          ))}
-        </div>
-      </div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center space-x-2 px-6 py-3 bg-gray-800/50 rounded-full border border-gray-700 mb-6 backdrop-blur-sm">
-            <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
-            <span className="text-sm font-medium text-white">Premium Services</span>
-          </div>
           <h2 className="text-5xl sm:text-6xl font-black mb-6 leading-tight text-gray-900">
-            <span className="text-gray-900">Services That </span>
-            <span className="text-gray-900 font-light italic">Transform</span>
+            <span className="text-gray-900">Services That We Offer</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Comprehensive solutions designed to accelerate your business growth and digital transformation

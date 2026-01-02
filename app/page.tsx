@@ -1,142 +1,233 @@
 "use client"
 
+import { useState } from "react"
 import Link from "next/link"
+import { CheckCircle, XCircle } from "lucide-react"
 import { NavBar } from "@/components/nav-bar"
 import { Footer } from "@/components/footer"
 import { ExpertiseSection } from "@/components/expertise-section"
-import { SpinningEarth } from "@/components/spinning-earth"
-import { TypingHero } from "@/components/typing-hero"
-import { Zap } from "lucide-react"
+import { Hero } from "@/components/ui/animated-hero"
+import { QuotePopup } from "@/components/ui/quote-popup"
 import { ProfileDropdown } from "@/components/profile-dropdown"
 import { ServicesViewportSection } from "@/components/services-viewport-section"
 
 export default function Home() {
+  const [quotePopupOpen, setQuotePopupOpen] = useState(false)
+
+  // Form state
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    service: '',
+    message: ''
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+
+  // Input change handler
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
+  }
+
+  // Form submit handler
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 2000))
+
+      setSubmitStatus('success')
+
+      // Reset form
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        service: '',
+        message: ''
+      })
+
+      // Auto-hide success message after 5 seconds
+      setTimeout(() => setSubmitStatus('idle'), 5000)
+    } catch (error) {
+      setSubmitStatus('error')
+      setTimeout(() => setSubmitStatus('idle'), 5000)
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <main className="relative min-h-screen text-foreground overflow-x-hidden">
-          {/* Background layers */}
-          <div className="fixed inset-0 z-0">
-            <div className="opacity-10">
-              <SpinningEarth />
-            </div>
-          </div>
+      <div className="relative z-10 bg-white">
+        <NavBar />
+        <ProfileDropdown />
 
-          {/* Content container */}
-          <div className="relative z-10 bg-white">
-            <NavBar />
-            <ProfileDropdown />
+        {/* Hero Section */}
+        <section className="relative min-h-[75vh] px-4 sm:px-6 overflow-hidden bg-gradient-to-br from-gray-50 to-white">
+          {/* Hero Background */}
+          <div
+            className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: "url('/images/nova-hero.webp')" }}
+          />
+          <div className="absolute inset-0 bg-black/30"></div>
 
-            {/* Hero section */}
-            <section className="relative flex flex-col items-center justify-center min-h-[75vh] px-4 sm:px-6 overflow-hidden">
-              {/* Hero Video */}
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="absolute inset-0 w-full h-full object-cover"
-                style={{ filter: "contrast(1.2) brightness(0.5) grayscale(100%)" }}
-              >
-                <source
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Untitled%20video%20-%20Made%20with%20Clipchamp%20%283%29%20%281%29%20%282%29%20%282%29-i8U3zTcWrQss8nKM5ekseP7qFR5KVP.mp4"
-                  type="video/mp4"
-                />
-                Your browser does not support the video tag.
-              </video>
+          {/* Content Grid */}
+          <div className="relative z-10 max-w-7xl mx-auto py-32 min-h-[80vh] flex items-end pb-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
 
-              {/* Dark overlay for readability */}
-              <div className="absolute inset-0 bg-black/50"></div>
+              {/* Left Side - Hero Text */}
+              <div className="space-y-8">
+                <Hero onQuoteClick={() => setQuotePopupOpen(true)} />
+              </div>
 
-              {/* Hero Content */}
-              <div className="relative z-10 max-w-4xl text-center space-y-6">
-                <TypingHero />
+              {/* Right Side - Quote Form / Success Message */}
+              <div className="lg:pl-8 flex justify-center items-start">
+                <div className="bg-white/5 backdrop-blur-sm rounded-2xl shadow-2xl p-8 border border-white/10 max-w-lg w-full min-h-[500px] flex flex-col">
+                  
+                  {/* Keep min-height fixed so hero section doesn’t jump */}
+                  {submitStatus === 'success' ? (
+                    <div className="flex items-center justify-center h-full min-h-[500px]">
+                      <div className="text-center">
+                        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <CheckCircle className="w-8 h-8 text-green-600" />
+                        </div>
+                        <h3 className="text-xl font-bold text-green-800 mb-2">Quote Request Sent!</h3>
+                        <p className="text-green-700">Thank you! We'll get back to you within 24 hours.</p>
+                      </div>
+                    </div>
+                  ) : submitStatus === 'error' ? (
+                    <div className="flex items-center justify-center h-full min-h-[500px]">
+                      <div className="text-center">
+                        <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <XCircle className="w-8 h-8 text-red-600" />
+                        </div>
+                        <h3 className="text-xl font-bold text-red-800 mb-2">Something went wrong</h3>
+                        <p className="text-red-700">Please try again or contact us directly.</p>
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      <div className="text-center mb-4">
+                        <h3 className="text-xl font-bold text-white mb-1">Get a Free Quote</h3>
+                        <p className="text-sm text-white">We'll respond within 24 hours</p>
+                      </div>
 
-                <div className="h-px w-24 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto my-8"></div>
-                <div className="pt-8 flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                  <Link
-                    href="/services"
-                    className="px-6 py-3 bg-gray-800 text-white rounded-lg font-medium text-base hover:bg-gray-700 transition-all duration-300 transform hover:scale-105 border border-gray-700"
-                  >
-                    Our Services
-                  </Link>
+                      <form onSubmit={handleFormSubmit} className="space-y-4 flex-1 flex flex-col">
+                        <div className="grid grid-cols-2 gap-4">
+                          <input
+                            type="text"
+                            name="firstName"
+                            placeholder="First Name"
+                            value={formData.firstName}
+                            onChange={handleInputChange}
+                            className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent"
+                            required
+                          />
+                          <input
+                            type="text"
+                            name="lastName"
+                            placeholder="Last Name"
+                            value={formData.lastName}
+                            onChange={handleInputChange}
+                            className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent"
+                            required
+                          />
+                        </div>
+
+                        <input
+                          type="email"
+                          name="email"
+                          placeholder="Email Address"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent"
+                          required
+                        />
+
+                        <input
+                          type="tel"
+                          name="phone"
+                          placeholder="Phone Number"
+                          value={formData.phone}
+                          onChange={handleInputChange}
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent"
+                        />
+
+                        <div className="relative">
+                          <select
+                            name="service"
+                            value={formData.service}
+                            onChange={handleInputChange}
+                            className="w-full px-4 py-3 pr-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent bg-white appearance-none"
+                            required
+                          >
+                            <option value="">Select Service</option>
+                            <option value="website">Website Development</option>
+                            <option value="mobile">Mobile App</option>
+                            <option value="ecommerce">E-Commerce</option>
+                            <option value="enterprise">Enterprise Software</option>
+                          </select>
+                          <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none">
+                            <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            </svg>
+                          </div>
+                        </div>
+
+                        <textarea
+                          name="message"
+                          placeholder="Project details..."
+                          rows={4}
+                          value={formData.message}
+                          onChange={handleInputChange}
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent resize-none flex-1"
+                          required
+                        />
+
+                        <button
+                          type="submit"
+                          disabled={isSubmitting}
+                          className="w-full bg-[#009696] text-white py-3 px-6 rounded-lg font-semibold hover:bg-gray-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                          {isSubmitting ? (
+                            <div className="flex items-center justify-center">
+                              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
+                              Sending...
+                            </div>
+                          ) : 'Get Quote'}
+                        </button>
+
+                        <div className="mt-3 text-center text-xs text-gray-500">
+                          By submitting, you agree to our terms.
+                        </div>
+                      </form>
+                    </>
+                  )}
                 </div>
               </div>
-            </section>
 
-            {/* Other sections with white background */}
-            <div className="bg-white">
-              {/* Expertise section */}
-              <ExpertiseSection />
-
-              {/* Services viewport section */}
-              <ServicesViewportSection />
-
-              {/* Contact section */}
-              <section id="contact" className="py-20 px-4 sm:px-6 relative">
-                <div className="max-w-4xl mx-auto text-center space-y-12">
-                  <h2 className="text-4xl sm:text-5xl font-bold">
-                    <span className="text-foreground">Ready to </span>
-                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-green-600">
-                      innovate?
-                    </span>
-                  </h2>
-                  <div className="h-px w-24 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
-                  <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                    Let's discuss how we can transform your vision into reality with cutting-edge technology and strategic innovation.
-                  </p>
-
-                  <div className="pt-8 flex flex-col items-center space-y-6">
-                    <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                      <Link
-                        href="/services"
-                        className="px-6 py-3 bg-[#009699] text-white rounded-lg font-medium text-base hover:bg-[#00b3b3] transition-all duration-300 transform hover:scale-105 border border-[#009699]"
-                      >
-                        Services
-                      </Link>
-
-                      <Link
-                        href="/support"
-                        className="px-6 py-3 bg-[#009699] text-white rounded-lg font-medium text-base hover:bg-[#00b3b3] transition-all duration-300 transform hover:scale-105 border border-[#009699] hover:shadow-[0_0_20px_rgba(0,150,153,0.3)]"
-                      >
-                        <Zap className="w-5 h-5 inline-block mr-1" />
-                        Get in Touch
-                      </Link>
-
-                      <Link
-                        href="/consultation"
-                        className="px-6 py-3 bg-[#009699] text-white rounded-lg font-medium text-base hover:bg-[#00b3b3] transition-all duration-300 transform hover:scale-105 border border-[#009699] hover:shadow-[0_0_20px_rgba(0,150,153,0.3)]"
-                      >
-                        <Zap className="w-5 h-5 inline-block mr-1" />
-                        Free Consultation
-                      </Link>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center max-w-2xl">
-                      <div className="flex flex-col items-center space-y-2">
-                        <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center">
-                          <span className="text-primary font-bold text-sm">1</span>
-                        </div>
-                        <p className="text-sm text-muted-foreground">No commitment required</p>
-                      </div>
-                      <div className="flex flex-col items-center space-y-2">
-                        <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center">
-                          <span className="text-primary font-bold text-sm">2</span>
-                        </div>
-                        <p className="text-sm text-muted-foreground">30-minute strategy session</p>
-                      </div>
-                      <div className="flex flex-col items-center space-y-2">
-                        <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center">
-                          <span className="text-primary font-bold text-sm">3</span>
-                        </div>
-                        <p className="text-sm text-muted-foreground">Expert guidance</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-
-              <Footer />
             </div>
           </div>
-        </main>
+        </section>
+
+        {/* Other sections */}
+        <div className="bg-white">
+          <ExpertiseSection />
+          <ServicesViewportSection />
+          <Footer />
+        </div>
+      </div>
+
+      {/* Quote Popup */}
+      <QuotePopup isOpen={quotePopupOpen} onClose={() => setQuotePopupOpen(false)} />
+    </main>
   )
 }

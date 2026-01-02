@@ -76,23 +76,21 @@ export function NavBar() {
 
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center space-x-4">
-            <Link href="/consultation" onClick={scrollToTop}>
-              <Button className="bg-[#009699] hover:bg-[#00b3b3] text-white font-medium">
-                Free Consultation
-              </Button>
-            </Link>
+            <Button
+              className="bg-[#009699] hover:bg-[#00b3b3] text-white font-medium"
+            >
+              Seek Consultation
+            </Button>
           </div>
 
           {/* Mobile */}
           <div className="lg:hidden flex items-center space-x-3">
-            <Link href="/consultation" onClick={scrollToTop}>
-              <Button
-                size="sm"
-                className="bg-[#009699] hover:bg-[#00b3b3] text-white font-medium text-xs px-3 py-2"
-              >
-                Free
-              </Button>
-            </Link>
+            <Button
+              size="sm"
+              className="bg-[#009699] hover:bg-[#00b3b3] text-white font-medium text-xs px-3 py-2"
+            >
+              Quote
+            </Button>
 
             <button onClick={() => setIsOpen(!isOpen)} className="text-gray-300 hover:text-white">
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -132,17 +130,12 @@ export function NavBar() {
                 ))}
 
                 <div className="pt-4 border-t border-gray-700">
-                  <Link
-                    href="/consultation"
-                    onClick={() => {
-                      setIsOpen(false)
-                      scrollToTop()
-                    }}
+                  <Button
+                    onClick={() => setIsOpen(false)}
+                    className="w-full bg-[#009699] hover:bg-[#00b3b3] text-white font-medium"
                   >
-                    <Button className="w-full bg-[#009699] hover:bg-[#00b3b3] text-white font-medium">
-                      Free Consultation
-                    </Button>
-                  </Link>
+                    Seek Consultation
+                  </Button>
                 </div>
               </div>
             </motion.div>

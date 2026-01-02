@@ -53,7 +53,7 @@ export function Footer() {
       title: "Support",
       items: [
         { label: "Help Center", href: "/help" },
-        { label: "Free Consultation", href: "/consultation" },
+        { label: "Free Consultation", href: "/" },
         { label: "Technical Support", href: "/tech-support" },
         { label: "Training", href: "/training" },
         { label: "Community", href: "/community" },
