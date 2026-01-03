@@ -1,12 +1,12 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { useState } from "react"
 import { NavBar } from "@/components/nav-bar"
 import { Footer } from "@/components/footer"
 import {
   Code,
   Smartphone,
-  Search,
   Palette,
   Cloud,
   ShoppingCart,
@@ -16,6 +16,10 @@ import {
   CheckCircle,
   ShoppingBag,
   LucideFileQuestion,
+  Shield,
+  Users,
+  Monitor,
+  ChevronDown,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -30,6 +34,59 @@ import {
 } from "@/components/animated-service-graphics"
 
 export default function ServicesPage() {
+  const [selectedService, setSelectedService] = useState(0)
+
+  const tailoredServices = [
+    {
+      title: "Enterprise Software Development",
+      icon: <Globe className="w-6 h-6" />,
+      description: "Scalable, robust enterprise-grade applications designed for large organizations",
+      details: [
+        "Custom ERP systems with modular architecture",
+        "Legacy system modernization and migration",
+        "Multi-tenant platform development",
+        "Advanced security and compliance features",
+        "24/7 technical support and maintenance"
+      ]
+    },
+    {
+      title: "MVP Development",
+      icon: <Zap className="w-6 h-6" />,
+      description: "Rapid prototyping and minimum viable product development to validate your business ideas",
+      details: [
+        "2-8 week development cycles",
+        "Core feature identification and prioritization",
+        "Lean development methodology",
+        "User feedback integration loops",
+        "Scalable architecture foundation"
+      ]
+    },
+    {
+      title: "SaaS Development",
+      icon: <Cloud className="w-6 h-6" />,
+      description: "Cloud-based software-as-a-service solutions with subscription-based business models",
+      details: [
+        "Multi-tenant architecture design",
+        "Automated billing and subscription management",
+        "Scalable cloud infrastructure (AWS/Azure/GCP)",
+        "RESTful API development and integration",
+        "Real-time analytics and reporting dashboards"
+      ]
+    },
+    {
+      title: "Product Development",
+      icon: <ShoppingBag className="w-6 h-6" />,
+      description: "End-to-end product development from concept to market-ready solution",
+      details: [
+        "Market research and competitive analysis",
+        "User experience design and prototyping",
+        "Full-stack development and testing",
+        "Product roadmap and release planning",
+        "Go-to-market strategy development"
+      ]
+    }
+  ]
+
   const services = [
     {
       icon: <Code className="w-8 h-8" />,
@@ -139,41 +196,102 @@ export default function ServicesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white">
+    <div className="min-h-screen bg-white text-gray-900">
       <NavBar />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4">
+      <section className="relative min-h-[70vh] flex items-center overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <div
+            className="w-full h-full bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: `url('/images/services-hero.jpg')`,
+            }}
+          />
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/80 to-white/70" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white/60 via-transparent to-white/40" />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 py-32">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1 }}
+              className="text-center lg:text-left"
+            >
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black mb-8 leading-tight">
+                <span className="text-gray-900 block mb-2">Transform Your</span>
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-500 via-teal-500 to-blue-500">
+                  Digital Presence
+                </span>
+              </h1>
+              <p className="text-xl text-gray-600 max-w-xl mx-auto lg:mx-0 mb-12 leading-relaxed">
+                From concept to launch, we deliver cutting-edge solutions that drive growth and exceed expectations. Our expert team combines innovation with technical excellence.
+              </p>
+            </motion.div>
+
+            {/* Right Content - Stats/Highlights */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.3 }}
+              className="hidden lg:block"
+            >
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2, duration: 1 }}
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        >
+          <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
+            <motion.div
+              animate={{ y: [0, 12, 0] }}
+              transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+              className="w-1 h-3 bg-gray-600 rounded-full mt-2"
+            />
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Services Section */}
+      <section id="services" className="py-20 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <Badge className="bg-emerald-500 text-white mb-6">Our Services</Badge>
-            <h1 className="text-4xl sm:text-6xl font-bold mb-8 leading-tight">
-              <span className="text-white">Transform Your </span>
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-blue-400">
-                Digital Presence
-              </span>
-            </h1>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-12">
-              From concept to launch, we deliver cutting-edge solutions that drive growth and exceed expectations
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 text-gray-900">
+              Services We Offer
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Discover our full range of digital solutions designed to accelerate your business growth
             </p>
           </motion.div>
 
           {/* Services Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-            {services.map((service, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.slice(0, 6).map((service, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
                 className="group relative"
               >
-                <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 hover:border-emerald-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-emerald-500/10 h-full relative overflow-hidden">
+                <div className="bg-white border border-gray-200 rounded-2xl p-8 hover:border-emerald-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-emerald-500/10 h-full relative overflow-hidden">
                   {/* Animated Background Graphic */}
                   {service.graphic}
 
@@ -192,12 +310,12 @@ export default function ServicesPage() {
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <Link href="/">
+                      <Link href="/contact">
                         <Button
                           size="sm"
                           className="bg-emerald-500 hover:bg-emerald-600 text-white group-hover:scale-105 transition-transform"
                         >
-                          Get Quote <ArrowRight className="w-4 h-4 ml-1" />
+                          Learn More <ArrowRight className="w-4 h-4 ml-1" />
                         </Button>
                       </Link>
                     </div>
@@ -206,55 +324,468 @@ export default function ServicesPage() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
 
-          {/* Process Section */}
+      {/* Tailored Development Services Section */}
+      <section className="py-20 px-4 bg-white">
+        <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="mb-20"
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
           >
-            <div className="text-center mb-16">
-              <Badge className="bg-blue-500 text-white mb-6">Our Process</Badge>
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">How We Work</h2>
-              <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-                A proven process that ensures quality delivery and client satisfaction
+            <Badge className="bg-emerald-500 text-white mb-6">Tailored Solutions</Badge>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 text-gray-900">
+              From MVPs to Enterprise Solutions: Tailored Development Services
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              We specialize in delivering custom software solutions that scale with your business needs, from rapid MVPs to comprehensive enterprise systems
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            {/* Left Column - Service Categories */}
+            <div className="lg:col-span-1">
+              <div className="space-y-3">
+                {tailoredServices.map((service, index) => (
+                  <motion.button
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    onClick={() => setSelectedService(index)}
+                    className={`w-full text-left p-6 rounded-xl border transition-all duration-300 ${
+                      selectedService === index
+                        ? 'bg-emerald-50 border-emerald-300 shadow-lg'
+                        : 'bg-gray-50 border-gray-200 hover:bg-gray-100 hover:border-gray-300'
+                    }`}
+                  >
+                    <div className="flex items-start space-x-4">
+                      <div className={`w-1 h-12 rounded-full transition-all duration-300 ${
+                        selectedService === index
+                          ? 'bg-emerald-600'
+                          : 'bg-gradient-to-r from-emerald-500 to-teal-500'
+                      }`}></div>
+                      <div>
+                        <h3 className={`text-lg font-bold transition-colors duration-300 ${
+                          selectedService === index ? 'text-emerald-900' : 'text-gray-900'
+                        }`}>
+                          {service.title}
+                        </h3>
+                        <p className="text-sm text-gray-600 mt-1">{service.description}</p>
+                      </div>
+                    </div>
+                  </motion.button>
+                ))}
+              </div>
+            </div>
+
+            {/* Right Column - Service Details */}
+            <div className="lg:col-span-2">
+              <motion.div
+                key={selectedService}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 border border-gray-200 shadow-lg"
+              >
+                <div className="mb-6">
+                  <p className="text-lg text-gray-600 leading-relaxed">
+                    {tailoredServices[selectedService].description}
+                  </p>
+                </div>
+
+                <div className="p-6">
+                  <h4 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
+                    What We Deliver:
+                  </h4>
+                  <div className="space-y-3">
+                    {tailoredServices[selectedService].details.map((detail, detailIndex) => (
+                      <motion.div
+                        key={detailIndex}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3, delay: detailIndex * 0.05 }}
+                        className="flex items-start space-x-3 p-3 rounded-lg bg-gray-50 hover:bg-emerald-50 transition-colors duration-200"
+                      >
+                        <CheckCircle className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
+                        <span className="text-gray-700 text-sm leading-relaxed">{detail}</span>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-8 text-center">
+                  <Link href="/contact">
+                    <Button className="bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-8 py-3 font-semibold hover:shadow-lg transition-all duration-300">
+                      Get Started with {tailoredServices[selectedService].title}
+                      <ArrowRight className="w-5 h-5 ml-2" />
+                    </Button>
+                  </Link>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 px-4 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 text-gray-900">
+              What Our Clients Say
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Don't just take our word for it - hear from the businesses we've helped transform
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                quote: "NovaGen transformed our outdated website into a modern, high-converting platform. Their team's expertise and attention to detail exceeded our expectations.",
+                name: "Sarah Johnson",
+                position: "CEO",
+                company: "TechStart Solutions",
+                avatar: "SJ"
+              },
+              {
+                quote: "The mobile app they developed for us has been a game-changer for our business. User engagement increased by 300% in the first month alone.",
+                name: "Michael Chen",
+                position: "CTO",
+                company: "InnovateCorp",
+                avatar: "MC"
+              },
+              {
+                quote: "Working with NovaGen was a seamless experience from start to finish. They delivered exactly what they promised, on time and within budget.",
+                name: "Emma Rodriguez",
+                position: "Marketing Director",
+                company: "GrowthMasters Inc",
+                avatar: "ER"
+              }
+            ].map((testimonial, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300"
+              >
+                <div className="flex items-center mb-6">
+                  <div className="flex text-yellow-400 mr-1">
+                    {[...Array(5)].map((_, i) => (
+                      <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                </div>
+
+                <blockquote className="text-gray-700 mb-6 leading-relaxed italic">
+                  "{testimonial.quote}"
+                </blockquote>
+
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
+                    {testimonial.avatar}
+                  </div>
+                  <div>
+                    <div className="font-semibold text-gray-900">{testimonial.name}</div>
+                    <div className="text-sm text-gray-600">{testimonial.position}</div>
+                    <div className="text-sm text-emerald-600 font-medium">{testimonial.company}</div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CEO Message Section */}
+      <section className="py-20 px-4 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 text-gray-900">
+              A Message from Our CEO
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="order-2 lg:order-1"
+            >
+              <div className="bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl p-8 text-white shadow-2xl">
+                <div className="mb-6">
+                  <svg className="w-12 h-12 text-white/80 mb-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                  </svg>
+                </div>
+                <blockquote className="text-xl leading-relaxed mb-6 italic">
+                  "At NovaGen, we believe technology should empower businesses, not complicate them. Our mission is to deliver innovative solutions that drive real results and transform how our clients operate in the digital world.
+                  <br /><br />
+                  With over 5 years of experience and a team of passionate experts, we've helped countless businesses achieve their digital transformation goals. We don't just build software – we build partnerships that last.
+                  <br /><br />
+                  Choose NovaGen for excellence, innovation, and results that matter."
+                </blockquote>
+                <div className="border-t border-white/30 pt-6">
+                  <div className="font-bold text-xl">Nabilah Kitiibwa</div>
+                  <div className="text-white/80">Chief Executive Officer</div>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="order-1 lg:order-2 text-center lg:text-left"
+            >
+              <div className="relative">
+                <div className="w-80 h-80 mx-auto bg-gradient-to-br from-emerald-400 to-teal-500 rounded-full flex items-center justify-center shadow-2xl overflow-hidden">
+                  <img
+                    src="/images/ceo.jpg"
+                    alt="John Smith - CEO"
+                    className="w-72 h-72 object-cover rounded-full"
+                  />
+                </div>
+                <div className="absolute -bottom-4 -right-4 bg-white rounded-full p-4 shadow-lg">
+                  <div className="w-16 h-16 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full flex items-center justify-center">
+                    <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8 text-center lg:text-left">
+                <h3 className="text-2xl font-bold text-white mb-2">John Smith</h3>
+                <p className="text-lg text-white/90 mb-4">CEO & Founder, NovaGen Technologies</p>
+                <div className="flex justify-center lg:justify-start space-x-4">
+                  <div className="flex items-center text-white">
+                    <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    LinkedIn
+                  </div>
+                  <div className="flex items-center text-white/80">
+                    <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                    5+ Years Leading Tech Innovation
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Quality Control Practices Section */}
+      <section className="py-20 px-4 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 text-gray-900">
+              Our Quality Control Practices
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              We maintain the highest standards of quality through rigorous testing and validation processes at every stage of development
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                icon: <CheckCircle className="w-8 h-8" />,
+                title: "Automated Testing",
+                description: "Comprehensive automated test suites ensure code quality and prevent regressions across all platforms and devices."
+              },
+              {
+                icon: <Shield className="w-8 h-8" />,
+                title: "Security Audits",
+                description: "Regular security assessments and penetration testing to protect against vulnerabilities and ensure data safety."
+              },
+              {
+                icon: <Code className="w-8 h-8" />,
+                title: "Code Reviews",
+                description: "Peer code reviews and pair programming ensure high-quality, maintainable code that follows best practices."
+              },
+              {
+                icon: <Zap className="w-8 h-8" />,
+                title: "Performance Testing",
+                description: "Load testing and performance optimization to ensure applications perform flawlessly under various conditions."
+              },
+              {
+                icon: <Users className="w-8 h-8" />,
+                title: "User Acceptance Testing",
+                description: "Real-user testing and feedback integration to ensure the final product meets user needs and expectations."
+              },
+              {
+                icon: <Monitor className="w-8 h-8" />,
+                title: "Continuous Integration",
+                description: "Automated deployment pipelines with continuous testing ensure rapid, reliable delivery of quality software."
+              }
+            ].map((practice, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300"
+              >
+                <div className="w-16 h-16 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center text-white mb-6">
+                  {practice.icon}
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">{practice.title}</h3>
+                <p className="text-gray-600 leading-relaxed">{practice.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 px-4 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 text-gray-900">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Get answers to common questions about our services, process, and partnership
+            </p>
+          </motion.div>
+
+          <div className="space-y-4">
+            {[
+              {
+                question: "How long does a typical software development project take?",
+                answer: "Project timelines vary based on complexity and scope. A simple mobile app might take 2-3 months, while a complex enterprise system could take 6-12 months. We provide detailed timelines during our initial consultation and keep you updated throughout the development process."
+              },
+              {
+                question: "Do you provide ongoing maintenance and support after project completion?",
+                answer: "Yes, we offer comprehensive maintenance and support packages. This includes bug fixes, security updates, performance optimizations, and feature enhancements. We recommend ongoing support to ensure your software continues to perform optimally as your business grows."
+              },
+              {
+                question: "What is your development process like?",
+                answer: "We follow an agile development methodology with regular client check-ins and iterative development cycles. Our process includes discovery, planning, design, development, testing, deployment, and ongoing support. We emphasize transparent communication and collaboration throughout."
+              },
+              {
+                question: "How do you handle project pricing and payment terms?",
+                answer: "We offer flexible pricing models including fixed-price projects, hourly rates, and retainer agreements. Payment terms are typically structured with milestones - 30% upfront, 40% during development, and 30% upon completion. We can customize payment schedules based on your preferences."
+              },
+              {
+                question: "Can you work with our existing systems and technologies?",
+                answer: "Absolutely! We specialize in system integration and can work with most existing technologies. Whether you need to integrate with legacy systems, APIs, databases, or third-party services, our team has extensive experience in seamless integration and migration projects."
+              },
+              {
+                question: "What measures do you take to ensure project security and confidentiality?",
+                answer: "Security is paramount in all our projects. We use encrypted communication channels, signed NDAs, secure development environments, and follow industry best practices for data protection. All team members undergo background checks and are bound by confidentiality agreements."
+              },
+              {
+                question: "Do you provide training for our team on the new software?",
+                answer: "Yes, comprehensive training is included in all our projects. We provide detailed documentation, video tutorials, live training sessions, and ongoing support to ensure your team can effectively use and maintain the software. We also offer advanced training for administrators and power users."
+              },
+              {
+                question: "What if we need to make changes to the project scope during development?",
+                answer: "We understand that requirements can evolve. We use a structured change management process that includes impact assessment, timeline adjustments, and cost implications. Minor changes are typically accommodated within the original scope, while major changes may require contract amendments."
+              }
+            ].map((faq, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-gray-50 rounded-lg border border-gray-200 overflow-hidden"
+              >
+                <details className="group">
+                  <summary className="flex justify-between items-center p-6 cursor-pointer hover:bg-gray-100 transition-colors">
+                    <h3 className="text-lg font-semibold text-gray-900 pr-4">{faq.question}</h3>
+                    <ChevronDown className="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0" />
+                  </summary>
+                  <div className="px-6 pb-6">
+                    <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
+                  </div>
+                </details>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="relative py-20 px-4 min-h-[60vh] flex items-center">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <div
+            className="w-full h-full bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: `url('/images/cta-background.jpg')`,
+            }}
+          />
+          {/* Black Overlay */}
+          <div className="absolute inset-0 bg-black/70" />
+        </div>
+
+        <div className="relative z-10 max-w-4xl mx-auto text-center w-full">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="px-4 py-8"
+          >
+            <div className="mb-8">
+              <Zap className="w-12 h-12 text-yellow-400 mx-auto mb-4" />
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
+                Ready to Transform Your Business?
+              </h3>
+              <p className="text-white/90 text-xl mb-8 max-w-2xl mx-auto leading-relaxed">
+                Let's discuss your project and bring your vision to life with our expert team and cutting-edge solutions
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {processSteps.map((step, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="text-center"
-                >
-                  <div className="w-16 h-16 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold text-white">
-                    {step.step}
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>
-                  <p className="text-gray-400">{step.description}</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* CTA Section */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="bg-gradient-to-r from-emerald-500 to-green-600 rounded-3xl p-12 text-center"
-          >
-            <h3 className="text-3xl font-bold text-black mb-4">Ready to Get Started?</h3>
-            <p className="text-black/80 text-xl mb-8">Let's discuss your project and bring your vision to life</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/consultation">
-                <Button className="bg-black text-white hover:bg-gray-800 px-8 py-4 text-lg">
+              <Link href="/contact">
+                <Button className="bg-emerald-500 text-white hover:bg-emerald-600 px-8 py-4 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300">
                   <Zap className="w-5 h-5 mr-2" />
-                  Free Consultation
+                  Start Your Project
                 </Button>
               </Link>
             </div>
