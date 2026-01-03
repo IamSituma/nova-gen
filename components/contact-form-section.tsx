@@ -58,25 +58,25 @@ export function ContactFormSection() {
     {
       icon: Mail,
       title: "Email Us",
-      details: "hello@novageneration.tech",
+      details: "info@novageneration.tech",
       subtext: "We'll respond within 24 hours"
     },
     {
       icon: Phone,
       title: "Call Us",
-      details: "+1 (555) 123-4567",
-      subtext: "Mon-Fri 9AM-6PM EST"
+      details: "256 741 004 466",
+      subtext: "Mon-Fri 9AM-5PM"
     },
     {
       icon: MapPin,
       title: "Visit Us",
-      details: "123 Tech Street",
-      subtext: "Innovation City, IC 12345"
+      details: "Bugolobi, Bandali Rise",
+      subtext: "Studio House, Level 4"
     }
   ]
 
   return (
-    <section className="py-20 px-4 sm:px-6 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+    <section className="py-20 px-4 sm:px-6 bg-black text-white">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <motion.div
@@ -237,7 +237,7 @@ export function ContactFormSection() {
                         value={formData.phone}
                         onChange={handleInputChange}
                         className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-white/30 transition-colors"
-                        placeholder="+1 (555) 123-4567"
+                        placeholder="0700 123 456"
                       />
                     </div>
                   </div>

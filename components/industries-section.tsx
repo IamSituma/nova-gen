@@ -13,7 +13,6 @@ import {
   Building2,
   Truck,
   Briefcase,
-  Zap
 } from "lucide-react"
 
 const industries = [
@@ -21,10 +20,10 @@ const industries = [
     id: "healthcare",
     name: "Healthcare",
     icon: Heart,
-    description: "We develop HIPAA-compliant healthcare solutions including patient management systems, telemedicine platforms, and medical data analytics tools that improve patient care and operational efficiency.",
+    description: "We create secure, standards-compliant healthcare solutions for Uganda, including patient management, telemedicine, and medical data analytics to improve care and efficiency while meeting local regulations.",
     color: "from-red-500 to-pink-500",
     bgColor: "bg-red-50",
-    stats: "50+ Projects"
+    stats: "10+ Projects"
   },
   {
     id: "finance",
@@ -33,7 +32,7 @@ const industries = [
     description: "Secure financial applications, banking platforms, payment gateways, and blockchain solutions that meet the highest security standards and regulatory requirements.",
     color: "from-green-500 to-emerald-500",
     bgColor: "bg-green-50",
-    stats: "40+ Projects"
+    stats: "20+ Projects"
   },
   {
     id: "ecommerce",
@@ -42,7 +41,7 @@ const industries = [
     description: "Custom online stores, marketplace platforms, inventory management systems, and payment integrations that drive sales and enhance customer experiences.",
     color: "from-blue-500 to-indigo-500",
     bgColor: "bg-blue-50",
-    stats: "75+ Projects"
+    stats: "15+ Projects"
   },
   {
     id: "education",
@@ -51,7 +50,7 @@ const industries = [
     description: "Learning management systems, student portals, virtual classrooms, and educational apps that make learning more accessible and engaging for students and educators.",
     color: "from-purple-500 to-violet-500",
     bgColor: "bg-purple-50",
-    stats: "35+ Projects"
+    stats: "25+ Projects"
   },
   {
     id: "real-estate",
@@ -60,7 +59,7 @@ const industries = [
     description: "Property management systems, real estate marketplaces, virtual tours, and CRM solutions that streamline property transactions and tenant management.",
     color: "from-orange-500 to-amber-500",
     bgColor: "bg-orange-50",
-    stats: "25+ Projects"
+    stats: "18+ Projects"
   },
   {
     id: "hospitality",
@@ -69,7 +68,7 @@ const industries = [
     description: "Hotel booking systems, restaurant management platforms, travel apps, and customer experience solutions that enhance guest satisfaction and operational efficiency.",
     color: "from-teal-500 to-cyan-500",
     bgColor: "bg-teal-50",
-    stats: "20+ Projects"
+    stats: "10+ Projects"
   },
 ]
 
@@ -123,17 +122,10 @@ export function IndustriesSection() {
                 </div>
 
                 {/* Stats */}
-                <div className="flex items-center justify-between pt-4 border-t border-gray-200">
+                <div className="flex items-center justify-start pt-4 border-t border-gray-200">
                   <div className={`text-sm font-semibold bg-gradient-to-r ${industry.color} bg-clip-text text-transparent`}>
                     {industry.stats}
                   </div>
-                  <motion.div
-                    className={`w-8 h-8 rounded-full bg-gradient-to-r ${industry.color} flex items-center justify-center`}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    <Zap className="w-4 h-4 text-white" />
-                  </motion.div>
                 </div>
 
                 {/* Hover Effect */}

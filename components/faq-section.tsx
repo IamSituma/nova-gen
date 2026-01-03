@@ -102,28 +102,6 @@ export function FAQSection() {
             </motion.div>
           ))}
         </div>
-
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mt-16"
-        >
-          <p className="text-lg text-gray-600 mb-6">
-            Still have questions? We're here to help.
-          </p>
-          <div className="inline-flex items-center space-x-2 text-[#009696] font-semibold">
-            <span>Contact our team for personalized answers</span>
-            <motion.div
-              animate={{ x: [0, 5, 0] }}
-              transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-            >
-              →
-            </motion.div>
-          </div>
-        </motion.div>
       </div>
     </section>
   )

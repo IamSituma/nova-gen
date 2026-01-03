@@ -43,8 +43,6 @@ const services = [
     features: [
       { icon: <Rocket className="w-5 h-5" />, text: "Lightning-fast loading speeds" },
       { icon: <Shield className="w-5 h-5" />, text: "Enterprise-grade security" },
-      { icon: <Target className="w-5 h-5" />, text: "Conversion-optimized design" },
-      { icon: <Gauge className="w-5 h-5" />, text: "99.9% uptime guarantee" },
     ],
     technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Node.js", "PostgreSQL"],
     stats: [
@@ -244,7 +242,7 @@ export function ServicesViewportSection() {
                         transition={{ delay: index * 0.1 + featureIndex * 0.1 }}
                         viewport={{ once: true }}
                       >
-                        <div className={`flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-r ${service.gradient} flex items-center justify-center`}>
+                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-r from-[#009696] via-teal-900 to-[#009696] flex items-center justify-center">
                           <div className="w-2 h-2 bg-white rounded-full"></div>
                         </div>
                         <span className="text-sm text-gray-600 group-hover:text-gray-700 transition-colors">
@@ -265,7 +263,7 @@ export function ServicesViewportSection() {
                         transition={{ delay: index * 0.1 + statIndex * 0.1 }}
                         viewport={{ once: true }}
                       >
-                        <div className={`text-lg font-bold bg-gradient-to-r ${service.gradient} bg-clip-text text-transparent`}>
+                        <div className="text-lg font-bold bg-gradient-to-r from-[#009696] via-teal-900 to-[#009696] bg-clip-text text-transparent">
                           {stat.value}
                         </div>
                         <div className="text-xs text-gray-500">{stat.label}</div>

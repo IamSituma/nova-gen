@@ -85,13 +85,6 @@ export function NavBar() {
 
           {/* Mobile */}
           <div className="lg:hidden flex items-center space-x-3">
-            <Button
-              size="sm"
-              className="bg-[#009699] hover:bg-[#00b3b3] text-white font-medium text-xs px-3 py-2"
-            >
-              Quote
-            </Button>
-
             <button onClick={() => setIsOpen(!isOpen)} className="text-gray-300 hover:text-white">
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>

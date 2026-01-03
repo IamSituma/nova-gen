@@ -24,13 +24,13 @@ const technologyCategories = [
     icon: Monitor,
     description: "Modern web interfaces and user experiences",
     color: "from-blue-500 to-cyan-500",
-    bgColor: "bg-blue-60",
+    bgColor: "bg-[#009696]/10",
     technologies: [
-      { name: "React", color: "bg-blue-100 text-blue-800" },
-      { name: "Next.js", color: "bg-gray-100 text-gray-800" },
-      { name: "TypeScript", color: "bg-blue-600 text-white" },
-      { name: "Tailwind CSS", color: "bg-cyan-100 text-cyan-800" },
-      { name: "JavaScript", color: "bg-yellow-100 text-yellow-800" },
+      { name: "React", color: "bg-teal-100 text-teal-800" },
+      { name: "Next.js", color: "bg-teal-100 text-teal-800" },
+      { name: "TypeScript", color: "bg-teal-100 text-teal-800" },
+      { name: "Tailwind CSS", color: "bg-teal-100 text-teal-800" },
+      { name: "JavaScript", color: "bg-teal-100 text-teal-800" },
     ]
   },
   {
@@ -39,13 +39,13 @@ const technologyCategories = [
     icon: Server,
     description: "Scalable server-side solutions",
     color: "from-green-500 to-emerald-500",
-    bgColor: "bg-green-50",
+    bgColor: "bg-[#009696]/10",
     technologies: [
-      { name: "Node.js", color: "bg-green-100 text-green-800" },
-      { name: "Python", color: "bg-blue-500 text-white" },
-      { name: "Express.js", color: "bg-gray-100 text-gray-800" },
-      { name: "GraphQL", color: "bg-pink-100 text-pink-800" },
-      { name: "REST APIs", color: "bg-purple-100 text-purple-800" },
+      { name: "Node.js", color: "bg-teal-100 text-teal-800" },
+      { name: "Python", color: "bg-teal-100 text-teal-800" },
+      { name: "Express.js", color: "bg-teal-100 text-teal-800" },
+      { name: "GraphQL", color: "bg-teal-100 text-teal-800" },
+      { name: "REST APIs", color: "bg-teal-100 text-teal-800" },
     ]
   },
   {
@@ -54,13 +54,13 @@ const technologyCategories = [
     icon: Database,
     description: "Data storage and management",
     color: "from-purple-500 to-indigo-500",
-    bgColor: "bg-purple-50",
+    bgColor: "bg-[#009696]/10",
     technologies: [
-      { name: "PostgreSQL", color: "bg-blue-700 text-white" },
-      { name: "MongoDB", color: "bg-green-600 text-white" },
-      { name: "Redis", color: "bg-red-100 text-red-800" },
-      { name: "MySQL", color: "bg-orange-100 text-orange-800" },
-      { name: "Prisma", color: "bg-gray-100 text-gray-800" },
+      { name: "PostgreSQL", color: "bg-teal-100 text-teal-800" },
+      { name: "MongoDB", color: "bg-teal-100 text-teal-800" },
+      { name: "Redis", color: "bg-teal-100 text-teal-800" },
+      { name: "MySQL", color: "bg-teal-100 text-teal-800" },
+      { name: "Prisma", color: "bg-teal-100 text-teal-800" },
     ]
   },
   {
@@ -69,13 +69,13 @@ const technologyCategories = [
     icon: Cloud,
     description: "Infrastructure and deployment",
     color: "from-orange-500 to-red-500",
-    bgColor: "bg-orange-50",
+    bgColor: "bg-[#009696]/10",
     technologies: [
-      { name: "AWS", color: "bg-orange-100 text-orange-800" },
-      { name: "Docker", color: "bg-blue-400 text-white" },
-      { name: "Kubernetes", color: "bg-blue-600 text-white" },
-      { name: "Vercel", color: "bg-black text-white" },
-      { name: "Git", color: "bg-red-500 text-white" },
+      { name: "AWS", color: "bg-teal-100 text-teal-800" },
+      { name: "Docker", color: "bg-teal-100 text-teal-800" },
+      { name: "Kubernetes", color: "bg-teal-100 text-teal-800" },
+      { name: "Vercel", color: "bg-teal-100 text-teal-800" },
+      { name: "Git", color: "bg-teal-100 text-teal-800" },
     ]
   },
   {
@@ -84,13 +84,13 @@ const technologyCategories = [
     icon: Smartphone,
     description: "Cross-platform mobile applications",
     color: "from-pink-500 to-rose-500",
-    bgColor: "bg-pink-50",
+    bgColor: "bg-[#009696]/10",
     technologies: [
-      { name: "React Native", color: "bg-blue-100 text-blue-800" },
-      { name: "Flutter", color: "bg-blue-400 text-white" },
-      { name: "Swift", color: "bg-orange-500 text-white" },
-      { name: "Kotlin", color: "bg-purple-600 text-white" },
-      { name: "Ionic", color: "bg-blue-500 text-white" },
+      { name: "React Native", color: "bg-teal-100 text-teal-800" },
+      { name: "Flutter", color: "bg-teal-100 text-teal-800" },
+      { name: "Swift", color: "bg-teal-100 text-teal-800" },
+      { name: "Kotlin", color: "bg-teal-100 text-teal-800" },
+      { name: "Ionic", color: "bg-teal-100 text-teal-800" },
     ]
   },
   {
@@ -99,13 +99,12 @@ const technologyCategories = [
     icon: Palette,
     description: "Creative tools and design systems",
     color: "from-violet-500 to-purple-500",
-    bgColor: "bg-violet-50",
+    bgColor: "bg-[#009696]/10",
     technologies: [
-      { name: "Figma", color: "bg-purple-100 text-purple-800" },
-      { name: "Adobe XD", color: "bg-pink-100 text-pink-800" },
-      { name: "Sketch", color: "bg-yellow-100 text-yellow-800" },
-      { name: "Photoshop", color: "bg-blue-500 text-white" },
-      { name: "Illustrator", color: "bg-orange-500 text-white" },
+      { name: "Figma", color: "bg-teal-100 text-teal-800" },
+      { name: "Adobe XD", color: "bg-teal-100 text-teal-800" },
+      { name: "Sketch", color: "bg-teal-100 text-teal-800" },
+      { name: "Illustrator", color: "bg-teal-100 text-teal-800" },
     ]
   },
 ]
@@ -145,7 +144,7 @@ export function TechnologiesSection() {
                 className={`relative ${category.bgColor} rounded-2xl p-6 border border-gray-100 hover:shadow-xl transition-all duration-300 group`}
               >
                 {/* Icon */}
-                <div className={`inline-flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-r ${category.color} text-white mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-xl bg-[#009696] text-white mb-4 group-hover:scale-110 transition-transform duration-300">
                   <IconComponent className="w-8 h-8" />
                 </div>
 
@@ -173,7 +172,7 @@ export function TechnologiesSection() {
                       whileTap={{ scale: 0.95 }}
                     >
                       <Badge
-                        className={`${tech.color} px-3 py-1 text-xs font-medium border-0 shadow-sm hover:shadow-md transition-shadow cursor-default`}
+                        className={`${tech.color} px-3 py-1 text-xs font-medium border-0 shadow-sm hover:shadow-md hover:text-white transition-all cursor-default`}
                       >
                         {tech.name}
                       </Badge>
