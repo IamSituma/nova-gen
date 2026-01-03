@@ -36,11 +36,10 @@ export function NavBar() {
       initial={false}               // 👈 prevents hiding on reload
       animate={{ y: 0 }}            // keep it visible
       transition={{ duration: 0.3 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
           ? "bg-black/70 backdrop-blur-md border-b border-gray-800/50"
           : "bg-black/30 backdrop-blur-sm"
-      }`}
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
@@ -63,11 +62,10 @@ export function NavBar() {
                 key={item.name}
                 href={item.href}
                 onClick={scrollToTop}
-                className={`flex items-center space-x-1 text-sm font-medium transition-colors duration-200 ${
-                  pathname === item.href
+                className={`flex items-center space-x-1 text-sm font-medium transition-colors duration-200 ${pathname === item.href
                     ? "text-emerald-400"
                     : "text-gray-300 hover:text-white"
-                }`}
+                  }`}
               >
                 <span>{item.name}</span>
               </Link>
@@ -75,13 +73,15 @@ export function NavBar() {
           </div>
 
           {/* Desktop CTA */}
-          <div className="hidden lg:flex items-center space-x-4">
-            <Button
-              className="bg-[#009699] hover:bg-[#00b3b3] text-white font-medium"
-            >
-              Seek Consultation
-            </Button>
-          </div>
+          <Link
+            href="https://calendar.app.google/dNPg4ggXu7CQtbMUA"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-4 py-2 rounded-lg bg-[#009696] text-white text-sm font-semibold hover:bg-gray-600 transition"
+          >
+            Book a Meeting
+          </Link>
+
 
           {/* Mobile */}
           <div className="lg:hidden flex items-center space-x-3">
@@ -102,9 +102,8 @@ export function NavBar() {
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              className={`lg:hidden absolute top-full left-0 right-0 backdrop-blur-md border-b border-gray-800 ${
-                scrolled ? "bg-black/70" : "bg-black/30"
-              }`}
+              className={`lg:hidden absolute top-full left-0 right-0 backdrop-blur-md border-b border-gray-800 ${scrolled ? "bg-black/70" : "bg-black/30"
+                }`}
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
@@ -119,11 +118,10 @@ export function NavBar() {
                       setIsOpen(false)
                       scrollToTop()
                     }}
-                    className={`flex items-center space-x-2 text-base font-medium transition-colors duration-200 ${
-                      pathname === item.href
+                    className={`flex items-center space-x-2 text-base font-medium transition-colors duration-200 ${pathname === item.href
                         ? "text-emerald-400"
                         : "text-gray-300 hover:text-white"
-                    }`}
+                      }`}
                   >
                     <span>{item.name}</span>
                   </Link>

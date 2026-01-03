@@ -1,7 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { useRouter } from "next/navigation"
 import {
   Globe,
@@ -32,8 +31,6 @@ import {
   CloudDownload,
   CloudUpload,
   LucideCloudUpload,
-  ChevronLeft,
-  ChevronRight,
 } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 
@@ -54,7 +51,6 @@ const services = [
       { label: "Conversion Rate Boost", value: "127%" },
       { label: "Client Satisfaction", value: "98%" },
     ],
-    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "HTML", "CSS", "Javascript"],
     gradient: "from-[#009696] via-teal-900 to-[#009696]",
     bgGradient: "from-gray-400/20 via-gray-400/10 to-gray-400/20",
     accentColor: "text-black",
@@ -75,7 +71,6 @@ const services = [
       { label: "User Retention", value: "85%" },
       { label: "Development Speed", value: "2x Faster" },
     ],
-    technologies: ["React Native", "Flutter", "Swift", "Kotlin", "Firebase"],
     gradient: "from-purple-500 via-pink-400 to-purple-600",
     bgGradient: "from-purple-500/20 via-pink-400/10 to-purple-600/20",
     accentColor: "text-black",
@@ -96,7 +91,6 @@ const services = [
       { label: "Time to Prototype", value: "72hrs" },
       { label: "Manufacturing Ready", value: "100%" },
     ],
-    technologies: ["SolidWorks", "AutoCAD", "ANSYS", "3D Printing", "CNC"],
     gradient: "from-orange-500 via-red-400 to-orange-600",
     bgGradient: "from-orange-500/20 via-red-400/10 to-orange-600/20",
     accentColor: "text-black",
@@ -117,7 +111,6 @@ const services = [
       { label: "Time to Market", value: "40% Faster" },
       { label: "ROI Average", value: "3.2x" },
     ],
-    technologies: ["AWS", "Microsoft Azure", "Google Cloud", "Digital Ocean", "Oracle Cloud", "Vercel"],
     gradient: "from-indigo-500 via-purple-400 to-indigo-600",
     bgGradient: "from-indigo-500/20 via-purple-400/10 to-indigo-600/20",
     accentColor: "text-black",
@@ -137,7 +130,25 @@ const services = [
       { label: "Client Satisfaction", value: "96%" },
       { label: "On-Time Delivery", value: "98%" },
     ],
-    technologies: ["Adobe XD", "Figma", "Sketch", "InVision"],
+    gradient: "from-pink-500 via-rose-400 to-pink-600",
+    bgGradient: "from-pink-500/20 via-rose-400/10 to-pink-600/20",
+    accentColor: "text-black",
+  },
+  {
+    id: "desktop",
+    title: "Desktop Software",
+    description:
+      "We create user-friendly interfaces and engaging experienxes that make your product easy to use and visually appealing to your clients. We transform ideas into interactive designs that help drive engagement and growth",
+    features: [
+      { icon: <Lightbulb className="w-5 h-5" />, text: "High Fiedlity UI Designs" },
+      { icon: <Layers className="w-5 h-5" />, text: "Wireframing" },
+      { icon: <Shield className="w-5 h-5" />, text: "Prototyping" },
+    ],
+    stats: [
+      { label: "Projects Completed", value: "150+" },
+      { label: "Client Satisfaction", value: "96%" },
+      { label: "On-Time Delivery", value: "98%" },
+    ],
     gradient: "from-pink-500 via-rose-400 to-pink-600",
     bgGradient: "from-pink-500/20 via-rose-400/10 to-pink-600/20",
     accentColor: "text-black",
@@ -145,251 +156,171 @@ const services = [
 ]
 
 export function ServicesViewportSection() {
-  const [activeService, setActiveService] = useState(0)
-  const [isAnimating, setIsAnimating] = useState(false)
-  const containerRef = useRef<HTMLDivElement>(null)
-  const serviceRefs = useRef<(HTMLDivElement | null)[]>([])
   const router = useRouter()
-
-  // Intersection observer for section visibility
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = serviceRefs.current.findIndex((ref) => ref === entry.target)
-            if (index !== -1) {
-              setActiveService(index)
-            }
-          }
-        })
-      },
-      { threshold: 0.3, rootMargin: "-20% 0px -20% 0px" },
-    )
-
-    serviceRefs.current.forEach((ref) => {
-      if (ref) observer.observe(ref)
-    })
-
-    return () => observer.disconnect()
-  }, [])
 
   const handleNavigateToProjects = () => {
     router.push("/projects")
   }
 
-  const nextService = () => {
-    if (isAnimating) return
-    setIsAnimating(true)
-    setActiveService((prev) => (prev + 1) % services.length)
-    setTimeout(() => setIsAnimating(false), 300)
-  }
-
-  const prevService = () => {
-    if (isAnimating) return
-    setIsAnimating(true)
-    setActiveService((prev) => (prev - 1 + services.length) % services.length)
-    setTimeout(() => setIsAnimating(false), 300)
-  }
-
-  const goToService = (index: number) => {
-    if (isAnimating || index === activeService) return
-    setIsAnimating(true)
-    setActiveService(index)
-    setTimeout(() => setIsAnimating(false), 300)
-  }
-
   return (
-    <section ref={containerRef} className="relative py-20 px-4 sm:px-6 bg-white overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-white" />
-        <motion.div
-          className="absolute inset-0 opacity-5"
-          animate={{
-            background: [
-              "radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%)",
-              "radial-gradient(circle at 80% 50%, rgba(255,255,255,0.1) 0%, transparent 50%)",
-              "radial-gradient(circle at 50% 80%, rgba(255,255,255,0.1) 0%, transparent 50%)",
-              "radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%)",
-            ],
+    <section className="relative py-20 px-4 sm:px-6 bg-gradient-to-br from-slate-50 via-white to-slate-50 overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-[0.02]">
+        <div
+          className="absolute inset-0 bg-repeat"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%23000000' fillOpacity='0.1'%3E%3Ccircle cx='40' cy='40' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            backgroundSize: "80px 80px",
           }}
-          transition={{ duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
         />
-        {/* Subtle Grid Background */}
-        <div className="absolute inset-0 opacity-[0.02] pointer-events-none">
-          <div
-            className="absolute inset-0 bg-repeat"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%23ffffff' fillOpacity='0.4'%3E%3Ccircle cx='7' cy='7' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-              backgroundSize: "60px 60px",
-            }}
-          />
-        </div>
       </div>
 
+      {/* Floating Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <motion.div
+          className="absolute top-20 left-10 w-20 h-20 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full opacity-10"
+          animate={{
+            y: [0, -20, 0],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute bottom-32 right-16 w-16 h-16 bg-gradient-to-br from-green-400 to-blue-500 rounded-full opacity-10"
+          animate={{
+            y: [0, 20, 0],
+            scale: [1, 0.9, 1],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "easeInOut",
+            delay: 1,
+          }}
+        />
+        <motion.div
+          className="absolute top-1/2 left-1/4 w-12 h-12 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full opacity-10"
+          animate={{
+            rotate: [0, 360],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "linear",
+          }}
+        />
+      </div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-6">
-          <h2 className="text-5xl sm:text-6xl font-black mb-6 leading-tight text-gray-900">
-            <span className="text-gray-900">Services That We Offer</span>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black mb-6 text-gray-900">
+            Services We Excel In
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-          Innovative software solutions to boost efficiency, drive growth, and transform your business digitally.
+            Transform your business with our comprehensive suite of digital solutions,
+            each crafted to deliver exceptional results and drive growth.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="relative">
-          {/* Services Carousel */}
-          <div className="relative min-h-[80vh] flex items-center">
-            {/* Navigation Buttons */}
-            <button
-              onClick={prevService}
-              disabled={isAnimating}
-              className="absolute left-50 z-20 w-12 h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-              aria-label="Previous service"
+        {/* Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          {services.map((service, index) => (
+            <motion.div
+              key={service.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="group relative"
             >
-              <ChevronLeft className="w-6 h-6 text-gray-700" />
-            </button>
+              {/* Service Card */}
+              <div className={`relative bg-white rounded-3xl p-8 shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-500 overflow-hidden ${service.bgGradient}`}>
+                {/* Background Gradient Overlay */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-3xl`} />
 
-            <button
-              onClick={nextService}
-              disabled={isAnimating}
-              className="absolute right-0 z-20 w-12 h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-              aria-label="Next service"
-            >
-              <ChevronRight className="w-6 h-6 text-gray-700" />
-            </button>
-
-            {/* Current Service Display */}
-            <div className="w-full max-w-7xl mx-auto px-32">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeService}
-                  initial={{ opacity: 0, x: 100 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -100 }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
-                  className="w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
-                >
-                  {/* Content */}
-                  <motion.div
-                    className="space-y-8"
-                    initial={{ opacity: 0, x: -50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 0.1 }}
-                  >
-                    <div>
-                      <h3 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-                        {services[activeService].title}
-                      </h3>
-                      <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                        {services[activeService].description}
-                      </p>
+                {/* Content */}
+                <div className="relative z-10">
+                  {/* Service Number */}
+                  <div className="flex items-center justify-between mb-6">
+                    <div className={`w-12 h-12 rounded-2xl bg-gradient-to-r ${service.gradient} flex items-center justify-center text-white font-bold text-lg shadow-lg`}>
+                      {index + 1}
                     </div>
+                    <motion.div
+                      className={`w-10 h-10 rounded-full bg-gradient-to-r ${service.gradient} flex items-center justify-center text-white`}
+                      whileHover={{ scale: 1.1, rotate: 90 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <ArrowRight className="w-5 h-5" />
+                    </motion.div>
+                  </div>
 
-                    {/* Features */}
-                    <div className="space-y-4">
-                      {services[activeService].features.map((feature, featureIndex) => (
-                        <motion.div
-                          key={featureIndex}
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: featureIndex * 0.1 }}
-                          className="flex items-center space-x-3"
-                        >
-                          <div className={services[activeService].accentColor}>{feature.icon}</div>
-                          <span className="text-gray-700">{feature.text}</span>
-                        </motion.div>
-                      ))}
-                    </div>
+                  {/* Title */}
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-gray-800 transition-colors">
+                    {service.title}
+                  </h3>
 
-                    {/* Stats */}
-                    <div className="grid grid-cols-3 gap-4">
-                      {services[activeService].stats.map((stat, statIndex) => (
-                        <motion.div
-                          key={statIndex}
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: statIndex * 0.1 }}
-                          className={`text-center p-4 bg-gradient-to-br ${services[activeService].bgGradient} rounded-xl border border-white/10`}
-                        >
-                          <div className={`text-2xl font-bold ${services[activeService].accentColor} mb-1`}>{stat.value}</div>
-                          <div className="text-xs text-gray-600">{stat.label}</div>
-                        </motion.div>
-                      ))}
-                    </div>
+                  {/* Description */}
+                  <p className="text-gray-600 mb-6 leading-relaxed group-hover:text-gray-700 transition-colors">
+                    {service.description}
+                  </p>
 
-                    {/* Technologies */}
-                    <div className="flex flex-wrap gap-2">
-                      {services[activeService].technologies.map((tech, techIndex) => (
-                        <motion.div
-                          key={techIndex}
-                          initial={{ opacity: 0, scale: 0 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ delay: techIndex * 0.05 }}
-                        >
-                          <Badge
-                            className={`bg-gradient-to-r ${services[activeService].bgGradient} ${services[activeService].accentColor} border-white/20 hover:border-white/30`}
-                          >
-                            {tech}
-                          </Badge>
-                        </motion.div>
-                      ))}
-                    </div>
-
-                    {/* View Projects Button - Only show on last service */}
-                    {activeService === services.length - 1 && (
+                  {/* Features Preview */}
+                  <div className="space-y-3 mb-6">
+                    {service.features.slice(0, 2).map((feature, featureIndex) => (
                       <motion.div
-                        className="flex items-center space-x-4 pt-8"
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
+                        key={featureIndex}
+                        className="flex items-center space-x-3"
+                        initial={{ opacity: 0, x: -10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.1 + featureIndex * 0.1 }}
+                        viewport={{ once: true }}
                       >
-                        <button
-                          onClick={handleNavigateToProjects}
-                          className="group flex items-center space-x-3 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/30 rounded-full transition-all duration-300"
-                        >
-                          <span className="text-gray-900 font-medium">View Our Projects</span>
-                          <motion.div
-                            animate={{ x: [0, 5, 0] }}
-                            transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-                          >
-                            <ArrowRight className="w-5 h-5 text-gray-900 group-hover:translate-x-1 transition-transform" />
-                          </motion.div>
-                        </button>
+                        <div className={`flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-r ${service.gradient} flex items-center justify-center`}>
+                          <div className="w-2 h-2 bg-white rounded-full"></div>
+                        </div>
+                        <span className="text-sm text-gray-600 group-hover:text-gray-700 transition-colors">
+                          {feature.text}
+                        </span>
                       </motion.div>
-                    )}
-                  </motion.div>
+                    ))}
+                  </div>
 
-                  {/* Enhanced UI Graphics */}
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                  >
-                    <ServiceUIGraphic service={services[activeService]} index={activeService} />
-                  </motion.div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
+                  {/* Stats */}
+                  <div className="grid grid-cols-2 gap-4">
+                    {service.stats.slice(0, 2).map((stat, statIndex) => (
+                      <motion.div
+                        key={statIndex}
+                        className="text-center p-3 bg-gray-50 rounded-xl group-hover:bg-gray-100 transition-colors"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: index * 0.1 + statIndex * 0.1 }}
+                        viewport={{ once: true }}
+                      >
+                        <div className={`text-lg font-bold bg-gradient-to-r ${service.gradient} bg-clip-text text-transparent`}>
+                          {stat.value}
+                        </div>
+                        <div className="text-xs text-gray-500">{stat.label}</div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
 
-            {/* Indicators */}
-            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2">
-              {services.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => goToService(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === activeService
-                      ? 'bg-gray-900 scale-125'
-                      : 'bg-gray-400 hover:bg-gray-600'
-                  }`}
-                  aria-label={`Go to service ${index + 1}`}
-                />
-              ))}
-            </div>
-          </div>
+                {/* Hover Effect Border */}
+                <div className={`absolute inset-0 rounded-3xl bg-gradient-to-r ${service.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none`} />
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

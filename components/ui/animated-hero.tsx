@@ -68,13 +68,13 @@ function Hero({ onQuoteClick }: HeroProps) {
       </div>
 
       <div className="flex flex-col sm:flex-row gap-4">
-        <button className="px-8 py-4 bg-white text-[#009696] rounded-lg font-semibold text-lg hover:bg-gray-700 transition-colors">
-          Jump on a call
+        <button className="px-8 py-4 bg-white text-[#009696] rounded-lg font-semibold text-lg hover:bg-gray-900 hover:text-white transition-colors">
+          Our Services
         </button>
 
         <button
           onClick={onQuoteClick}
-          className="px-8 py-4 border-2 border-white text-white rounded-lg font-semibold text-lg hover:bg-blue-50 transition-colors"
+          className="px-8 py-4 border-2 border-white text-white rounded-lg font-semibold text-lg hover:bg-blue-50 hover:text-black transition-colors"
         >
           Get a Quote
         </button>

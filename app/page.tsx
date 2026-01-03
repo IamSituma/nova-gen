@@ -5,11 +5,15 @@ import Link from "next/link"
 import { CheckCircle, XCircle } from "lucide-react"
 import { NavBar } from "@/components/nav-bar"
 import { Footer } from "@/components/footer"
-import { ExpertiseSection } from "@/components/expertise-section"
 import { Hero } from "@/components/ui/animated-hero"
-import { QuotePopup } from "@/components/ui/quote-popup"
 import { ProfileDropdown } from "@/components/profile-dropdown"
 import { ServicesViewportSection } from "@/components/services-viewport-section"
+import { TechnologiesSection } from "@/components/technologies-section"
+import { WhyWorkWithUsSection } from "@/components/why-work-with-us-section"
+import { ProcessTimelineSection } from "@/components/process-timeline-section"
+import { FAQSection } from "@/components/faq-section"
+import { ContactFormSection } from "@/components/contact-form-section"
+import { IndustriesSection } from "@/components/industries-section"
 
 export default function Home() {
   const [quotePopupOpen, setQuotePopupOpen] = useState(false)
@@ -220,14 +224,16 @@ export default function Home() {
 
         {/* Other sections */}
         <div className="bg-white">
-          <ExpertiseSection />
           <ServicesViewportSection />
+          <IndustriesSection />
+          <TechnologiesSection />
+          <WhyWorkWithUsSection />
+          <ProcessTimelineSection />
+          <FAQSection />
+          <ContactFormSection />
           <Footer />
         </div>
       </div>
-
-      {/* Quote Popup */}
-      <QuotePopup isOpen={quotePopupOpen} onClose={() => setQuotePopupOpen(false)} />
     </main>
   )
 }
