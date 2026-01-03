@@ -39,15 +39,15 @@ const services = [
     id: "website",
     title: "Web Development",
     description:
-      "Transform your digital presence with cutting-edge websites that convert visitors into customers. Built with the latest technologies for maximum performance and user experience.",
+      "Transform your digital presence with modern websites that convert visitors into customers. Built with the latest technologies for maximum performance and experience.",
     features: [
       { icon: <Rocket className="w-5 h-5" />, text: "Lightning-fast loading speeds" },
       { icon: <Shield className="w-5 h-5" />, text: "Enterprise-grade security" },
       { icon: <Target className="w-5 h-5" />, text: "Conversion-optimized design" },
       { icon: <Gauge className="w-5 h-5" />, text: "99.9% uptime guarantee" },
     ],
+    technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Node.js", "PostgreSQL"],
     stats: [
-      { label: "Average Speed Increase", value: "340%" },
       { label: "Conversion Rate Boost", value: "127%" },
       { label: "Client Satisfaction", value: "98%" },
     ],
@@ -66,6 +66,7 @@ const services = [
       { icon: <Lock className="w-5 h-5" />, text: "Advanced security features" },
       { icon: <BarChart className="w-5 h-5" />, text: "Built-in analytics" },
     ],
+    technologies: ["React Native", "Flutter", "Swift", "Kotlin", "Firebase", "MongoDB"],
     stats: [
       { label: "App Store Rating", value: "4.8★" },
       { label: "User Retention", value: "85%" },
@@ -79,13 +80,14 @@ const services = [
     id: "enterprise",
     title: "Enterprise Software",
     description:
-      "Scalable enterprise solutions including ERP, CRM, and custom business applications tailored to your needs.",
+      "Scalable enterprise solutions including ERP, CRM, and custom business applications tailored to suite your business and customer needs.",
     features: [
       { icon: <Lightbulb className="w-5 h-5" />, text: "ERP Systems" },
       { icon: <Code className="w-5 h-5" />, text: "CRM Solutions" },
       { icon: <Package className="w-5 h-5" />, text: "Business Intelligence" },
       { icon: <Award className="w-5 h-5" />, text: "Workflow" },
     ],
+    technologies: [".NET", "Java", "Spring Boot", "SQL Server", "Docker", "Kubernetes"],
     stats: [
       { label: "Design Accuracy", value: "99.9%" },
       { label: "Time to Prototype", value: "72hrs" },
@@ -106,6 +108,7 @@ const services = [
       { icon: <TrendingUp className="w-5 h-5" />, text: "Infrastructure Setup" },
       { icon: <Star className="w-5 h-5" />, text: "DevOps Solutions" },
     ],
+    technologies: ["AWS", "Azure", "Docker", "Kubernetes", "Terraform", "Jenkins"],
     stats: [
       { label: "Success Rate", value: "92%" },
       { label: "Time to Market", value: "40% Faster" },
@@ -119,14 +122,15 @@ const services = [
     id: "uiux",
     title: "UI/UX Design",
     description:
-      "We create user-friendly interfaces and engaging experienxes that make your product easy to use and visually appealing to your clients. We transform ideas into interactive designs that help drive engagement and growth",
+      "We create user-friendly interfaces and engaging experienxes that make your product easy to use and visually appealing.",
     features: [
       { icon: <Lightbulb className="w-5 h-5" />, text: "High Fiedlity UI Designs" },
       { icon: <Layers className="w-5 h-5" />, text: "Wireframing" },
       { icon: <Shield className="w-5 h-5" />, text: "Prototyping" },
     ],
+    technologies: ["Figma", "Adobe XD", "Sketch", "InVision", "Principle", "Framer"],
     stats: [
-      { label: "Projects Completed", value: "150+" },
+      { label: "Projects Completed", value: "98+" },
       { label: "Client Satisfaction", value: "96%" },
       { label: "On-Time Delivery", value: "98%" },
     ],
@@ -138,14 +142,14 @@ const services = [
     id: "desktop",
     title: "Desktop Software",
     description:
-      "We create user-friendly interfaces and engaging experienxes that make your product easy to use and visually appealing to your clients. We transform ideas into interactive designs that help drive engagement and growth",
+      "We build high-performance desktop applications with intuitive interfaces that are easy to use and visually polished.",
     features: [
-      { icon: <Lightbulb className="w-5 h-5" />, text: "High Fiedlity UI Designs" },
-      { icon: <Layers className="w-5 h-5" />, text: "Wireframing" },
-      { icon: <Shield className="w-5 h-5" />, text: "Prototyping" },
+      { icon: <Lightbulb className="w-5 h-5" />, text: "Detailed Software Design" },
+      { icon: <Layers className="w-5 h-5" />, text: "Software Blueprinting" },
     ],
+    technologies: ["Electron", "Qt", "WPF", ".NET", "C#", "Python"],
     stats: [
-      { label: "Projects Completed", value: "150+" },
+      { label: "Projects Completed", value: "20+" },
       { label: "Client Satisfaction", value: "96%" },
       { label: "On-Time Delivery", value: "98%" },
     ],
@@ -175,45 +179,6 @@ export function ServicesViewportSection() {
         />
       </div>
 
-      {/* Floating Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          className="absolute top-20 left-10 w-20 h-20 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full opacity-10"
-          animate={{
-            y: [0, -20, 0],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute bottom-32 right-16 w-16 h-16 bg-gradient-to-br from-green-400 to-blue-500 rounded-full opacity-10"
-          animate={{
-            y: [0, 20, 0],
-            scale: [1, 0.9, 1],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-            delay: 1,
-          }}
-        />
-        <motion.div
-          className="absolute top-1/2 left-1/4 w-12 h-12 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full opacity-10"
-          animate={{
-            rotate: [0, 360],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "linear",
-          }}
-        />
-      </div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Section Header */}
@@ -252,17 +217,10 @@ export function ServicesViewportSection() {
                 {/* Content */}
                 <div className="relative z-10">
                   {/* Service Number */}
-                  <div className="flex items-center justify-between mb-6">
-                    <div className={`w-12 h-12 rounded-2xl bg-gradient-to-r ${service.gradient} flex items-center justify-center text-white font-bold text-lg shadow-lg`}>
+                  <div className="flex items-center justify-start mb-6">
+                    <div className="w-12 h-12 rounded-2xl bg-[#009696] flex items-center justify-center text-white font-bold text-lg shadow-lg">
                       {index + 1}
                     </div>
-                    <motion.div
-                      className={`w-10 h-10 rounded-full bg-gradient-to-r ${service.gradient} flex items-center justify-center text-white`}
-                      whileHover={{ scale: 1.1, rotate: 90 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <ArrowRight className="w-5 h-5" />
-                    </motion.div>
                   </div>
 
                   {/* Title */}
@@ -316,8 +274,29 @@ export function ServicesViewportSection() {
                   </div>
                 </div>
 
-                {/* Hover Effect Border */}
-                <div className={`absolute inset-0 rounded-3xl bg-gradient-to-r ${service.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none`} />
+                {/* Technologies on Hover */}
+                <motion.div
+                  className="absolute inset-0 bg-white/95 backdrop-blur-sm rounded-3xl p-6 flex flex-col justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileHover={{ opacity: 1, scale: 1 }}
+                >
+                  <div className="text-center mb-4">
+                    <h4 className="text-lg font-bold text-gray-900 mb-3">Technologies Used</h4>
+                    <div className="flex flex-wrap justify-center gap-2">
+                      {service.technologies.map((tech, techIndex) => (
+                        <motion.span
+                          key={tech}
+                          className={`px-3 py-1 text-xs font-medium rounded-full bg-gradient-to-r ${service.gradient} text-white shadow-sm`}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: techIndex * 0.1 }}
+                        >
+                          {tech}
+                        </motion.span>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
               </div>
             </motion.div>
           ))}
