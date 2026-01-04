@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { NavBar } from "@/components/nav-bar"
 import { Footer } from "@/components/footer"
 import {
@@ -35,6 +35,58 @@ import {
 
 export default function ServicesPage() {
   const [selectedService, setSelectedService] = useState(0)
+  const [quotePopupOpen, setQuotePopupOpen] = useState(false)
+  const [selectedServiceForQuote, setSelectedServiceForQuote] = useState<any>(null)
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    company: '',
+    projectDetails: '',
+    budget: '',
+    timeline: ''
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+
+  // ESC key handler
+  useEffect(() => {
+    const handleEscKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && quotePopupOpen) {
+        setQuotePopupOpen(false)
+        setSubmitStatus('idle')
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          company: '',
+          projectDetails: '',
+          budget: '',
+          timeline: ''
+        })
+      }
+    }
+
+    document.addEventListener('keydown', handleEscKey)
+    return () => document.removeEventListener('keydown', handleEscKey)
+  }, [quotePopupOpen])
+
+  // Click outside handler
+  const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (event.target === event.currentTarget) {
+      setQuotePopupOpen(false)
+      setSubmitStatus('idle')
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        company: '',
+        projectDetails: '',
+        budget: '',
+        timeline: ''
+      })
+    }
+  }
 
   const tailoredServices = [
     {
@@ -95,6 +147,10 @@ export default function ServicesPage() {
       features: ["React & Next.js", "Full-Stack Development", "API Integration", "Database Design"],
       graphic: <WebDevGraphic />,
       color: "emerald",
+      pricing: {
+        usd: { min: 2000, max: 15000 },
+        ugx: { min: 7500000, max: 56250000 }
+      }
     },
     {
       icon: <Smartphone className="w-8 h-8" />,
@@ -103,6 +159,10 @@ export default function ServicesPage() {
       features: ["React Native", "iOS & Android", "App Store Deployment", "Push Notifications"],
       graphic: <IoTGraphic />,
       color: "blue",
+      pricing: {
+        usd: { min: 5000, max: 25000 },
+        ugx: { min: 18750000, max: 93750000 }
+      }
     },
     {
       icon: <ShoppingBag className="w-8 h-8" />,
@@ -111,6 +171,10 @@ export default function ServicesPage() {
       features: ["SEO Optimization", "Content Strategy", "Analytics Setup", "Performance Tracking"],
       graphic: <SEOGraphic />,
       color: "purple",
+      pricing: {
+        usd: { min: 3000, max: 20000 },
+        ugx: { min: 11250000, max: 75000000 }
+      }
     },
     {
       icon: <Palette className="w-8 h-8" />,
@@ -119,6 +183,10 @@ export default function ServicesPage() {
       features: ["User Research", "Wireframing", "Prototyping", "Design Systems"],
       graphic: <DigitalTransformationGraphic />,
       color: "pink",
+      pricing: {
+        usd: { min: 1500, max: 8000 },
+        ugx: { min: 5625000, max: 30000000 }
+      }
     },
     {
       icon: <Cloud className="w-8 h-8" />,
@@ -127,6 +195,10 @@ export default function ServicesPage() {
       features: ["AWS/Vercel Setup", "CI/CD Pipelines", "Database Hosting", "Performance Monitoring"],
       graphic: <PatentGraphic />,
       color: "cyan",
+      pricing: {
+        usd: { min: 2000, max: 12000 },
+        ugx: { min: 7500000, max: 45000000 }
+      }
     },
     {
       icon: <ShoppingCart className="w-8 h-8" />,
@@ -135,6 +207,10 @@ export default function ServicesPage() {
       features: ["Shopify/Custom", "Payment Integration", "Inventory Management", "Order Processing"],
       graphic: <MechanicalGraphic />,
       color: "black",
+      pricing: {
+        usd: { min: 4000, max: 30000 },
+        ugx: { min: 15000000, max: 112500000 }
+      }
     },
     {
       icon: <LucideFileQuestion className="w-8 h-8"/>,
@@ -143,6 +219,10 @@ export default function ServicesPage() {
       features: ["Consultation", "Consultation", "Consultation", "Consultation"],
       graphic: <MechanicalGraphic/>,
       color: "Teal",
+      pricing: {
+        usd: { min: 500, max: 5000 },
+        ugx: { min: 1875000, max: 18750000 }
+      }
     },
     {
       icon: <ShoppingCart className="w-8 h-8" />,
@@ -206,12 +286,12 @@ export default function ServicesPage() {
           <div
             className="w-full h-full bg-cover bg-center bg-no-repeat"
             style={{
-              backgroundImage: `url('/images/services-hero.jpg')`,
+              backgroundImage: `url('/images/novagen-hero.png')`,
             }}
           />
           {/* Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/80 to-white/70" />
-          <div className="absolute inset-0 bg-gradient-to-t from-white/60 via-transparent to-white/40" />
+          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/30" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 py-32">
@@ -224,13 +304,10 @@ export default function ServicesPage() {
               className="text-center lg:text-left"
             >
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black mb-8 leading-tight">
-                <span className="text-gray-900 block mb-2">Transform Your</span>
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-500 via-teal-500 to-blue-500">
-                  Digital Presence
-                </span>
+                <span className="text-white block mb-2">Elevate Your Software Solutions</span>
               </h1>
-              <p className="text-xl text-gray-600 max-w-xl mx-auto lg:mx-0 mb-12 leading-relaxed">
-                From concept to launch, we deliver cutting-edge solutions that drive growth and exceed expectations. Our expert team combines innovation with technical excellence.
+              <p className="text-xl text-white max-w-xl mx-auto lg:mx-0 mb-12 leading-relaxed">
+                From MVPs to enterprise systems, we build scalable software solutions that transform businesses. Our expert developers deliver high-quality code, innovative architectures, and seamless user experiences.
               </p>
             </motion.div>
 
@@ -297,12 +374,12 @@ export default function ServicesPage() {
 
                   <div className="relative z-10">
                     <div className={`${colorMap[service.color] ?? "text-white"} mb-6`}>{service.icon}</div>
-                    <h3 className="text-2xl font-bold text-white mb-4">{service.title}</h3>
-                    <p className="text-gray-400 mb-6 leading-relaxed">{service.description}</p>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4">{service.title}</h3>
+                    <p className="text-gray-600 mb-6 leading-relaxed">{service.description}</p>
 
                     <div className="space-y-2 mb-6">
                       {service.features.map((feature, i) => (
-                        <div key={i} className="flex items-center text-sm text-gray-300">
+                        <div key={i} className="flex items-center text-sm text-gray-600">
                           <CheckCircle className="w-4 h-4 text-emerald-400 mr-2 flex-shrink-0" />
                           {feature}
                         </div>
@@ -310,14 +387,16 @@ export default function ServicesPage() {
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <Link href="/contact">
-                        <Button
-                          size="sm"
-                          className="bg-emerald-500 hover:bg-emerald-600 text-white group-hover:scale-105 transition-transform"
-                        >
-                          Learn More <ArrowRight className="w-4 h-4 ml-1" />
-                        </Button>
-                      </Link>
+                      <Button
+                        size="sm"
+                        className="bg-[#009696] hover:bg-[#009696]/90 text-white group-hover:scale-105 transition-transform"
+                        onClick={() => {
+                          setSelectedServiceForQuote(service)
+                          setQuotePopupOpen(true)
+                        }}
+                      >
+                        Get Quote <ArrowRight className="w-4 h-4 ml-1" />
+                      </Button>
                     </div>
                   </div>
                 </div>
@@ -794,6 +873,221 @@ export default function ServicesPage() {
       </section>
 
       <Footer />
+
+      {/* Quote Popup */}
+      {quotePopupOpen && selectedServiceForQuote && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={handleBackdropClick}>
+          <div className="bg-white rounded-2xl max-w-6xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-8">
+              <div className="flex justify-between items-start mb-6">
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center text-white">
+                    {selectedServiceForQuote.icon}
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-900">Get Quote for {selectedServiceForQuote.title}</h3>
+                    <p className="text-gray-600">{selectedServiceForQuote.description}</p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => {
+                    setQuotePopupOpen(false)
+                    setSubmitStatus('idle')
+                    setFormData({
+                      name: '',
+                      email: '',
+                      phone: '',
+                      company: '',
+                      projectDetails: '',
+                      budget: '',
+                      timeline: ''
+                    })
+                  }}
+                  className="text-gray-400 hover:text-gray-600 text-2xl"
+                >
+                  ×
+                </button>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {/* Left Column - Service Details */}
+                <div>
+                  <div className="mb-6">
+                    <h4 className="text-lg font-semibold text-gray-900 mb-4">What We Deliver:</h4>
+                    <div className="space-y-3">
+                      {selectedServiceForQuote.features.map((feature: string, index: number) => (
+                        <div key={index} className="flex items-center space-x-3">
+                          <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0" />
+                          <span className="text-gray-700 text-sm">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="bg-gray-50 rounded-xl p-6">
+                    <h4 className="text-xl font-bold text-gray-900 mb-4">Estimated Project Cost</h4>
+                    <div className="text-left">
+                      <div className="text-3xl font-bold text-emerald-600 mb-2">
+                        ${selectedServiceForQuote.pricing.usd.min.toLocaleString()} - ${selectedServiceForQuote.pricing.usd.max.toLocaleString()}
+                      </div>
+                      <div className="text-gray-600">USD</div>
+                    </div>
+                    <p className="text-sm text-gray-500 mt-4 text-left">
+                      * Final pricing depends on project scope and requirements. Fill out the form for a detailed quote.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Right Column - Quote Form */}
+                <div>
+                  <h4 className="text-xl font-bold text-gray-900 mb-6">Request Your Quote</h4>
+
+                  {submitStatus === 'success' ? (
+                    <div className="bg-green-50 border border-green-200 rounded-xl p-6 text-center">
+                      <CheckCircle className="w-12 h-12 text-green-500 mx-auto mb-4" />
+                      <h3 className="text-lg font-semibold text-green-800 mb-2">Quote Request Sent!</h3>
+                      <p className="text-green-700">Thank you for your interest. We'll get back to you within 24 hours with a detailed quote.</p>
+                      <Button
+                        className="mt-4 bg-green-500 hover:bg-green-600 text-white"
+                        onClick={() => setQuotePopupOpen(false)}
+                      >
+                        Close
+                      </Button>
+                    </div>
+                  ) : submitStatus === 'error' ? (
+                    <div className="bg-red-50 border border-red-200 rounded-xl p-6 text-center">
+                      <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span className="text-white text-xl">!</span>
+                      </div>
+                      <h3 className="text-lg font-semibold text-red-800 mb-2">Something went wrong</h3>
+                      <p className="text-red-700">Please try again or contact us directly.</p>
+                    </div>
+                  ) : (
+                    <form onSubmit={async (e) => {
+                      e.preventDefault()
+                      setIsSubmitting(true)
+
+                      try {
+                        // Here you would typically send the data to your backend
+                        // For now, we'll simulate a successful submission
+                        await new Promise(resolve => setTimeout(resolve, 2000))
+                        setSubmitStatus('success')
+                      } catch (error) {
+                        setSubmitStatus('error')
+                      } finally {
+                        setIsSubmitting(false)
+                      }
+                    }} className="space-y-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
+                          <input
+                            type="text"
+                            required
+                            value={formData.name}
+                            onChange={(e) => setFormData({...formData, name: e.target.value})}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                            placeholder="Your full name"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                          <input
+                            type="email"
+                            required
+                            value={formData.email}
+                            onChange={(e) => setFormData({...formData, email: e.target.value})}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                            placeholder="your@email.com"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
+                          <input
+                            type="tel"
+                            required
+                            value={formData.phone}
+                            onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                            placeholder="+256 XXX XXX XXX"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">Company *</label>
+                          <input
+                            type="text"
+                            required
+                            value={formData.company}
+                            onChange={(e) => setFormData({...formData, company: e.target.value})}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                            placeholder="Company name"
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Project Details *</label>
+                        <textarea
+                          required
+                          rows={4}
+                          value={formData.projectDetails}
+                          onChange={(e) => setFormData({...formData, projectDetails: e.target.value})}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                          placeholder="Tell us about your project requirements, goals, and any specific features you need..."
+                        />
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">Budget Range *</label>
+                          <select
+                            required
+                            value={formData.budget}
+                            onChange={(e) => setFormData({...formData, budget: e.target.value})}
+                            className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent appearance-none"
+                          >
+                            <option value="">Select budget range</option>
+                            <option value="under-5k">Under $5,000</option>
+                            <option value="5k-15k">$5,000 - $15,000</option>
+                            <option value="15k-50k">$15,000 - $50,000</option>
+                            <option value="over-50k">Over $50,000</option>
+                          </select>
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">Timeline *</label>
+                          <select
+                            required
+                            value={formData.timeline}
+                            onChange={(e) => setFormData({...formData, timeline: e.target.value})}
+                            className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent appearance-none"
+                          >
+                            <option value="">Select timeline</option>
+                            <option value="asap">ASAP</option>
+                            <option value="1-3-months">1-3 months</option>
+                            <option value="3-6-months">3-6 months</option>
+                            <option value="6-months-plus">6+ months</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <Button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="w-full bg-[#009696] hover:bg-[#009696]/90 text-white py-3"
+                      >
+                        {isSubmitting ? 'Sending...' : 'Send Quote Request'}
+                      </Button>
+                    </form>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
