@@ -22,6 +22,7 @@ export function NavBar() {
   }, [])
 
   const navItems = [
+    { name: "Home", href: "/" },
     { name: "Services", href: "/services" },
     { name: t("nav.projects"), href: "/projects" },
     { name: "Careers", href: "/careers" },

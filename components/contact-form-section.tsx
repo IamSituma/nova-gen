@@ -59,19 +59,16 @@ export function ContactFormSection() {
       icon: Mail,
       title: "Email Us",
       details: "info@novageneration.tech",
-      subtext: "We'll respond within 24 hours"
     },
     {
       icon: Phone,
       title: "Call Us",
       details: "256 741 004 466",
-      subtext: "Mon-Fri 9AM-5PM"
     },
     {
       icon: MapPin,
       title: "Visit Us",
-      details: "Bugolobi, Bandali Rise",
-      subtext: "Studio House, Level 4"
+      details: "Bandali Rise, Studio House",
     }
   ]
 
@@ -130,7 +127,6 @@ export function ContactFormSection() {
                     <div>
                       <h4 className="font-semibold text-white mb-1">{info.title}</h4>
                       <p className="text-gray-300 text-sm">{info.details}</p>
-                      <p className="text-gray-400 text-xs mt-1">{info.subtext}</p>
                     </div>
                   </motion.div>
                 )

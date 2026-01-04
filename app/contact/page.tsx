@@ -61,23 +61,17 @@ export default function ContactPage() {
     {
       icon: Mail,
       title: "Email",
-      value: "info@novageneration.tech",
-      description: "Send us an email anytime",
-      href: "mailto:info@novageneration.tech",
+      description: "info@novageneration.tech",
     },
     {
       icon: Phone,
       title: "Phone",
-      value: "+1 (555) 123-4567",
-      description: "Mon-Fri from 8am to 6pm PST",
-      href: "tel:+15551234567",
+      description: "+256 741 004 466",
     },
     {
       icon: MapPin,
       title: "Office",
-      value: "San Francisco, CA",
-      description: "Come say hello at our HQ",
-      href: "#",
+      description: "Bandali Rise, Studio House",
     },
   ]
 
@@ -323,7 +317,6 @@ export default function ContactPage() {
                   {contactInfo.map((info, index) => (
                     <motion.a
                       key={index}
-                      href={info.href}
                       className="flex items-center justify-between w-full p-6 bg-gradient-to-r from-primary/5 to-emerald-500/5 hover:from-primary/10 hover:to-emerald-500/10 border border-primary/20 hover:border-primary/40 rounded-xl transition-all duration-300 group shadow-sm hover:shadow-md"
                       whileHover={{ scale: 1.02, y: -2 }}
                       whileTap={{ scale: 0.98 }}
@@ -338,11 +331,6 @@ export default function ContactPage() {
                         <div>
                           <h4 className="font-semibold text-foreground">{info.title}</h4>
                           <p className="text-sm text-muted-foreground">{info.description}</p>
-                        </div>
-                      </div>
-                      <div className="text-right">
-                        <div className="text-primary font-semibold bg-primary/10 px-3 py-1 rounded-full">
-                          {info.value}
                         </div>
                       </div>
                     </motion.a>
