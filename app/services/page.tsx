@@ -290,7 +290,7 @@ export default function ServicesPage() {
             }}
           />
           {/* Overlay */}
-          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 bg-black/60" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/30" />
         </div>
 
@@ -416,7 +416,6 @@ export default function ServicesPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <Badge className="bg-emerald-500 text-white mb-6">Tailored Solutions</Badge>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 text-gray-900">
               From MVPs to Enterprise Solutions: Tailored Development Services
             </h2>
@@ -540,14 +539,14 @@ export default function ServicesPage() {
                 avatar: "SJ"
               },
               {
-                quote: "The mobile app they developed for us has been a game-changer for our business. User engagement increased by 300% in the first month alone.",
+                quote: "The mobile app they developed for us has been a game-changer for our business. User engagement increased by tremendously in the first months alone. I would recommend them to ayone interested in their services.",
                 name: "Michael Chen",
                 position: "CTO",
                 company: "InnovateCorp",
                 avatar: "MC"
               },
               {
-                quote: "Working with NovaGen was a seamless experience from start to finish. They delivered exactly what they promised, on time and within budget.",
+                quote: "Working with NovaGen was a seamless experience from start to finish. They delivered exactly what they promised, on time and within budget.They take customer feedback and reactions seriously",
                 name: "Emma Rodriguez",
                 position: "Marketing Director",
                 company: "GrowthMasters Inc",
@@ -615,14 +614,14 @@ export default function ServicesPage() {
               viewport={{ once: true }}
               className="order-2 lg:order-1"
             >
-              <div className="bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl p-8 text-white shadow-2xl">
+              <div className="bg-[#009696] rounded-2xl p-8 text-white shadow-2xl">
                 <div className="mb-6">
                   <svg className="w-12 h-12 text-white/80 mb-4" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
                   </svg>
                 </div>
                 <blockquote className="text-xl leading-relaxed mb-6 italic">
-                  "At NovaGen, we believe technology should empower businesses, not complicate them. Our mission is to deliver innovative solutions that drive real results and transform how our clients operate in the digital world.
+                  "At Nova Gen, we believe technology should empower businesses, not complicate them. Our mission is to deliver innovative solutions that drive real results and transform how our clients operate in the digital world.
                   <br /><br />
                   With over 5 years of experience and a team of passionate experts, we've helped countless businesses achieve their digital transformation goals. We don't just build software – we build partnerships that last.
                   <br /><br />
@@ -645,9 +644,9 @@ export default function ServicesPage() {
               <div className="relative">
                 <div className="w-80 h-80 mx-auto bg-gradient-to-br from-emerald-400 to-teal-500 rounded-full flex items-center justify-center shadow-2xl overflow-hidden">
                   <img
-                    src="/images/ceo.jpg"
-                    alt="John Smith - CEO"
-                    className="w-72 h-72 object-cover rounded-full"
+                    src="/images/ceo-nabilah.jpg"
+                    alt="Nabilah Kitiibwa - CEO"
+                    className="w-72 h-72 object-cover object-top rounded-full"
                   />
                 </div>
                 <div className="absolute -bottom-4 -right-4 bg-white rounded-full p-4 shadow-lg">
@@ -660,16 +659,21 @@ export default function ServicesPage() {
               </div>
 
               <div className="mt-8 text-center lg:text-left">
-                <h3 className="text-2xl font-bold text-white mb-2">John Smith</h3>
-                <p className="text-lg text-white/90 mb-4">CEO & Founder, NovaGen Technologies</p>
-                <div className="flex justify-center lg:justify-start space-x-4">
-                  <div className="flex items-center text-white">
+                <h3 className="text-2xl font-bold text-black mb-2">Nabilah Kitiibwa</h3>
+                <p className="text-lg text-black mb-4">Nova Generation Limited</p>
+                  <div className="flex justify-center lg:justify-start space-x-4">
+                  <a
+                    href="https://linkedin.com/company/nova-generation-limited"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center text-black hover:text-[#009696] transition-colors duration-200"
+                  >
                     <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                     </svg>
                     LinkedIn
-                  </div>
-                  <div className="flex items-center text-white/80">
+                  </a>
+                  <div className="flex items-center text-black">
                     <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                     </svg>
@@ -835,7 +839,7 @@ export default function ServicesPage() {
           <div
             className="w-full h-full bg-cover bg-center bg-no-repeat"
             style={{
-              backgroundImage: `url('/images/cta-background.jpg')`,
+              backgroundImage: `url('/images/cta-novagen.jpg')`,
             }}
           />
           {/* Black Overlay */}
@@ -851,7 +855,6 @@ export default function ServicesPage() {
             className="px-4 py-8"
           >
             <div className="mb-8">
-              <Zap className="w-12 h-12 text-yellow-400 mx-auto mb-4" />
               <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
                 Ready to Transform Your Business?
               </h3>

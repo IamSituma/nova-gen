@@ -165,13 +165,20 @@ export function PatentGraphic() {
         />
 
         {/* Radiating lines */}
-        {[...Array(6)].map((_, i) => (
+        {[
+          { x2: 140, y2: 100 },
+          { x2: 120, y2: 134.64101615137753 },
+          { x2: 80, y2: 134.64101615137753 },
+          { x2: 60, y2: 100 },
+          { x2: 80, y2: 65.35898384862247 },
+          { x2: 120, y2: 65.35898384862247 }
+        ].map((line, i) => (
           <motion.line
             key={i}
             x1="100"
             y1="100"
-            x2={100 + Math.cos((i * Math.PI) / 3) * 40}
-            y2={100 + Math.sin((i * Math.PI) / 3) * 40}
+            x2={line.x2}
+            y2={line.y2}
             stroke="currentColor"
             strokeWidth="1"
             initial={{ opacity: 0 }}
