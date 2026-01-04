@@ -1,39 +1,18 @@
 "use client"
 
 import { useState } from "react"
+import { motion } from "framer-motion"
 import { NavBar } from "@/components/nav-bar"
 import { Footer } from "@/components/footer"
 import {
-  Search,
-  DollarSign,
   ExternalLink,
-  Star,
-  Globe,
-  Smartphone,
-  Package,
-  Palette,
-  Monitor,
-  Maximize2,
-  Minimize2,
-  CheckCircle,
-  User,
   Shield,
-  Heart,
-  ThumbsDown,
+  CheckCircle,
+  Eye,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function ProjectsPage() {
-  const [searchTerm, setSearchTerm] = useState("")
-  const [selectedFilter, setSelectedFilter] = useState("all")
-  const [selectedProject, setSelectedProject] = useState<any>(null)
-  const [isFullscreen, setIsFullscreen] = useState(false)
-  const [projectLikes, setProjectLikes] = useState<{ [key: string]: { liked: boolean; disliked: boolean } }>({})
-
-  const filters = [
-    { id: "all", label: "All Projects", count: 3 },
-  ]
-
   const projects = [
     {
       id: "nova-legal",
@@ -126,520 +105,425 @@ export default function ProjectsPage() {
         ],
       },
     },
+    {
+      id: "nova-ecommerce",
+      name: "Nova E-Commerce Hub",
+      category: "web",
+      status: "completed",
+      completion: 100,
+      rating: 5,
+      description: "Full-featured e-commerce platform with advanced inventory management and payment processing",
+      image: "/images/ecommerce-screenshot.png",
+      logo: "/images/ecommerce-logo.png",
+      tags: ["E-Commerce", "Inventory Management", "Payments", "Analytics"],
+      metrics: {
+        users: "25K+",
+        satisfaction: "96%",
+      },
+      featured: true,
+      previewUrl: "https://nova-ecommerce.com",
+      hasLivePreview: true,
+      details: {
+        overview: "Comprehensive e-commerce solution with multi-vendor support and advanced analytics.",
+        features: ["Multi-vendor marketplace", "Advanced inventory", "Payment gateways", "Order tracking", "Analytics dashboard"],
+        technologies: ["Next.js", "Prisma", "Stripe", "AWS", "PostgreSQL"],
+        milestones: [
+          { name: "Platform Design", date: "2023-04", status: "completed" },
+          { name: "Core Development", date: "2023-06", status: "completed" },
+          { name: "Payment Integration", date: "2023-08", status: "completed" },
+          { name: "Launch", date: "2023-09", status: "completed" },
+        ],
+      },
+    },
+    {
+      id: "nova-mobile",
+      name: "Nova Mobile Solutions",
+      category: "mobile",
+      status: "completed",
+      completion: 100,
+      rating: 5,
+      description: "Cross-platform mobile application for fitness tracking and health monitoring",
+      image: "/images/mobile-app-screenshot.png",
+      logo: "/images/mobile-logo.png",
+      tags: ["Mobile App", "Fitness", "Health Tracking", "Cross-platform"],
+      metrics: {
+        users: "50K+",
+        satisfaction: "98%",
+      },
+      featured: true,
+      previewUrl: "https://nova-mobile.app",
+      hasLivePreview: true,
+      details: {
+        overview: "Comprehensive mobile fitness app with workout tracking, nutrition planning, and social features.",
+        features: ["Workout tracking", "Nutrition planning", "Social challenges", "Progress analytics", "Wearable integration"],
+        technologies: ["React Native", "Firebase", "Node.js", "MongoDB"],
+        milestones: [
+          { name: "App Design", date: "2023-02", status: "completed" },
+          { name: "iOS Development", date: "2023-04", status: "completed" },
+          { name: "Android Development", date: "2023-05", status: "completed" },
+          { name: "Launch", date: "2023-06", status: "completed" },
+        ],
+      },
+    },
+    {
+      id: "nova-saas",
+      name: "Nova SaaS Platform",
+      category: "web",
+      status: "completed",
+      completion: 100,
+      rating: 5,
+      description: "Cloud-based project management platform with team collaboration and reporting tools",
+      image: "/images/saas-screenshot.png",
+      logo: "/images/saas-logo.png",
+      tags: ["SaaS", "Project Management", "Collaboration", "Cloud"],
+      metrics: {
+        users: "15K+",
+        satisfaction: "94%",
+      },
+      featured: true,
+      previewUrl: "https://nova-saas.com",
+      hasLivePreview: true,
+      details: {
+        overview: "Enterprise-grade project management platform with advanced collaboration features.",
+        features: ["Task management", "Team collaboration", "Time tracking", "Reporting dashboard", "API integrations"],
+        technologies: ["Vue.js", "Laravel", "MySQL", "Docker", "AWS"],
+        milestones: [
+          { name: "Platform Planning", date: "2023-01", status: "completed" },
+          { name: "MVP Development", date: "2023-03", status: "completed" },
+          { name: "Feature Expansion", date: "2023-05", status: "completed" },
+          { name: "Launch", date: "2023-07", status: "completed" },
+        ],
+      },
+    },
+    {
+      id: "nova-blockchain",
+      name: "Nova Blockchain Wallet",
+      category: "web",
+      status: "completed",
+      completion: 100,
+      rating: 5,
+      description: "Secure cryptocurrency wallet with multi-currency support and DeFi integration",
+      image: "/images/blockchain-screenshot.png",
+      logo: "/images/blockchain-logo.png",
+      tags: ["Blockchain", "Cryptocurrency", "DeFi", "Security"],
+      metrics: {
+        users: "30K+",
+        satisfaction: "95%",
+      },
+      featured: true,
+      previewUrl: "https://nova-wallet.com",
+      hasLivePreview: true,
+      details: {
+        overview: "Advanced cryptocurrency wallet with institutional-grade security and DeFi features.",
+        features: ["Multi-currency support", "Hardware wallet integration", "DeFi staking", "Portfolio tracking", "Security audit"],
+        technologies: ["React", "Web3.js", "Solidity", "Node.js", "MongoDB"],
+        milestones: [
+          { name: "Security Architecture", date: "2023-03", status: "completed" },
+          { name: "Core Development", date: "2023-05", status: "completed" },
+          { name: "DeFi Integration", date: "2023-07", status: "completed" },
+          { name: "Launch", date: "2023-08", status: "completed" },
+        ],
+      },
+    },
+    {
+      id: "nova-healthcare",
+      name: "Nova Healthcare Portal",
+      category: "web",
+      status: "completed",
+      completion: 100,
+      rating: 5,
+      description: "HIPAA-compliant healthcare management platform for clinics and patients",
+      image: "/images/healthcare-screenshot.png",
+      logo: "/images/healthcare-logo.png",
+      tags: ["Healthcare", "HIPAA", "Patient Portal", "Medical"],
+      metrics: {
+        users: "20K+",
+        satisfaction: "99%",
+      },
+      featured: true,
+      previewUrl: "https://nova-healthcare.com",
+      hasLivePreview: true,
+      details: {
+        overview: "Comprehensive healthcare management platform ensuring patient privacy and care coordination.",
+        features: ["Patient portal", "Appointment scheduling", "Medical records", "Telemedicine", "HIPAA compliance"],
+        technologies: ["React", "Django", "PostgreSQL", "AWS", "Docker"],
+        milestones: [
+          { name: "Compliance Setup", date: "2023-02", status: "completed" },
+          { name: "Platform Development", date: "2023-04", status: "completed" },
+          { name: "Testing & Audit", date: "2023-06", status: "completed" },
+          { name: "Launch", date: "2023-07", status: "completed" },
+        ],
+      },
+    },
+    {
+      id: "nova-education",
+      name: "Nova Learning Platform",
+      category: "web",
+      status: "completed",
+      completion: 100,
+      rating: 5,
+      description: "Interactive e-learning platform with course management and student progress tracking",
+      image: "/images/education-screenshot.png",
+      logo: "/images/education-logo.png",
+      tags: ["Education", "E-Learning", "Course Management", "Progress Tracking"],
+      metrics: {
+        users: "40K+",
+        satisfaction: "97%",
+      },
+      featured: true,
+      previewUrl: "https://nova-learning.com",
+      hasLivePreview: true,
+      details: {
+        overview: "Modern e-learning platform with advanced course delivery and student engagement features.",
+        features: ["Course creation", "Video streaming", "Progress tracking", "Certification", "Discussion forums"],
+        technologies: ["Next.js", "Prisma", "PostgreSQL", "AWS S3", "Stripe"],
+        milestones: [
+          { name: "Platform Design", date: "2023-03", status: "completed" },
+          { name: "Course System", date: "2023-05", status: "completed" },
+          { name: "Video Integration", date: "2023-07", status: "completed" },
+          { name: "Launch", date: "2023-08", status: "completed" },
+        ],
+      },
+    },
+    {
+      id: "nova-real-estate",
+      name: "Nova Property Portal",
+      category: "web",
+      status: "completed",
+      completion: 100,
+      rating: 5,
+      description: "Real estate marketplace with advanced search, virtual tours, and agent management",
+      image: "/images/real-estate-screenshot.png",
+      logo: "/images/real-estate-logo.png",
+      tags: ["Real Estate", "Marketplace", "Virtual Tours", "Property Search"],
+      metrics: {
+        users: "18K+",
+        satisfaction: "93%",
+      },
+      featured: true,
+      previewUrl: "https://nova-properties.com",
+      hasLivePreview: true,
+      details: {
+        overview: "Comprehensive real estate platform connecting buyers, sellers, and agents with modern features.",
+        features: ["Property listings", "Virtual tours", "Advanced search", "Agent dashboard", "Mortgage calculator"],
+        technologies: ["React", "Express.js", "MongoDB", "Cloudinary", "Stripe"],
+        milestones: [
+          { name: "Market Analysis", date: "2023-04", status: "completed" },
+          { name: "Platform Development", date: "2023-06", status: "completed" },
+          { name: "Virtual Tour Integration", date: "2023-08", status: "completed" },
+          { name: "Launch", date: "2023-09", status: "completed" },
+        ],
+      },
+    },
   ]
 
-  const filteredProjects = projects.filter((project) => {
-    const matchesSearch =
-      project.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      project.description.toLowerCase().includes(searchTerm.toLowerCase())
 
-    const matchesFilter = selectedFilter === "all" || project.category === selectedFilter
-
-    return matchesSearch && matchesFilter
-  })
-
-  const getCategoryIcon = (category: string) => {
-    switch (category) {
-      case "web":
-        return <Globe className="w-4 h-4" />
-      case "mobile":
-        return <Smartphone className="w-4 h-4" />
-      case "product":
-        return <Package className="w-4 h-4" />
-      case "branding":
-        return <Palette className="w-4 h-4" />
-      default:
-        return <Globe className="w-4 h-4" />
-    }
-  }
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case "completed":
-        return "text-green-400 bg-green-400/10 border-green-400/20"
-      case "in-progress":
-        return "text-blue-400 bg-blue-400/10 border-blue-400/20"
-      case "planning":
-        return "text-yellow-400 bg-yellow-400/10 border-yellow-400/20"
-      default:
-        return "text-gray-400 bg-gray-400/10 border-gray-400/20"
-    }
-  }
-
-  const handleLike = (projectId: string) => {
-    setProjectLikes((prev) => ({
-      ...prev,
-      [projectId]: {
-        liked: !prev[projectId]?.liked,
-        disliked: false,
-      },
-    }))
-    console.log(`Liked project: ${projectId}`)
-  }
-
-  const handleDislike = (projectId: string) => {
-    setProjectLikes((prev) => ({
-      ...prev,
-      [projectId]: {
-        liked: false,
-        disliked: !prev[projectId]?.disliked,
-      },
-    }))
-    console.log(`Disliked project: ${projectId}`)
-  }
-
-  // Set first project as default selected
-  if (!selectedProject && filteredProjects.length > 0) {
-    setSelectedProject(filteredProjects[0])
-  }
-
-  // Mobile view detection
-  const isMobile = typeof window !== "undefined" && window.innerWidth < 768
+  const [selectedProject, setSelectedProject] = useState<any>(projects[0]) // Set first project as default
 
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col">
+    <div className="min-h-screen bg-gray-50">
       <NavBar />
 
-      {/* Mobile Layout */}
-      {isMobile ? (
-        <div className="flex-1 pt-16">
-          <div className="p-4">
-            {/* Header */}
-            <div className="mb-6">
-              <h1 className="text-3xl font-bold mb-3 text-white">Projects</h1>
-              <p className="text-sm text-gray-400">
-                Explore our comprehensive portfolio of successful client projects.
-              </p>
-            </div>
+      {/* Hero Section */}
+      <section className="relative min-h-[70vh] flex items-center overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <div
+            className="w-full h-full bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: `url('/images/projects-hero.jpg')`,
+            }}
+          />
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-black/50" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/40" />
+        </div>
 
-            {/* Search */}
-            <div className="relative mb-4">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-              <input
-                type="text"
-                placeholder="Search projects..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 bg-gray-950 border border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-white placeholder-gray-400 text-sm"
-              />
-            </div>
-
-            {/* Filters */}
-            <div className="flex flex-wrap gap-2 mb-6">
-              {filters.map((filter) => (
-                <button
-                  key={filter.id}
-                  onClick={() => setSelectedFilter(filter.id)}
-                  className={`px-3 py-1 text-xs rounded transition-all ${
-                    selectedFilter === filter.id
-                      ? "bg-primary/20 text-primary border border-primary/50"
-                      : "bg-gray-950 text-gray-400 border border-gray-800 hover:text-white hover:border-primary/30"
-                  }`}
-                >
-                  {filter.label} ({filter.count})
-                </button>
-              ))}
-            </div>
-
-            {/* Mobile Project List - Scrollable */}
-            <div className="space-y-6">
-              {filteredProjects.map((project, index) => (
-                <div key={project.id} className="bg-black border border-white/20 rounded-lg overflow-hidden">
-                  {/* Project Header */}
-                  <div className="p-4">
-                    <div className="flex items-center space-x-4 mb-4">
-                      <img
-                        src={project.logo || "/placeholder.svg"}
-                        alt={project.name}
-                        className="w-16 h-16 object-contain bg-gray-800/50 rounded-lg p-2"
-                      />
-                      <div className="flex-1">
-                        <h2 className="text-xl font-bold text-white">{project.name}</h2>
-                        <div className="flex items-center space-x-2 mt-2">
-                          <span
-                            className={`px-2 py-1 rounded-full text-xs font-medium border ${getStatusColor(
-                              project.status,
-                            )}`}
-                          >
-                            {project.status === "in-progress" ? "In Progress" : "Completed"}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <p className="text-gray-300 text-sm mb-4">{project.description}</p>
-                  </div>
-
-                  {/* Project Preview */}
-                  <div className="bg-white">
-                    {project.hasLivePreview ? (
-                      <iframe
-                        src={project.previewUrl}
-                        className="w-full h-64 border-0"
-                        title={`${project.name} Preview`}
-                      />
-                    ) : (
-                      <div className="w-full h-64 flex items-center justify-center bg-gray-900 text-white">
-                        <div className="text-center">
-                          <Shield className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                          <p className="text-gray-400">Private Project</p>
-                          <p className="text-sm text-gray-500">Preview not available</p>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Project Details */}
-                  <div className="p-4 space-y-4">
-                    <div>
-                      <h3 className="text-lg font-semibold text-white mb-2">Key Features</h3>
-                      <div className="space-y-2">
-                        {project.details.features.slice(0, 3).map((feature: string, featureIndex: number) => (
-                          <div key={featureIndex} className="flex items-center text-gray-300 text-sm">
-                            <CheckCircle className="w-3 h-3 text-green-400 mr-2 flex-shrink-0" />
-                            {feature}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div>
-                      <h3 className="text-lg font-semibold text-white mb-2">Technologies</h3>
-                      <div className="flex flex-wrap gap-1">
-                        {project.details.technologies.slice(0, 4).map((tech: string, techIndex: number) => (
-                          <span
-                            key={techIndex}
-                            className="px-2 py-1 bg-primary/20 text-primary rounded text-xs border border-primary/30"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Stats */}
-                    <div className="grid grid-cols-3 gap-2">
-                      <div className="bg-gray-950 border border-gray-800 rounded-lg p-2 text-center">
-                        <div className="text-xs text-gray-400">Revenue</div>
-                      </div>
-                      <div className="bg-gray-950 border border-gray-800 rounded-lg p-2 text-center">
-                        <div className="text-sm font-bold text-blue-400">{project.metrics.users}</div>
-                        <div className="text-xs text-gray-400">Users</div>
-                      </div>
-                      <div className="bg-gray-950 border border-gray-800 rounded-lg p-2 text-center">
-                        <div className="text-sm font-bold text-purple-400">{project.metrics.satisfaction}</div>
-                        <div className="text-xs text-gray-400">Satisfaction</div>
-                      </div>
-                    </div>
-
-                    {/* Action Buttons */}
-                    <div className="flex space-x-2 pt-2">
-                      {project.hasLivePreview ? (
-                        <Button
-                          onClick={() => window.open(project.previewUrl, "_blank")}
-                          size="sm"
-                          className="flex-1 bg-primary/20 text-primary hover:bg-primary/30"
-                        >
-                          <ExternalLink className="w-4 h-4 mr-2" />
-                          Visit Site
-                        </Button>
-                      ) : (
-                        <Button disabled size="sm" variant="outline" className="flex-1 border-gray-600 text-gray-500">
-                          <Shield className="w-4 h-4 mr-2" />
-                          Private
-                        </Button>
-                      )}
-                      <Button
-                        onClick={() => handleLike(project.id)}
-                        size="sm"
-                        variant="outline"
-                        className={`border-gray-600 ${
-                          projectLikes[project.id]?.liked ? "bg-red-500 text-white" : "text-gray-400"
-                        }`}
-                      >
-                        <Heart className="w-4 h-4" />
-                      </Button>
-                      <Button
-                        onClick={() => handleDislike(project.id)}
-                        size="sm"
-                        variant="outline"
-                        className={`border-gray-600 ${
-                          projectLikes[project.id]?.disliked ? "bg-gray-700 text-white" : "text-gray-400"
-                        }`}
-                      >
-                        <ThumbsDown className="w-4 h-4" />
-                      </Button>
-                    </div>
-                  </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 py-32">
+          <div className="text-center text-white">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black mb-8 leading-tight">
+              Our Projects
+            </h1>
+            <p className="text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed">
+              Explore our comprehensive portfolio of 10 successful client projects and digital solutions that drive real business results.
+            </p>
+            <div className="mt-12">
+              <div className="inline-flex items-center space-x-8 bg-white/10 backdrop-blur-sm rounded-full px-8 py-4">
+                <div className="text-center">
+                  <div className="text-3xl font-bold">10+</div>
+                  <div className="text-sm opacity-90">Projects Completed</div>
                 </div>
-              ))}
+                <div className="w-px h-12 bg-white/30"></div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold">98%</div>
+                  <div className="text-sm opacity-90">Client Satisfaction</div>
+                </div>
+                <div className="w-px h-12 bg-white/30"></div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold">5+</div>
+                  <div className="text-sm opacity-90">Years Experience</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      ) : (
-        /* Desktop Layout */
-        <div className="flex flex-1 pt-16">
-          {/* Left Sidebar - Projects List */}
-          <div className="w-1/4 border-r border-gray-800 bg-black overflow-y-auto">
-            <div className="p-4">
-              {/* Header */}
-              <div className="mb-6">
-                <h1 className="text-2xl font-bold mb-3 text-white">Projects</h1>
-                <p className="text-sm text-gray-400">
-                  Explore our comprehensive portfolio of successful client projects.
-                </p>
-              </div>
 
-              {/* Stats Overview */}
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2, duration: 1 }}
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        >
+          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
+            <motion.div
+              animate={{ y: [0, 12, 0] }}
+              transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+              className="w-1 h-3 bg-white/70 rounded-full mt-2"
+            />
+          </div>
+        </motion.div>
+      </section>
 
-              {/* Search */}
-              <div className="relative mb-4">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                <input
-                  type="text"
-                  placeholder="Search projects..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 bg-gray-950 border border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-white placeholder-gray-400 text-sm"
-                />
-              </div>
+      {/* Header Section */}
+      <section className="bg-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 py-16">
+          <div className="text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Featured Work
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Discover our diverse range of successful projects across web development, mobile apps, SaaS platforms, and more.
+            </p>
+          </div>
+        </div>
+      </section>
 
-              {/* Filters */}
-              <div className="flex flex-wrap gap-1 mb-4">
-                {filters.map((filter) => (
-                  <button
-                    key={filter.id}
-                    onClick={() => setSelectedFilter(filter.id)}
-                    className={`px-2 py-1 text-xs rounded transition-all ${
-                      selectedFilter === filter.id
-                        ? "bg-primary/20 text-primary border border-primary/50"
-                        : "bg-gray-950 text-gray-400 border border-gray-800 hover:text-white hover:border-primary/30"
-                    }`}
-                  >
-                    {filter.label} ({filter.count})
-                  </button>
-                ))}
-              </div>
-
-              {/* Projects List */}
-              <div className="space-y-3">
-                {filteredProjects.map((project) => (
-                  <div
-                    key={project.id}
-                    onClick={() => setSelectedProject(project)}
-                    className={`cursor-pointer rounded-lg border transition-all duration-300 ${
-                      selectedProject?.id === project.id
-                        ? "bg-black border-white/30 shadow-lg"
-                        : "bg-black border-white/10 hover:border-white/20 hover:shadow-md"
-                    }`}
-                  >
-                    <div className="p-3">
-                      <div className="flex items-start space-x-2">
+      {/* Projects Layout */}
+      <section className="py-16 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col lg:flex-row gap-8">
+            {/* Left Sidebar - Projects List */}
+            <div className="lg:w-1/3">
+              <div className="bg-white rounded-xl shadow-lg p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-6">All Projects ({projects.length})</h3>
+                <div className="space-y-3 max-h-96 overflow-y-auto">
+                  {projects.map((project) => (
+                    <div
+                      key={project.id}
+                      onClick={() => setSelectedProject(project)}
+                      className={`cursor-pointer rounded-lg border p-4 transition-all duration-300 ${
+                        selectedProject?.id === project.id
+                          ? "bg-[#009696]/10 border-[#009696] shadow-md"
+                          : "bg-gray-50 border-gray-200 hover:border-[#009696]/50 hover:bg-[#009696]/5"
+                      }`}
+                    >
+                      <div className="flex items-center space-x-3">
                         <img
                           src={project.logo || "/placeholder.svg"}
                           alt={project.name}
-                          className="w-8 h-8 object-contain bg-gray-800 rounded p-1 flex-shrink-0"
+                          className="w-10 h-10 object-contain rounded"
                         />
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center justify-between mb-1">
-                            <h3 className="font-semibold text-white truncate text-sm">{project.name}</h3>
+                        <div className="flex-1">
+                          <div className="flex items-center justify-between">
+                            <h4 className="font-semibold text-gray-900 text-sm">{project.name}</h4>
                             {project.featured && (
-                              <span className="px-1 py-0.5 bg-primary text-black rounded text-xs font-medium">
+                              <span className="px-2 py-0.5 bg-[#009696] text-white text-xs rounded-full">
                                 Featured
                               </span>
                             )}
                           </div>
-                          <p className="text-xs text-gray-500 line-clamp-2 mb-2">{project.description}</p>
-
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center space-x-1">
-                              {getCategoryIcon(project.category)}
-                              <span className="text-xs text-gray-400">{project.category}</span>
-                            </div>
-                            <div className="flex items-center space-x-1">
-                              {[...Array(project.rating)].map((_, i) => (
-                                <Star key={i} className="w-2.5 h-2.5 text-yellow-500 fill-current" />
-                              ))}
-                            </div>
+                          <p className="text-xs text-gray-600 line-clamp-1 mt-1">{project.description}</p>
+                          <div className="mt-2">
+                            <span className="text-xs text-gray-500">{project.metrics.users} users</span>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Right Content - Project Details & Preview */}
-          <div className="flex-1 flex flex-col bg-black relative">
-            {selectedProject ? (
-              <>
-                {/* Project Header */}
-                <div className="border-b border-gray-800 p-6">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-6">
-                      <img
-                        src={selectedProject.logo || "/placeholder.svg"}
-                        alt={selectedProject.name}
-                        className="w-24 h-24 object-contain bg-gray-800/50 rounded-xl p-4 border border-gray-700"
-                      />
-                      <div>
-                        <h2 className="text-3xl font-bold text-white mb-2">{selectedProject.name}</h2>
-                        <p className="text-lg text-gray-400 mb-3">{selectedProject.client}</p>
-                        <div className="flex items-center space-x-4">
-                          <span
-                            className={`px-4 py-2 rounded-full text-sm font-medium border ${getStatusColor(
-                              selectedProject.status,
-                            )}`}
-                          >
-                            {selectedProject.status === "in-progress" ? "In Progress" : "Completed"}
-                          </span>
-                          <span className="text-sm text-gray-400">{selectedProject.timeline}</span>
-                          <span className="text-sm text-green-400 font-semibold">
-                            {selectedProject.metrics.revenue}
-                          </span>
+            {/* Right Content - Project Details */}
+            <div className="lg:w-2/3">
+              {selectedProject ? (
+                <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                  {/* Project Header */}
+                  <div className="p-8 border-b border-gray-200">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-6">
+                        <img
+                          src={selectedProject.logo || "/placeholder.svg"}
+                          alt={selectedProject.name}
+                          className="w-20 h-20 object-contain bg-gray-50 rounded-xl p-4"
+                        />
+                        <div>
+                          <h2 className="text-3xl font-bold text-gray-900 mb-2">{selectedProject.name}</h2>
+                          <p className="text-lg text-gray-600 mb-3">{selectedProject.description}</p>
                         </div>
                       </div>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      {selectedProject.hasLivePreview && (
-                        <Button
-                          onClick={() => setIsFullscreen(!isFullscreen)}
-                          size="sm"
-                          variant="outline"
-                          className="border-gray-600 text-gray-300 hover:bg-gray-800"
-                        >
-                          {isFullscreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
-                        </Button>
-                      )}
-                      {selectedProject.hasLivePreview ? (
-                        <Button
-                          onClick={() => window.open(selectedProject.previewUrl, "_blank")}
-                          size="sm"
-                          className="bg-primary/20 text-primary hover:bg-primary/30"
-                        >
-                          <ExternalLink className="w-4 h-4 mr-2" />
-                          Visit Site
-                        </Button>
-                      ) : (
-                        <Button
-                          disabled
-                          size="sm"
-                          variant="outline"
-                          className="border-gray-600 text-gray-500 cursor-not-allowed"
-                        >
-                          <Shield className="w-4 h-4 mr-2" />
-                          Private Project
-                        </Button>
-                      )}
                     </div>
                   </div>
-                </div>
 
-                {/* Content Area */}
-                <div className="flex-1 flex">
-                  {/* Project Details */}
-                  <div className={`${isFullscreen ? "hidden" : "w-2/5"} border-r border-gray-800 overflow-y-auto`}>
-                    <div className="p-6 space-y-8">
-                      {/* Overview */}
+                  {/* Project Content */}
+                  <div className="p-8">
+                    <div className="space-y-8">
+                      {/* Full Width - Project Overview */}
                       <div>
-                        <h3 className="text-xl font-semibold text-white mb-4">Overview</h3>
-                        <p className="text-gray-300 leading-relaxed">{selectedProject.details.overview}</p>
-                      </div>
+                        <h3 className="text-2xl font-bold text-gray-900 mb-4">Project Overview</h3>
+                        <p className="text-gray-700 leading-relaxed mb-6">{selectedProject.details.overview}</p>
 
-                      {/* Key Features */}
-                      <div>
-                        <h3 className="text-xl font-semibold text-white mb-4">Key Features</h3>
-                        <div className="space-y-3">
-                          {selectedProject.details.features.map((feature: string, index: number) => (
-                            <div key={index} className="flex items-center text-gray-300">
-                              <CheckCircle className="w-5 h-5 text-green-400 mr-3 flex-shrink-0" />
-                              {feature}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
+                        {selectedProject.hasLivePreview && (
+                          <div className="mb-8">
+                            <Button
+                              onClick={() => window.open(selectedProject.previewUrl, "_blank")}
+                              className="bg-[#009696] hover:bg-[#009696]/90 text-white"
+                            >
+                              <ExternalLink className="w-4 h-4 mr-2" />
+                              Visit Live Project
+                            </Button>
+                          </div>
+                        )}
 
-                      {/* Technologies */}
-                      <div>
-                        <h3 className="text-xl font-semibold text-white mb-4">Technologies</h3>
-                        <div className="flex flex-wrap gap-2">
+                        <h4 className="text-xl font-semibold text-gray-900 mb-4">Technologies Used</h4>
+                        <div className="flex flex-wrap gap-2 mb-8">
                           {selectedProject.details.technologies.map((tech: string, index: number) => (
                             <span
                               key={index}
-                              className="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm border border-primary/30"
+                              className="px-3 py-1 bg-[#009696]/10 text-[#009696] rounded-full text-sm font-medium"
                             >
                               {tech}
                             </span>
                           ))}
                         </div>
-                      </div>
-                      
-                      {/* Action Buttons */}
-                      <div className="flex space-x-3">
-                        <Button
-                          onClick={() => handleLike(selectedProject.id)}
-                          variant="outline"
-                          className={`border-gray-600 ${
-                            projectLikes[selectedProject.id]?.liked
-                              ? "bg-red-500 text-white border-red-500"
-                              : "text-gray-400 hover:text-white"
-                          }`}
-                        >
-                          <Heart className="w-4 h-4 mr-2" />
-                          {projectLikes[selectedProject.id]?.liked ? "Liked" : "Like"}
-                        </Button>
-                        <Button
-                          onClick={() => handleDislike(selectedProject.id)}
-                          variant="outline"
-                          className={`border-gray-600 ${
-                            projectLikes[selectedProject.id]?.disliked
-                              ? "bg-gray-700 text-white border-gray-500"
-                              : "text-gray-400 hover:text-white"
-                          }`}
-                        >
-                          <ThumbsDown className="w-4 h-4 mr-2" />
-                          {projectLikes[selectedProject.id]?.disliked ? "Disliked" : "Dislike"}
-                        </Button>
+
+                        <h4 className="text-xl font-semibold text-gray-900 mb-4">Key Features</h4>
+                        <div className="space-y-3">
+                          {selectedProject.details.features.map((feature: string, index: number) => (
+                            <div key={index} className="flex items-center">
+                              <CheckCircle className="w-5 h-5 text-[#009696] mr-3 flex-shrink-0" />
+                              <span className="text-gray-700">{feature}</span>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
-
-                  {/* Project Preview */}
-                  <div className={`${isFullscreen ? "w-full" : "flex-1"} bg-white`}>
-                    {selectedProject.hasLivePreview ? (
-                      <iframe
-                        src={selectedProject.previewUrl}
-                        className="w-full h-full border-0"
-                        title={`${selectedProject.name} Preview`}
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center bg-gray-900 text-white">
-                        <div className="text-center">
-                          <Shield className="w-24 h-24 text-gray-400 mx-auto mb-6" />
-                          <h3 className="text-2xl font-semibold text-white mb-4">Private Project</h3>
-                          <p className="text-gray-400 max-w-md">
-                            This project contains confidential client information and cannot be previewed publicly.
-                          </p>
-                        </div>
-                      </div>
-                    )}
-                  </div>
                 </div>
-              </>
-            ) : (
-              <div className="flex-1 flex items-center justify-center">
-                <div className="text-center">
-                  <Monitor className="w-24 h-24 text-gray-400 mx-auto mb-6" />
-                  <h3 className="text-2xl font-semibold text-white mb-4">Select a Project</h3>
-                  <p className="text-gray-400">Choose a project from the list to view details and preview</p>
+              ) : (
+                <div className="bg-white rounded-xl shadow-lg p-16 text-center">
+                  <Eye className="w-16 h-16 text-gray-400 mx-auto mb-6" />
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Select a Project</h3>
+                  <p className="text-gray-600 max-w-md mx-auto">
+                    Click on any project from the list on the left to view detailed information and see it live in action.
+                  </p>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
-      )}
+      </section>
 
       <Footer />
     </div>

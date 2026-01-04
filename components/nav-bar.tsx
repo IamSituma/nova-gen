@@ -24,7 +24,7 @@ export function NavBar() {
   const navItems = [
     { name: "Services", href: "/services" },
     { name: t("nav.projects"), href: "/projects" },
-    { name: t("nav.process"), href: "/process" },
+    { name: "Careers", href: "/careers" },
     { name: "Partnership", href: "/partnership" },
     { name: t("nav.contact"), href: "/contact" },
   ]

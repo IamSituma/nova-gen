@@ -4,494 +4,481 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { NavBar } from "@/components/nav-bar"
 import { Footer } from "@/components/footer"
-import { CodeRain } from "@/components/code-rain"
 import {
-  MessageCircle,
-  Search,
   Code,
-  TestTube,
-  Rocket,
-  LifeBuoy,
-  CheckCircle,
-  Clock,
+  Smartphone,
+  Globe,
   Users,
   Target,
-  Lightbulb,
-  FileText,
-  Zap,
-  Shield,
-  TrendingUp,
-  Calendar,
+  Briefcase,
+  MapPin,
+  DollarSign,
+  Clock,
+  CheckCircle,
   ArrowRight,
-  Play,
+  Mail,
 } from "lucide-react"
 
-export default function ProcessPage() {
-  const [activeStep, setActiveStep] = useState(0)
+interface JobListing {
+  id: string
+  title: string
+  category: string
+  type: string
+  location: string
+  salary: string
+  experience: string
+  description: string
+  requirements: string[]
+  benefits: string[]
+}
 
-  const processSteps = [
-    {
-      id: "discovery",
-      title: "Discovery & Planning",
-      duration: "1-2 weeks",
-      icon: <MessageCircle className="w-6 h-6" />,
-      color: "text-blue-500",
-      bgColor: "bg-blue-500/10",
-      borderColor: "border-blue-500/20",
-      description: "We dive deep into understanding your business, goals, and technical requirements.",
-      activities: [
-        "Stakeholder interviews and requirements gathering",
-        "Technical architecture planning and system design",
-        "User research and competitive analysis",
-        "Project roadmap and timeline creation",
-        "Risk assessment and mitigation planning",
-      ],
-      deliverables: [
-        "Detailed project specification document",
-        "Technical architecture diagram",
-        "Project timeline and milestones",
-        "Resource allocation plan",
-        "Risk management strategy",
-      ],
-    },
-    {
-      id: "design",
-      title: "Design & Prototyping",
-      duration: "2-3 weeks",
-      icon: <Search className="w-6 h-6" />,
-      color: "text-purple-500",
-      bgColor: "bg-purple-500/10",
-      borderColor: "border-purple-500/20",
-      description: "Creating user-centered designs and interactive prototypes to validate concepts.",
-      activities: [
-        "User experience (UX) design and user journey mapping",
-        "User interface (UI) design and visual identity",
-        "Interactive prototyping and wireframing",
-        "Design system creation and component library",
-        "Usability testing and design iteration",
-      ],
-      deliverables: [
-        "Complete UI/UX designs",
-        "Interactive prototypes",
-        "Design system and style guide",
-        "User testing results",
-        "Final design specifications",
-      ],
-    },
-    {
-      id: "development",
-      title: "Development & Integration",
-      duration: "4-12 weeks",
-      icon: <Code className="w-6 h-6" />,
-      color: "text-green-500",
-      bgColor: "bg-green-500/10",
-      borderColor: "border-green-500/20",
-      description: "Building your solution with clean, scalable code and modern technologies.",
-      activities: [
-        "Frontend and backend development",
-        "Database design and implementation",
-        "API development and third-party integrations",
-        "Security implementation and data protection",
-        "Performance optimization and scalability planning",
-      ],
-      deliverables: [
-        "Fully functional application",
-        "Clean, documented codebase",
-        "API documentation",
-        "Security audit report",
-        "Performance benchmarks",
-      ],
-    },
-    {
-      id: "testing",
-      title: "Testing & Quality Assurance",
-      duration: "1-2 weeks",
-      icon: <TestTube className="w-6 h-6" />,
-      color: "text-orange-500",
-      bgColor: "bg-orange-500/10",
-      borderColor: "border-orange-500/20",
-      description: "Rigorous testing to ensure your solution works flawlessly across all scenarios.",
-      activities: [
-        "Automated testing suite development",
-        "Manual testing across devices and browsers",
-        "Performance and load testing",
-        "Security penetration testing",
-        "User acceptance testing (UAT)",
-      ],
-      deliverables: [
-        "Comprehensive test suite",
-        "Testing reports and bug fixes",
-        "Performance optimization results",
-        "Security assessment report",
-        "UAT sign-off documentation",
-      ],
-    },
-    {
-      id: "deployment",
-      title: "Deployment & Launch",
-      duration: "1 week",
-      icon: <Rocket className="w-6 h-6" />,
-      color: "text-red-500",
-      bgColor: "bg-red-500/10",
-      borderColor: "border-red-500/20",
-      description: "Seamless deployment to production with monitoring and optimization.",
-      activities: [
-        "Production environment setup and configuration",
-        "Deployment automation and CI/CD pipeline",
-        "Monitoring and alerting system setup",
-        "Performance monitoring and optimization",
-        "Go-live support and issue resolution",
-      ],
-      deliverables: [
-        "Live production system",
-        "Deployment documentation",
-        "Monitoring dashboards",
-        "Backup and recovery procedures",
-        "Launch success metrics",
-      ],
-    },
-    {
-      id: "support",
-      title: "Support & Maintenance",
-      duration: "Ongoing",
-      icon: <LifeBuoy className="w-6 h-6" />,
-      color: "text-primary",
-      bgColor: "bg-primary/10",
-      borderColor: "border-primary/20",
-      description: "Continuous support, updates, and enhancements to keep your solution running smoothly.",
-      activities: [
-        "24/7 monitoring and incident response",
-        "Regular security updates and patches",
-        "Performance optimization and scaling",
-        "Feature enhancements and new development",
-        "Technical support and troubleshooting",
-      ],
-      deliverables: [
-        "Monthly performance reports",
-        "Security update notifications",
-        "Feature enhancement roadmap",
-        "Support ticket resolution",
-        "System health monitoring",
-      ],
-    },
+export default function CareersPage() {
+  const [selectedCategory, setSelectedCategory] = useState("all")
+
+  const jobCategories = [
+    { id: "all", label: "All Roles", count: 0 },
+    { id: "development", label: "Development", count: 0 },
+    { id: "design", label: "Design", count: 0 },
+    { id: "product", label: "Product", count: 0 },
   ]
 
-  const methodologies = [
+  // Sample job listings - currently empty to show "No roles" message
+  const jobListings: JobListing[] = [
+    // Uncomment below to add job listings
+    /*
     {
-      title: "Agile Development",
-      description: "2-week sprints with regular demos and feedback",
-      icon: <Zap className="w-6 h-6" />,
-      benefits: ["Faster delivery", "Regular feedback", "Flexible scope"],
-    },
-    {
-      title: "DevOps Integration",
-      description: "Automated testing, deployment, and monitoring",
-      icon: <Shield className="w-6 h-6" />,
-      benefits: ["Reliable deployments", "Quick issue resolution", "Scalable infrastructure"],
-    },
-    {
-      title: "User-Centered Design",
-      description: "Design decisions based on user research and testing",
-      icon: <Users className="w-6 h-6" />,
-      benefits: ["Better user experience", "Higher adoption", "Reduced support needs"],
-    },
-    {
-      title: "Quality Assurance",
-      description: "Comprehensive testing at every stage",
-      icon: <CheckCircle className="w-6 h-6" />,
-      benefits: ["Bug-free releases", "Performance optimization", "Security compliance"],
-    },
+      id: "senior-fullstack",
+      title: "Senior Full-Stack Developer",
+      category: "development",
+      type: "Full-time",
+      location: "Remote",
+      salary: "$80,000 - $120,000",
+      experience: "3-5 years",
+      description: "We are looking for a Senior Full-Stack Developer to join our team and help build amazing digital experiences.",
+      requirements: [
+        "3+ years of experience with React and Node.js",
+        "Experience with modern web technologies",
+        "Strong problem-solving skills",
+        "Excellent communication skills"
+      ],
+      benefits: [
+        "Competitive salary and equity",
+        "Remote work flexibility",
+        "Health insurance",
+        "Professional development budget"
+      ]
+    }
+    */
   ]
 
-  const tools = [
-    {
-      category: "Project Management",
-      tools: ["Jira", "Asana", "Linear", "Notion"],
-      icon: <Target className="w-5 h-5" />,
-    },
-    {
-      category: "Design & Prototyping",
-      tools: ["Figma", "Adobe Creative Suite", "Sketch", "InVision"],
-      icon: <Lightbulb className="w-5 h-5" />,
-    },
-    {
-      category: "Development",
-      tools: ["VS Code", "GitHub", "Docker", "AWS/Vercel"],
-      icon: <Code className="w-5 h-5" />,
-    },
-    {
-      category: "Testing & QA",
-      tools: ["Jest", "Cypress", "Selenium", "Postman"],
-      icon: <TestTube className="w-5 h-5" />,
-    },
-    {
-      category: "Communication",
-      tools: ["Slack", "Zoom", "Microsoft Teams", "Discord"],
-      icon: <MessageCircle className="w-5 h-5" />,
-    },
-    {
-      category: "Documentation",
-      tools: ["GitBook", "Confluence", "Notion", "Markdown"],
-      icon: <FileText className="w-5 h-5" />,
-    },
-  ]
-
-  const metrics = [
-    {
-      title: "On-Time Delivery",
-      value: "98%",
-      description: "Projects delivered on schedule",
-      icon: <Clock className="w-6 h-6" />,
-      color: "text-green-500",
-    },
-    {
-      title: "Client Satisfaction",
-      value: "4.9/5",
-      description: "Average client rating",
-      icon: <Users className="w-6 h-6" />,
-      color: "text-blue-500",
-    },
-    {
-      title: "Bug-Free Releases",
-      value: "95%",
-      description: "Releases without critical bugs",
-      icon: <CheckCircle className="w-6 h-6" />,
-      color: "text-purple-500",
-    },
-    {
-      title: "Performance Improvement",
-      value: "40%",
-      description: "Average performance gain",
-      icon: <TrendingUp className="w-6 h-6" />,
-      color: "text-orange-500",
-    },
-  ]
+  const filteredJobs: JobListing[] = selectedCategory === "all"
+    ? jobListings
+    : jobListings.filter(job => job.category === selectedCategory)
 
   return (
-    <main className="min-h-screen bg-background text-foreground relative overflow-hidden">
-      <div className="absolute inset-0 z-0">
-        <CodeRain />
-      </div>
+    <div className="min-h-screen bg-gray-50">
       <NavBar />
 
-      <div className="max-w-7xl mx-auto px-4 py-24 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          {/* Header */}
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-[#009696] to-[#007a7a] text-white py-20 min-h-[70vh] flex items-center">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: 'url("/images/job-novagen.jpg")' }}
+        />
+        <div className="absolute inset-0 bg-black/60" />
+        <div className="relative max-w-7xl mx-auto px-4 text-center z-10">
           <motion.div
-            className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Our <span className="text-primary">Development Process</span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+              Join Our Team
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              A proven methodology that delivers exceptional results through careful planning, expert execution, and
-              continuous collaboration.
+            <p className="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed mb-8">
+              Help us build the future of digital innovation. We're always looking for talented individuals who are passionate about creating exceptional software solutions.
             </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="bg-white/10 backdrop-blur-sm rounded-full px-6 py-3">
+                <span className="text-lg font-semibold">Remote-First Culture</span>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-full px-6 py-3">
+                <span className="text-lg font-semibold">Innovative Projects</span>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-full px-6 py-3">
+                <span className="text-lg font-semibold">Growth Opportunities</span>
+              </div>
+            </div>
           </motion.div>
+        </div>
+      </section>
 
-          {/* Process Steps */}
+      {/* Job Listings Section */}
+      <section className="py-16 px-4">
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
           <motion.div
-            className="mb-16"
+            className="text-center mb-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h2 className="text-2xl font-bold mb-8 text-center">Our 6-Step Process</h2>
-
-            {/* Step Navigation */}
-            <div className="flex flex-wrap justify-center gap-2 mb-8">
-              {processSteps.map((step, index) => (
-                <button
-                  key={step.id}
-                  onClick={() => setActiveStep(index)}
-                  className={`px-4 py-2 text-sm rounded-lg transition-all ${
-                    activeStep === index
-                      ? "bg-primary/20 text-primary border border-primary/50"
-                      : "bg-background/80 backdrop-blur-sm text-muted-foreground border border-border hover:text-foreground hover:border-primary/30"
-                  }`}
-                >
-                  {index + 1}. {step.title}
-                </button>
-              ))}
-            </div>
-
-            {/* Active Step Details */}
-            <div
-              className={`${processSteps[activeStep].bgColor} ${processSteps[activeStep].borderColor} border rounded-xl p-8`}
-            >
-              <div className="flex items-center space-x-4 mb-6">
-                <div
-                  className={`w-12 h-12 ${processSteps[activeStep].bgColor} rounded-lg flex items-center justify-center`}
-                >
-                  {processSteps[activeStep].icon}
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold">{processSteps[activeStep].title}</h3>
-                  <p className="text-muted-foreground">Duration: {processSteps[activeStep].duration}</p>
-                </div>
-              </div>
-
-              <p className="text-lg mb-8">{processSteps[activeStep].description}</p>
-
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div>
-                  <h4 className="font-semibold mb-4 flex items-center">
-                    <Play className="w-4 h-4 mr-2 text-primary" />
-                    Key Activities
-                  </h4>
-                  <ul className="space-y-2">
-                    {processSteps[activeStep].activities.map((activity, index) => (
-                      <li key={index} className="flex items-start space-x-2">
-                        <CheckCircle className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
-                        <span className="text-sm">{activity}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 className="font-semibold mb-4 flex items-center">
-                    <FileText className="w-4 h-4 mr-2 text-primary" />
-                    Deliverables
-                  </h4>
-                  <ul className="space-y-2">
-                    {processSteps[activeStep].deliverables.map((deliverable, index) => (
-                      <li key={index} className="flex items-start space-x-2">
-                        <ArrowRight className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
-                        <span className="text-sm">{deliverable}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Open Positions
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Discover exciting career opportunities and be part of our mission to transform businesses through technology.
+            </p>
           </motion.div>
 
-          {/* Methodologies */}
+          {/* Filter Categories */}
           <motion.div
-            className="mb-16"
+            className="flex flex-wrap justify-center gap-4 mb-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <h2 className="text-2xl font-bold mb-8 text-center">Our Methodologies</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {methodologies.map((methodology, index) => (
-                <div
-                  key={index}
-                  className="bg-background/80 backdrop-blur-sm border border-border rounded-xl p-6 hover:border-primary/50 transition-all duration-300"
-                >
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                    {methodology.icon}
-                  </div>
-                  <h3 className="font-semibold mb-2">{methodology.title}</h3>
-                  <p className="text-sm text-muted-foreground mb-4">{methodology.description}</p>
-                  <div className="space-y-1">
-                    {methodology.benefits.map((benefit, benefitIndex) => (
-                      <div key={benefitIndex} className="flex items-center space-x-2">
-                        <CheckCircle className="w-3 h-3 text-primary" />
-                        <span className="text-xs text-muted-foreground">{benefit}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
+            {jobCategories.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => setSelectedCategory(category.id)}
+                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+                  selectedCategory === category.id
+                    ? "bg-[#009696] text-white shadow-lg"
+                    : "bg-white text-gray-700 border border-gray-300 hover:border-[#009696] hover:text-[#009696]"
+                }`}
+              >
+                {category.label} ({category.count})
+              </button>
+            ))}
           </motion.div>
 
-          {/* Tools & Technologies */}
+          {/* Job Listings */}
           <motion.div
-            className="mb-16"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
           >
-            <h2 className="text-2xl font-bold mb-8 text-center">Tools & Technologies</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {tools.map((toolCategory, index) => (
-                <div key={index} className="bg-background/80 backdrop-blur-sm border border-border rounded-xl p-6">
-                  <div className="flex items-center space-x-3 mb-4">
-                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                      {toolCategory.icon}
+              {filteredJobs.map((job, index) => (
+                <div
+                  key={job.id}
+                  className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                >
+                  {/* Job Header */}
+                  <div className="p-6 border-b border-gray-200">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex-1">
+                        <h3 className="text-xl font-bold text-gray-900 mb-2">{job.title}</h3>
+                        <div className="flex items-center space-x-4 text-sm text-gray-600">
+                          <div className="flex items-center">
+                            <Briefcase className="w-4 h-4 mr-1" />
+                            {job.type}
+                          </div>
+                          <div className="flex items-center">
+                            <MapPin className="w-4 h-4 mr-1" />
+                            {job.location}
+                          </div>
+                          <div className="flex items-center">
+                            <Clock className="w-4 h-4 mr-1" />
+                            {job.experience}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-lg font-bold text-[#009696]">{job.salary}</div>
+                        <div className="text-sm text-gray-500">per year</div>
+                      </div>
                     </div>
-                    <h3 className="font-semibold">{toolCategory.category}</h3>
+                    <p className="text-gray-700 leading-relaxed">{job.description}</p>
                   </div>
-                  <div className="flex flex-wrap gap-2">
-                    {toolCategory.tools.map((tool, toolIndex) => (
-                      <span
-                        key={toolIndex}
-                        className="px-3 py-1 bg-muted/50 text-muted-foreground text-sm rounded-full border border-border"
-                      >
-                        {tool}
-                      </span>
-                    ))}
+
+                  {/* Job Details */}
+                  <div className="p-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                      {/* Requirements */}
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
+                          <CheckCircle className="w-5 h-5 text-[#009696] mr-2" />
+                          Requirements
+                        </h4>
+                        <ul className="space-y-2">
+                          {job.requirements.slice(0, 3).map((req: string, reqIndex: number) => (
+                            <li key={reqIndex} className="text-sm text-gray-600 flex items-start">
+                              <span className="w-1.5 h-1.5 bg-[#009696] rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                              {req}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Benefits */}
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
+                          <Users className="w-5 h-5 text-[#009696] mr-2" />
+                          Benefits
+                        </h4>
+                        <ul className="space-y-2">
+                          {job.benefits.slice(0, 3).map((benefit: string, benefitIndex: number) => (
+                            <li key={benefitIndex} className="text-sm text-gray-600 flex items-start">
+                              <span className="w-1.5 h-1.5 bg-[#009696] rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                              {benefit}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+
+                    {/* Apply Button */}
+                    <div className="flex justify-end">
+                      <button className="bg-[#009696] hover:bg-[#009696]/90 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200 flex items-center">
+                        <Mail className="w-4 h-4 mr-2" />
+                        Apply Now
+                      </button>
+                    </div>
                   </div>
                 </div>
               ))}
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
+      </section>
 
-          {/* Success Metrics */}
+      {/* Why Join Us Section */}
+      <section className="py-16 px-4 bg-white">
+        <div className="max-w-7xl mx-auto">
           <motion.div
-            className="mb-16"
+            className="text-center mb-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
           >
-            <h2 className="text-2xl font-bold mb-8 text-center">Our Track Record</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {metrics.map((metric, index) => (
-                <div
-                  key={index}
-                  className="bg-background/80 backdrop-blur-sm border border-border rounded-xl p-6 text-center"
-                >
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                    {metric.icon}
-                  </div>
-                  <div className={`text-3xl font-bold ${metric.color} mb-2`}>{metric.value}</div>
-                  <h3 className="font-semibold mb-1">{metric.title}</h3>
-                  <p className="text-sm text-muted-foreground">{metric.description}</p>
-                </div>
-              ))}
-            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Why Join NovaGen?
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              We're more than just a workplace – we're a community of innovators building the future together.
+            </p>
           </motion.div>
 
-          {/* CTA Section */}
           <motion.div
-            className="bg-primary/5 border border-primary/20 rounded-xl p-8 text-center"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.0 }}
           >
-            <h2 className="text-2xl font-bold mb-4">Ready to Start Your Project?</h2>
-            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Let's discuss how our proven process can help bring your vision to life. Schedule a free consultation to
-              get started.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="/"
-                className="inline-flex items-center px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-all duration-300 font-medium"
-              >
-                <Calendar className="w-4 h-4 mr-2" />
-                Schedule Free Consultation
-              </a>
-              <a
-                href="/portfolio"
-                className="inline-flex items-center px-6 py-3 bg-background border border-border text-foreground rounded-lg hover:border-primary/50 transition-all duration-300 font-medium"
-              >
-                View Our Work
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </a>
+            {/* Left Column - Content */}
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">What Makes NovaGen Special</h3>
+                <p className="text-gray-600 leading-relaxed mb-6">
+                  We're more than just a workplace – we're a community of innovators building the future together.
+                  Here's what you can expect when you join our team.
+                </p>
+              </div>
+
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-[#009696]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Target className="w-6 h-6 text-[#009696]" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Mission-Driven Work</h4>
+                    <p className="text-gray-600">
+                      Work on projects that make a real impact. Every solution we build helps businesses grow and succeed in the digital world.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-[#009696]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Users className="w-6 h-6 text-[#009696]" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Collaborative Culture</h4>
+                    <p className="text-gray-600">
+                      Join a supportive team where your ideas matter. We value diverse perspectives and foster an inclusive environment for everyone.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-[#009696]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Code className="w-6 h-6 text-[#009696]" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Cutting-Edge Technology</h4>
+                    <p className="text-gray-600">
+                      Stay at the forefront of technology trends. Work with the latest tools, frameworks, and methodologies in software development.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column - Image */}
+            <div className="relative">
+              <div className="aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-[#009696]/20 to-[#007a7a]/20">
+                <img
+                  src="/images/novagen-hero.png"
+                  alt="NovaGen Team Collaboration"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+              </div>
             </div>
           </motion.div>
         </div>
-      </div>
+      </section>
+
+      {/* Send Resume Section */}
+      <section className="py-16 px-4 bg-black">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            {/* Left Column - Text Content */}
+            <div className="space-y-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-white text-left">
+                Send Us Your Resume
+              </h2>
+              <p className="text-xl text-white/90 leading-relaxed text-left">
+                Even if we don't have open positions that match your profile, we'd love to hear from you.
+                Send us your resume and we'll keep it on file for future opportunities.
+              </p>
+              <div className="flex items-center space-x-4 pt-4">
+                <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
+                  <Mail className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <p className="text-white/80 font-medium">Get Notified</p>
+                  <p className="text-white/60 text-sm">About future opportunities</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column - Form */}
+            <motion.div
+              className="bg-white rounded-2xl shadow-lg p-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <form className="space-y-6">
+                {/* Full Name */}
+                <div>
+                  <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2">
+                    Full Name *
+                  </label>
+                  <input
+                    type="text"
+                    id="fullName"
+                    name="fullName"
+                    required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#009696] focus:border-transparent transition-colors"
+                    placeholder="Enter your full name"
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Email */}
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                      Email Address *
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#009696] focus:border-transparent transition-colors"
+                      placeholder="your.email@example.com"
+                    />
+                  </div>
+
+                  {/* Phone */}
+                  <div>
+                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                      Phone Number
+                    </label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#009696] focus:border-transparent transition-colors"
+                      placeholder="+1 (555) 123-4567"
+                    />
+                  </div>
+                </div>
+
+              {/* Position of Interest */}
+              <div>
+                <label htmlFor="position" className="block text-sm font-medium text-gray-700 mb-2">
+                  Position of Interest
+                </label>
+                <select
+                  id="position"
+                  name="position"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#009696] focus:border-transparent transition-colors appearance-none"
+                >
+                  <option value="">Select a position (optional)</option>
+                  <option value="frontend-developer">Frontend Developer</option>
+                  <option value="backend-developer">Backend Developer</option>
+                  <option value="fullstack-developer">Full-Stack Developer</option>
+                  <option value="mobile-developer">Mobile Developer</option>
+                  <option value="ui-ux-designer">UI/UX Designer</option>
+                  <option value="devops-engineer">DevOps Engineer</option>
+                  <option value="project-manager">Project Manager</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              {/* Resume Upload */}
+              <div>
+                <label htmlFor="resume" className="block text-sm font-medium text-gray-700 mb-2">
+                  Resume/CV *
+                </label>
+                <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-[#009696] transition-colors">
+                  <div className="space-y-1 text-center">
+                    <Briefcase className="mx-auto h-12 w-12 text-gray-400" />
+                    <div className="flex text-sm text-gray-600">
+                      <label
+                        htmlFor="resume"
+                        className="relative cursor-pointer bg-white rounded-md font-medium text-[#009696] hover:text-[#007a7a] focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-[#009696]"
+                      >
+                        <span>Upload your resume</span>
+                        <input id="resume" name="resume" type="file" accept=".pdf,.doc,.docx" required className="sr-only" />
+                      </label>
+                      <p className="pl-1">or drag and drop</p>
+                    </div>
+                    <p className="text-xs text-gray-500">PDF, DOC, DOCX up to 10MB</p>
+                  </div>
+                </div>
+              </div>
+
+
+              {/* Submit Button */}
+              <div className="text-center">
+                <button
+                  type="submit"
+                  className="bg-[#009696] hover:bg-[#009696]/90 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors duration-200 flex items-center mx-auto"
+                >
+                  <Mail className="w-5 h-5 mr-2" />
+                  Send Resume
+                </button>
+                <p className="text-sm text-gray-500 mt-3">
+                  By submitting this form, you agree to our privacy policy and consent to being contacted about future opportunities.
+                </p>
+              </div>
+            </form>
+          </motion.div>
+          </motion.div>
+        </div>
+      </section>
 
       <Footer />
-    </main>
+    </div>
   )
 }
