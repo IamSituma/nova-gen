@@ -11,23 +11,23 @@ export default function ProjectsPage() {
     {
       id: "nova-legal",
       name: "Nova Legal",
-      description: "Professional legal management platform with SaaS solutions",
+      description: "A comprehensive legal management system that streamlines case management, client records, billing, and document workflows.",
       image: "/images/glasspatch-screenshot.png",
-      previewUrl: "https://glasspatch.us",
+      previewUrl: "https://novalegal.app",
     },
     {
       id: "nova-suite",
       name: "Nova Suite",
-      description: "Complete auto repair website with online booking system",
+      description: "Hotel management system that streamlines reservations, front desk operations, billing, and guest management in one powerful platform.",
       image: "/images/norams-auto-screenshot.png",
-      previewUrl: "https://noramauto.com",
+      previewUrl: "https://novasuite.app",
     },
     {
       id: "nova-coding",
       name: "Nova Coding Club",
-      description: "AI-powered platform for cinematic video generation",
+      description: "Providing hands-on coding lessons that build creativity and problem-solving skills, and a strong foundation in technology.",
       image: "/images/dreambox-screenshot.png",
-      previewUrl: "https://v0-advanced-ai-video-app.vercel.app/",
+      previewUrl: "https://club.novageneration.tech/",
     },
     {
       id: "nova-ecommerce",
@@ -49,76 +49,53 @@ export default function ProjectsPage() {
       description: "Cloud-based project management with team collaboration",
       image: "/images/saas-screenshot.png",
       previewUrl: "https://nova-saas.com",
-    },
-    {
-      id: "nova-blockchain",
-      name: "Nova Blockchain Wallet",
-      description: "Secure cryptocurrency wallet with DeFi integration",
-      image: "/images/blockchain-screenshot.png",
-      previewUrl: "https://nova-wallet.com",
-    },
-    {
-      id: "nova-healthcare",
-      name: "Nova Healthcare Portal",
-      description: "HIPAA-compliant healthcare management platform",
-      image: "/images/healthcare-screenshot.png",
-      previewUrl: "https://nova-healthcare.com",
-    },
-    {
-      id: "nova-education",
-      name: "Nova Learning Platform",
-      description: "Interactive e-learning platform with course management",
-      image: "/images/education-screenshot.png",
-      previewUrl: "https://nova-learning.com",
-    },
+    }
   ]
 
 
   return (
     <div className="min-h-screen bg-gray-50">
       <NavBar />
-
-      {/* Hero Section */}
-      <section className="relative min-h-[70vh] flex items-center overflow-hidden">
+     {/* Hero Section */}
+     <section className="relative min-h-[70vh] flex items-center overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
           <div
             className="w-full h-full bg-cover bg-center bg-no-repeat"
             style={{
-              backgroundImage: `url('/images/projects-hero.jpg')`,
+              backgroundImage: `url('/images/code-novagen.png')`,
             }}
           />
           {/* Overlay */}
-          <div className="absolute inset-0 bg-black/50" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/40" />
+          <div className="absolute inset-0 bg-black/60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/30" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 py-32">
-          <div className="text-center text-white">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black mb-8 leading-tight">
-              Our Projects
-            </h1>
-            <p className="text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed">
-              Explore our comprehensive portfolio of 10 successful client projects and digital solutions that drive real business results.
-            </p>
-            <div className="mt-12">
-              <div className="inline-flex items-center space-x-8 bg-white/10 backdrop-blur-sm rounded-full px-8 py-4">
-                <div className="text-center">
-                  <div className="text-3xl font-bold">10+</div>
-                  <div className="text-sm opacity-90">Projects Completed</div>
-                </div>
-                <div className="w-px h-12 bg-white/30"></div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold">98%</div>
-                  <div className="text-sm opacity-90">Client Satisfaction</div>
-                </div>
-                <div className="w-px h-12 bg-white/30"></div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold">5+</div>
-                  <div className="text-sm opacity-90">Years Experience</div>
-                </div>
-              </div>
-            </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1 }}
+              className="text-center lg:text-left"
+            >
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black mb-8 leading-tight">
+                <span className="text-white block mb-2">Our Projects</span>
+              </h1>
+              <p className="text-xl text-white max-w-xl mx-auto lg:mx-0 mb-12 leading-relaxed">
+              Explore our projects showcasing innovative software solutions, practical applications, and technology-driven impact.
+              </p>
+            </motion.div>
+
+            {/* Right Content - Stats/Highlights */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.3 }}
+              className="hidden lg:block"
+            >
+            </motion.div>
           </div>
         </div>
 
@@ -129,16 +106,15 @@ export default function ProjectsPage() {
           transition={{ delay: 2, duration: 1 }}
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
         >
-          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
+          <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
             <motion.div
               animate={{ y: [0, 12, 0] }}
               transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-              className="w-1 h-3 bg-white/70 rounded-full mt-2"
+              className="w-1 h-3 bg-gray-600 rounded-full mt-2"
             />
           </div>
         </motion.div>
       </section>
-
       {/* Header Section */}
       <section className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 py-16">

@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Mail, Phone, MapPin, ArrowRight, ExternalLink } from "lucide-react"
+import { Mail, Phone, MapPin, ArrowRight, ExternalLink, Linkedin, Twitter, Instagram } from "lucide-react"
 
 export function Footer() {
   const services = [
@@ -19,9 +19,9 @@ export function Footer() {
   ]
 
   const socialLinks = [
-    { label: "LinkedIn", href: "#", icon: "💼" },
-    { label: "Twitter", href: "#", icon: "🐦" },
-    { label: "GitHub", href: "#", icon: "💻" },
+    { label: "LinkedIn", href: "#", icon: Linkedin },
+    { label: "X", href: "#", icon: Twitter },
+    { label: "Instagram", href: "#", icon: Instagram },
   ]
 
   const contactInfo = [
@@ -43,7 +43,7 @@ export function Footer() {
             className="lg:col-span-1"
           >
             <div className="mb-6">
-              <img src="/images/NOVA GEN.svg" alt="NovaGen" className="w-32 h-auto mb-4" />
+              <img src="/images/logo1.png" alt="NovaGen" className="w-32 h-auto mb-4" />
               <p className="text-white/80 leading-relaxed">
                 Transforming businesses through innovative technology solutions.
                 Based in Uganda, serving clients worldwide.
@@ -59,7 +59,7 @@ export function Footer() {
                   className="w-10 h-10 bg-gray-800 hover:bg-[#009696] rounded-full flex items-center justify-center transition-colors duration-300"
                   aria-label={social.label}
                 >
-                  <span className="text-lg">{social.icon}</span>
+                  <social.icon className="w-5 h-5" />
                 </a>
               ))}
             </div>

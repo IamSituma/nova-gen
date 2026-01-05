@@ -166,9 +166,9 @@ export default function ServicesPage() {
     },
     {
       icon: <ShoppingBag className="w-8 h-8" />,
-      title: "E-Commerce Solutions",
-      description: "Boost your online presence and drive organic traffic to your business",
-      features: ["SEO Optimization", "Content Strategy", "Analytics Setup", "Performance Tracking"],
+      title: "Desktop App Development",
+      description: "Designing and building reliable desktop software",
+      features: ["Cross-platform compatibility", "High performance", "Secure architecture", "Offline functionality"],
       graphic: <SEOGraphic />,
       color: "purple",
       pricing: {

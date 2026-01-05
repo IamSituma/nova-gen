@@ -89,30 +89,41 @@ export default function CareersPage() {
           <div className="absolute inset-0 bg-black/60" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 py-20">
-          <div className="max-w-4xl">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 py-32">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1 }}
+              className="text-center lg:text-left"
             >
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight">
-                Join Our <span className="text-[#009696]">Team</span>
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black mb-8 leading-tight">
+                <span className="text-white block mb-2">Join Our Team</span>
               </h1>
-              <p className="text-xl md:text-2xl text-white/90 leading-relaxed mb-8">
+              <p className="text-xl text-white max-w-xl mx-auto lg:mx-0 mb-12 leading-relaxed">
                 Help us build the future of digital innovation. We're always looking for talented individuals who are passionate about creating exceptional software solutions.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <div className="bg-white/10 backdrop-blur-sm rounded-full px-6 py-3">
+                <div className="bg-white/60 backdrop-blur-sm rounded-full px-6 py-3">
                   <span className="text-lg font-semibold">Remote-First Culture</span>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-full px-6 py-3">
+                <div className="bg-white/60 backdrop-blur-sm rounded-full px-6 py-3">
                   <span className="text-lg font-semibold">Innovative Projects</span>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-full px-6 py-3">
+                <div className="bg-white/60 backdrop-blur-sm rounded-full px-6 py-3">
                   <span className="text-lg font-semibold">Growth Opportunities</span>
                 </div>
               </div>
+            </motion.div>
+
+            {/* Right Content - Stats/Highlights */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.3 }}
+              className="hidden lg:block"
+            >
             </motion.div>
           </div>
         </div>
