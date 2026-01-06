@@ -82,7 +82,7 @@ export default function ContactPage() {
       <NavBar />
 
       {/* Hero Section */}
-      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden w-full max-w-full">
+      <section className="relative min-h-[40vh] sm:min-h-[60vh] flex items-center justify-center overflow-hidden w-full max-w-full">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: "url('/images/nova-contact-hero.webp')" }}
@@ -99,7 +99,7 @@ export default function ContactPage() {
               className="space-y-6"
             >
               <motion.h1
-                className="text-5xl sm:text-6xl lg:text-7xl font-bold"
+                className="text-2xl sm:text-3xl lg:text-4xl font-bold"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
@@ -108,7 +108,7 @@ export default function ContactPage() {
               </motion.h1>
 
               <motion.p
-                className="text-xl sm:text-2xl text-white max-w-3xl mx-auto leading-relaxed"
+                className="text-base sm:text-lg text-white max-w-3xl mx-auto leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
@@ -169,8 +169,8 @@ export default function ContactPage() {
                 className="space-y-8"
               >
                 <div>
-                  <h2 className="text-3xl font-bold mb-4">Get In Touch</h2>
-                  <p className="text-muted-foreground text-lg">
+                  <h2 className="text-2xl md:text-3xl font-bold mb-4">Get In Touch</h2>
+                  <p className="text-muted-foreground text-base md:text-lg">
                     Ready to start your project? We'd love to hear from you.
                     Send us a message and we'll respond as soon as possible.
                   </p>
@@ -307,8 +307,8 @@ export default function ContactPage() {
                 className="space-y-8"
               >
                 <div>
-                  <h2 className="text-3xl font-bold mb-4">Contact Information</h2>
-                  <p className="text-muted-foreground text-lg">
+                  <h2 className="text-2xl md:text-3xl font-bold mb-4">Contact Information</h2>
+                  <p className="text-muted-foreground text-base md:text-lg">
                     Prefer to reach out directly? Here are all the ways you can contact us.
                   </p>
                 </div>

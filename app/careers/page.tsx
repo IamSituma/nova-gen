@@ -80,7 +80,7 @@ export default function CareersPage() {
       <NavBar />
 
       {/* Hero Section */}
-      <section className="relative min-h-[70vh] flex items-center overflow-hidden">
+      <section className="relative min-h-[25vh] sm:min-h-[45vh] flex items-center overflow-hidden">
         <div className="absolute inset-0">
           <div
             className="w-full h-full bg-cover bg-center bg-no-repeat"
@@ -98,21 +98,21 @@ export default function CareersPage() {
               transition={{ duration: 1 }}
               className="text-center lg:text-left"
             >
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black mb-8 leading-tight">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black mb-8 leading-tight">
                 <span className="text-white block mb-2">Join Our Team</span>
               </h1>
-              <p className="text-xl text-white max-w-xl mx-auto lg:mx-0 mb-12 leading-relaxed">
+              <p className="text-base sm:text-lg text-white max-w-xl mx-auto lg:mx-0 mb-12 leading-relaxed">
                 Help us build the future of digital innovation. We're always looking for talented individuals who are passionate about creating exceptional software solutions.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <div className="bg-white/60 rounded-full px-10 py-3">
-                  <span className="text-lg font-semibold whitespace-nowrap">Remote-First Culture</span>
+                  <span className="text-base font-semibold whitespace-nowrap">Remote-First Culture</span>
                 </div>
                 <div className="bg-white/60 rounded-full px-10 py-3">
-                  <span className="text-lg font-semibold whitespace-nowrap">Innovative Projects</span>
+                  <span className="text-base font-semibold whitespace-nowrap">Innovative Projects</span>
                 </div>
                 <div className="bg-white/60 rounded-full px-10 py-3">
-                  <span className="text-lg font-semibold whitespace-nowrap">Growth Opportunities</span>
+                  <span className="text-base font-semibold whitespace-nowrap">Growth Opportunities</span>
                 </div>
               </div>
             </motion.div>
@@ -139,10 +139,10 @@ export default function CareersPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
               Open Positions
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
               Discover exciting career opportunities and be part of our mission to transform businesses through technology.
             </p>
           </motion.div>
@@ -186,7 +186,7 @@ export default function CareersPage() {
                   <div className="p-6 border-b border-gray-200">
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex-1">
-                        <h3 className="text-xl font-bold text-gray-900 mb-2">{job.title}</h3>
+                        <h3 className="text-lg font-bold text-gray-900 mb-2">{job.title}</h3>
                         <div className="flex items-center space-x-4 text-sm text-gray-600">
                           <div className="flex items-center">
                             <Briefcase className="w-4 h-4 mr-1" />
@@ -203,7 +203,7 @@ export default function CareersPage() {
                         </div>
                       </div>
                       <div className="text-right">
-                        <div className="text-lg font-bold text-[#009696]">{job.salary}</div>
+                        <div className="text-base font-bold text-[#009696]">{job.salary}</div>
                         <div className="text-sm text-gray-500">per year</div>
                       </div>
                     </div>
@@ -303,10 +303,10 @@ export default function CareersPage() {
             {/* Left Column - Content */}
             <div className="space-y-8">
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
                   Why Join NovaGen?
                 </h2>
-                <p className="text-xl text-gray-600 leading-relaxed">
+                <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
                   We're more than just a workplace – we're a community of innovators building the future together.
                   Here's what you can expect when you join our team.
                 </p>
@@ -380,7 +380,7 @@ export default function CareersPage() {
               <h3 className="text-2xl font-bold text-white text-left">
                 Join Our Talent Pool
               </h3>
-              <p className="text-xl text-white/90 leading-relaxed text-left">
+              <p className="text-lg md:text-xl text-white/90 leading-relaxed text-left">
                 Even if we don't have open positions that match your profile, we'd love to hear from you.
                 Send us your resume and we'll keep it on file for future opportunities.
               </p>

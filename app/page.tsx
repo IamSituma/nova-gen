@@ -209,7 +209,7 @@ export default function Home() {
                           ) : 'Get Quote'}
                         </button>
 
-                        <div className="mt-3 text-center text-xs text-gray-500">
+                        <div className="mt-3 text-center text-xs text-white">
                           By submitting, you agree to our terms.
                         </div>
                       </form>

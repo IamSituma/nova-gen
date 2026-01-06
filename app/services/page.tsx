@@ -280,7 +280,7 @@ export default function ServicesPage() {
       <NavBar />
 
       {/* Hero Section */}
-      <section className="relative min-h-[70vh] flex items-center overflow-hidden">
+      <section className="relative min-h-[50vh] sm:min-h-[70vh] flex items-center overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
           <div
@@ -303,10 +303,10 @@ export default function ServicesPage() {
               transition={{ duration: 1 }}
               className="text-center lg:text-left"
             >
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black mb-8 leading-tight">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-8 leading-tight">
                 <span className="text-white block mb-2">Elevate Your Software Solutions</span>
               </h1>
-              <p className="text-xl text-white max-w-xl mx-auto lg:mx-0 mb-12 leading-relaxed">
+              <p className="text-lg text-white max-w-xl mx-auto lg:mx-0 mb-12 leading-relaxed">
                 From MVPs to enterprise systems, we build scalable software solutions that transform businesses. Our expert developers deliver high-quality code, innovative architectures, and seamless user experiences.
               </p>
             </motion.div>
@@ -349,7 +349,7 @@ export default function ServicesPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 text-gray-900">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 text-gray-900">
               Services We Offer
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -416,7 +416,7 @@ export default function ServicesPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 text-gray-900">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 text-gray-900">
               From MVPs to Enterprise Solutions: Tailored Development Services
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -521,7 +521,7 @@ export default function ServicesPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 text-gray-900">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 text-gray-900">
               What Our Clients Say
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -593,7 +593,7 @@ export default function ServicesPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 text-gray-900">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 text-gray-900">
               A Message from Our CEO
             </h2>
           </motion.div>
@@ -688,7 +688,7 @@ export default function ServicesPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 text-gray-900">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 text-gray-900">
               Our Quality Control Practices
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -758,7 +758,7 @@ export default function ServicesPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 text-gray-900">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 text-gray-900">
               Frequently Asked Questions
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -825,7 +825,7 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-20 px-4 min-h-[70vh] flex items-center">
+      <section className="relative py-20 px-4 min-h-[50vh] sm:min-h-[70vh] flex items-center">
         {/* Background Image */}
         <div className="absolute inset-0">
           <div
@@ -847,7 +847,7 @@ export default function ServicesPage() {
             className="px-4 py-8"
           >
             <div className="mb-8">
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
+              <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-4">
                 Ready to Transform Your Business?
               </h3>
               <p className="text-white/90 text-xl mb-8 max-w-2xl mx-auto leading-relaxed">

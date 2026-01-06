@@ -22,7 +22,7 @@ export default function ChatAssistant() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: generateMessageId(),
-      content: "Hello! I'm NovaGen's AI assistant. I'm here to help you learn about our web development, mobile app, and digital transformation services. How can I assist you today?",
+      content: "Hello! I’m Nova Gen’s Online Assistant. I’m here to guide you through our web development, mobile app, and digital transformation services. How can I help you today?",
       sender: "bot",
       timestamp: new Date(),
     },
@@ -341,7 +341,7 @@ export default function ChatAssistant() {
                                 />
                               ))}
                             </div>
-                            <span className="text-xs text-muted-foreground">AI is thinking...</span>
+                            <span className="text-xs text-muted-foreground">Agent is Responding...</span>
                           </div>
                         </div>
                       </motion.div>

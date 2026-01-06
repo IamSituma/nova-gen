@@ -74,7 +74,7 @@ export default function ProjectsPage() {
     <div className="min-h-screen bg-gray-50">
       <NavBar />
      {/* Hero Section */}
-     <section className="relative min-h-[70vh] flex items-center overflow-hidden">
+     <section className="relative min-h-[50vh] sm:min-h-[70vh] flex items-center overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
           <div
@@ -97,10 +97,10 @@ export default function ProjectsPage() {
               transition={{ duration: 1 }}
               className="text-center lg:text-left"
             >
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black mb-8 leading-tight">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-8 leading-tight">
                 <span className="text-white block mb-2">Our Projects</span>
               </h1>
-              <p className="text-xl text-white max-w-xl mx-auto lg:mx-0 mb-12 leading-relaxed">
+              <p className="text-lg text-white max-w-xl mx-auto lg:mx-0 mb-12 leading-relaxed">
               Explore our projects showcasing innovative software solutions, practical applications, and technology-driven impact.
               </p>
             </motion.div>
@@ -136,7 +136,7 @@ export default function ProjectsPage() {
       <section className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 py-16">
           <div className="text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
               Featured Work
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">

@@ -52,7 +52,7 @@ export function WhyWorkWithUsSection() {
             viewport={{ once: true }}
           >
             <div>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black mb-6 leading-tight">
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-black mb-6 leading-tight">
                 Why Work With Us
               </h2>
               <div className="w-20 h-1 bg-black/50 rounded-full mb-6"></div>
@@ -67,15 +67,15 @@ export function WhyWorkWithUsSection() {
                     {row.map((logoName, logoIndex) => {
                       const logo = logos.find(l => l.name === logoName)
                       return (
-                        <motion.div
+                      <motion.div
                           key={logoName}
-                          initial={{ opacity: 0, y: 20 }}
-                          whileInView={{ opacity: 1, y: 0 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.6, delay: (rowIndex * 2 + logoIndex) * 0.1 }}
-                          viewport={{ once: true }}
+                        viewport={{ once: true }}
                           className="flex items-center justify-start p-3 bg-transparent rounded-md hover:bg-transparent transition-all duration-300"
-                        >
-                          <img
+                      >
+                        <img
                             src={`/logos/${logoName}.png`}
                             alt={logo?.alt || logoName}
                             className="max-h-12 object-contain transition-all duration-300"
@@ -91,8 +91,8 @@ export function WhyWorkWithUsSection() {
                               (e.target as HTMLImageElement).style.filter = 'sepia(1) hue-rotate(25deg) brightness(0.4)';
                               (e.target as HTMLImageElement).style.opacity = '0.6';
                             }}
-                          />
-                        </motion.div>
+                        />
+                      </motion.div>
                       )
                     })}
                   </div>
@@ -108,7 +108,7 @@ export function WhyWorkWithUsSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <p className="text-lg sm:text-xl text-gray-700 mb-8 leading-relaxed">
+            <p className="text-base sm:text-lg text-gray-700 mb-8 leading-relaxed">
               Choose NovaGen for unparalleled digital excellence. Our proven track record,
               innovative solutions, and commitment to your success make us the perfect partner
               for your next project.
