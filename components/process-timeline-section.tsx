@@ -59,7 +59,7 @@ const processSteps = [
 
 export function ProcessTimelineSection() {
   return (
-    <section className="py-20 px-4 sm:px-6 bg-white text-gray-900">
+    <section className="py-20 px-4 sm:px-6 bg-gradient-to-br from-gray-50 to-white text-gray-900">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <motion.div

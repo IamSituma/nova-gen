@@ -993,8 +993,8 @@ video {
 .h-svh {
   height: 100svh;
 }
-.max-h-10 {
-  max-height: 2.5rem;
+.max-h-12 {
+  max-height: 3rem;
 }
 .max-h-96 {
   max-height: 24rem;
@@ -1834,9 +1834,6 @@ video {
 .border-white\/30 {
   border-color: rgb(255 255 255 / 0.3);
 }
-.border-white\/50 {
-  border-color: rgb(255 255 255 / 0.5);
-}
 .border-l-transparent {
   border-left-color: transparent;
 }
@@ -2138,17 +2135,11 @@ video {
 .bg-white\/20 {
   background-color: rgb(255 255 255 / 0.2);
 }
-.bg-white\/30 {
-  background-color: rgb(255 255 255 / 0.3);
-}
 .bg-white\/5 {
   background-color: rgb(255 255 255 / 0.05);
 }
-.bg-white\/50 {
-  background-color: rgb(255 255 255 / 0.5);
-}
-.bg-white\/70 {
-  background-color: rgb(255 255 255 / 0.7);
+.bg-white\/60 {
+  background-color: rgb(255 255 255 / 0.6);
 }
 .bg-white\/90 {
   background-color: rgb(255 255 255 / 0.9);
@@ -2159,12 +2150,6 @@ video {
 .bg-yellow-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(234 179 8 / var(--tw-bg-opacity, 1));
-}
-.bg-white\/80 {
-  background-color: rgb(255 255 255 / 0.8);
-}
-.bg-white\/60 {
-  background-color: rgb(255 255 255 / 0.6);
 }
 .bg-gradient-to-b {
   background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
@@ -2581,9 +2566,6 @@ video {
 }
 .to-black\/30 {
   --tw-gradient-to: rgb(0 0 0 / 0.3) var(--tw-gradient-to-position);
-}
-.to-black\/40 {
-  --tw-gradient-to: rgb(0 0 0 / 0.4) var(--tw-gradient-to-position);
 }
 .to-blue-400 {
   --tw-gradient-to: #60a5fa var(--tw-gradient-to-position);
@@ -3461,6 +3443,10 @@ video {
   --tw-grayscale: grayscale(100%);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
+.sepia {
+  --tw-sepia: sepia(100%);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
 .filter {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
@@ -3878,8 +3864,8 @@ body {
 .hover\:bg-sidebar-accent:hover {
   background-color: hsl(var(--sidebar-accent));
 }
-.hover\:bg-white\/30:hover {
-  background-color: rgb(255 255 255 / 0.3);
+.hover\:bg-transparent:hover {
+  background-color: transparent;
 }
 .hover\:from-emerald-400:hover {
   --tw-gradient-from: #34d399 var(--tw-gradient-from-position);
@@ -4786,20 +4772,12 @@ body {
   .md\:p-8 {
     padding: 2rem;
   }
-  .md\:text-2xl {
-    font-size: 1.5rem;
-    line-height: 2rem;
-  }
   .md\:text-4xl {
     font-size: 2.25rem;
     line-height: 2.5rem;
   }
   .md\:text-5xl {
     font-size: 3rem;
-    line-height: 1;
-  }
-  .md\:text-6xl {
-    font-size: 3.75rem;
     line-height: 1;
   }
   .md\:text-7xl {

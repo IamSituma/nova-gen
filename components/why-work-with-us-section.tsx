@@ -14,21 +14,29 @@ const reasons = [
 ]
 
 export function WhyWorkWithUsSection() {
-  // Layout: 3,3,2 logos
+  // Available logos
+  const logos = [
+    { name: 'artfield', alt: 'Artfield' },
+    { name: 'scooby', alt: 'Scooby' },
+    { name: 'uhoa', alt: 'UHOA' },
+    { name: 'uls', alt: 'ULS' },
+    { name: 'SprintUG PNG', alt: 'SprintUG'}
+  ]
+
+  // Layout: 3,2 logos
   const logoRows = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8]
+    ['artfield', 'scooby', 'uhoa'],
+    ['uls', 'SprintUG PNG']
   ]
 
   return (
-    <section className="py-20 px-4 sm:px-6 bg-[#009696] text-white relative overflow-hidden">
+    <section className="py-20 px-4 sm:px-6 bg-white text-black relative overflow-hidden">
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0 opacity-5">
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%23ffffff' fillOpacity='0.1'%3E%3Ccircle cx='7' cy='7' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%23000000' fillOpacity='0.1'%3E%3Ccircle cx='7' cy='7' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
             backgroundSize: "60px 60px"
           }}
         />
@@ -47,35 +55,46 @@ export function WhyWorkWithUsSection() {
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black mb-6 leading-tight">
                 Why Work With Us
               </h2>
-              <div className="w-20 h-1 bg-white/50 rounded-full mb-6"></div>
+              <div className="w-20 h-1 bg-black/50 rounded-full mb-6"></div>
 
-              {/* Logos Displayed in 3,3,2 Layout */}
+              {/* Logos Displayed in 3,2 Layout */}
               <div className="space-y-4">
                 {logoRows.map((row, rowIndex) => (
                   <div
                     key={rowIndex}
                     className="flex gap-4"
-                    // Limit bottom row width to match 3-logo row
-                    style={{
-                      width: row.length === 2 ? "calc((100% - 2 * 1rem) / 3 * 2 + 1rem)" : "100%"
-                    }}
                   >
-                    {row.map((logoIdx) => (
-                      <motion.div
-                        key={logoIdx}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: logoIdx * 0.1 }}
-                        viewport={{ once: true }}
-                        className="flex items-center justify-center p-2 bg-white/20 rounded-md hover:bg-white/30 transition flex-1"
-                      >
-                        <img
-                          src={`/logos/logo-${logoIdx}.png`} // replace with actual logo paths
-                          alt={`Logo ${logoIdx}`}
-                          className="max-h-10 object-contain"
-                        />
-                      </motion.div>
-                    ))}
+                    {row.map((logoName, logoIndex) => {
+                      const logo = logos.find(l => l.name === logoName)
+                      return (
+                        <motion.div
+                          key={logoName}
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.6, delay: (rowIndex * 2 + logoIndex) * 0.1 }}
+                          viewport={{ once: true }}
+                          className="flex items-center justify-start p-3 bg-transparent rounded-md hover:bg-transparent transition-all duration-300"
+                        >
+                          <img
+                            src={`/logos/${logoName}.png`}
+                            alt={logo?.alt || logoName}
+                            className="max-h-12 object-contain transition-all duration-300"
+                            style={{
+                              filter: 'sepia(1) hue-rotate(25deg) brightness(0.4)',
+                              opacity: 0.6
+                            }}
+                            onMouseEnter={(e) => {
+                              (e.target as HTMLImageElement).style.filter = 'none';
+                              (e.target as HTMLImageElement).style.opacity = '1';
+                            }}
+                            onMouseLeave={(e) => {
+                              (e.target as HTMLImageElement).style.filter = 'sepia(1) hue-rotate(25deg) brightness(0.4)';
+                              (e.target as HTMLImageElement).style.opacity = '0.6';
+                            }}
+                          />
+                        </motion.div>
+                      )
+                    })}
                   </div>
                 ))}
               </div>
@@ -89,7 +108,7 @@ export function WhyWorkWithUsSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <p className="text-lg sm:text-xl text-white/90 mb-8 leading-relaxed">
+            <p className="text-lg sm:text-xl text-gray-700 mb-8 leading-relaxed">
               Choose NovaGen for unparalleled digital excellence. Our proven track record,
               innovative solutions, and commitment to your success make us the perfect partner
               for your next project.
@@ -107,10 +126,10 @@ export function WhyWorkWithUsSection() {
                     viewport={{ once: true }}
                     className="flex items-start space-x-4"
                   >
-                    <div className="flex-shrink-0 w-6 h-6 bg-white/20 rounded-full flex items-center justify-center mt-0.5">
-                      <IconComponent className="w-4 h-4 text-white" />
+                    <div className="flex-shrink-0 w-6 h-6 bg-black/20 rounded-full flex items-center justify-center mt-0.5">
+                      <IconComponent className="w-4 h-4 text-black" />
                     </div>
-                    <p className="text-white/90 leading-relaxed">{reason.text}</p>
+                    <p className="text-gray-700 leading-relaxed">{reason.text}</p>
                   </motion.div>
                 )
               })}

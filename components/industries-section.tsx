@@ -17,13 +17,12 @@ import {
 
 const industries = [
   {
-    id: "healthcare",
-    name: "Healthcare",
-    icon: Heart,
-    description: "We create secure, standards-compliant healthcare solutions for Uganda, including patient management, telemedicine, and medical data analytics to improve care and efficiency while meeting local regulations.",
-    color: "from-red-500 to-pink-500",
-    bgColor: "bg-red-50",
-    stats: "10+ Projects"
+    id: "legal-services",
+    name: "Legal Services",
+    icon: Briefcase,
+    description: "Legal practice management systems, case management platforms, document automation tools, and compliance solutions that streamline legal workflows and enhance client service delivery.",
+    color: "from-blue-600 to-indigo-600",
+    bgColor: "bg-blue-50",
   },
   {
     id: "finance",
@@ -31,8 +30,7 @@ const industries = [
     icon: DollarSign,
     description: "Secure financial applications, banking platforms, payment gateways, and blockchain solutions that meet the highest security standards and regulatory requirements.",
     color: "from-green-500 to-emerald-500",
-    bgColor: "bg-green-50",
-    stats: "20+ Projects"
+    bgColor: "bg-green-50"
   },
   {
     id: "ecommerce",
@@ -40,8 +38,7 @@ const industries = [
     icon: ShoppingCart,
     description: "Custom online stores, marketplace platforms, inventory management systems, and payment integrations that drive sales and enhance customer experiences.",
     color: "from-blue-500 to-indigo-500",
-    bgColor: "bg-blue-50",
-    stats: "15+ Projects"
+    bgColor: "bg-blue-50"
   },
   {
     id: "education",
@@ -49,8 +46,7 @@ const industries = [
     icon: GraduationCap,
     description: "Learning management systems, student portals, virtual classrooms, and educational apps that make learning more accessible and engaging for students and educators.",
     color: "from-purple-500 to-violet-500",
-    bgColor: "bg-purple-50",
-    stats: "25+ Projects"
+    bgColor: "bg-purple-50"
   },
   {
     id: "real-estate",
@@ -58,8 +54,7 @@ const industries = [
     icon: Building,
     description: "Property management systems, real estate marketplaces, virtual tours, and CRM solutions that streamline property transactions and tenant management.",
     color: "from-orange-500 to-amber-500",
-    bgColor: "bg-orange-50",
-    stats: "18+ Projects"
+    bgColor: "bg-orange-50"
   },
   {
     id: "hospitality",
@@ -67,8 +62,7 @@ const industries = [
     icon: Hotel,
     description: "Hotel booking systems, restaurant management platforms, travel apps, and customer experience solutions that enhance guest satisfaction and operational efficiency.",
     color: "from-teal-500 to-cyan-500",
-    bgColor: "bg-teal-50",
-    stats: "10+ Projects"
+    bgColor: "bg-teal-50"
   },
 ]
 
@@ -119,13 +113,6 @@ export function IndustriesSection() {
                   <p className="text-gray-600 text-sm leading-relaxed">
                     {industry.description}
                   </p>
-                </div>
-
-                {/* Stats */}
-                <div className="flex items-center justify-start pt-4 border-t border-gray-200">
-                  <div className={`text-sm font-semibold bg-gradient-to-r ${industry.color} bg-clip-text text-transparent`}>
-                    {industry.stats}
-                  </div>
                 </div>
 
                 {/* Hover Effect */}

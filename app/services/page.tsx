@@ -481,14 +481,14 @@ export default function ServicesPage() {
                   <h4 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
                     What We Deliver:
                   </h4>
-                  <div className="space-y-3">
+                  <div className="space-y-2">
                     {tailoredServices[selectedService].details.map((detail, detailIndex) => (
                       <motion.div
                         key={detailIndex}
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.3, delay: detailIndex * 0.05 }}
-                        className="flex items-start space-x-3 p-3 rounded-lg bg-gray-50 hover:bg-emerald-50 transition-colors duration-200"
+                        className="flex items-start space-x-3 p-2 rounded-lg bg-gray-50 hover:bg-emerald-50 transition-colors duration-200"
                       >
                         <CheckCircle className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
                         <span className="text-gray-700 text-sm leading-relaxed">{detail}</span>
@@ -532,25 +532,22 @@ export default function ServicesPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                quote: "NovaGen transformed our outdated website into a modern, high-converting platform. Their team's expertise and attention to detail exceeded our expectations.",
-                name: "Sarah Johnson",
+                name: "Isaac Walusimbi",
+                company: "Sprint Internet Limited",
                 position: "CEO",
-                company: "TechStart Solutions",
-                avatar: "SJ"
+                quote: "Nova Gen transformed our outdated website into a modern, high-converting platform. Their team's expertise and attention to detail exceeded our expectations."
               },
               {
-                quote: "The mobile app they developed for us has been a game-changer for our business. User engagement increased by tremendously in the first months alone. I would recommend them to ayone interested in their services.",
                 name: "Michael Chen",
-                position: "CTO",
                 company: "InnovateCorp",
-                avatar: "MC"
+                position: "CTO",
+                quote: "The mobile app they developed for us has been a game-changer for our business. User engagement increased by tremendously in the first months alone. I would recommend them to ayone interested in their services."
               },
               {
-                quote: "Working with NovaGen was a seamless experience from start to finish. They delivered exactly what they promised, on time and within budget.They take customer feedback and reactions seriously",
                 name: "Emma Rodriguez",
-                position: "Marketing Director",
                 company: "GrowthMasters Inc",
-                avatar: "ER"
+                position: "Marketing Director",
+                quote: "Working with Nova Gen was a seamless experience from start to finish. They delivered exactly what they promised, on time and within budget.They take customer feedback and reactions seriously"
               }
             ].map((testimonial, index) => (
               <motion.div
@@ -575,15 +572,10 @@ export default function ServicesPage() {
                   "{testimonial.quote}"
                 </blockquote>
 
-                <div className="flex items-center">
-                  <div className="w-12 h-12 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
-                    {testimonial.avatar}
-                  </div>
-                  <div>
-                    <div className="font-semibold text-gray-900">{testimonial.name}</div>
-                    <div className="text-sm text-gray-600">{testimonial.position}</div>
-                    <div className="text-sm text-emerald-600 font-medium">{testimonial.company}</div>
-                  </div>
+                <div className="text-center">
+                  <div className="font-semibold text-gray-900 text-lg mb-1">{testimonial.name}</div>
+                  <div className="text-sm text-emerald-600 font-medium mb-1">{testimonial.company}</div>
+                  <div className="text-sm text-gray-600 mb-3">{testimonial.position}</div>
                 </div>
               </motion.div>
             ))}
@@ -625,7 +617,7 @@ export default function ServicesPage() {
                   <br /><br />
                   With over 5 years of experience and a team of passionate experts, we've helped countless businesses achieve their digital transformation goals. We don't just build software – we build partnerships that last.
                   <br /><br />
-                  Choose NovaGen for excellence, innovation, and results that matter."
+                  Choose Nova Gen for excellence, innovation, and results that matter."
                 </blockquote>
                 <div className="border-t border-white/30 pt-6">
                   <div className="font-bold text-xl">Nabilah Kitiibwa</div>
@@ -866,7 +858,6 @@ export default function ServicesPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact">
                 <Button className="bg-emerald-500 text-white hover:bg-emerald-600 px-8 py-4 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300">
-                  <Zap className="w-5 h-5 mr-2" />
                   Start Your Project
                 </Button>
               </Link>
