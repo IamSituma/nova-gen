@@ -82,7 +82,7 @@ export default function ContactPage() {
       <NavBar />
 
       {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden w-full max-w-full">
+      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden w-full max-w-full">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: "url('/images/nova-contact-hero.webp')" }}

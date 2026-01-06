@@ -80,7 +80,7 @@ export default function CareersPage() {
       <NavBar />
 
       {/* Hero Section */}
-      <section className="relative min-h-[80vh] flex items-center overflow-hidden">
+      <section className="relative min-h-[70vh] flex items-center overflow-hidden">
         <div className="absolute inset-0">
           <div
             className="w-full h-full bg-cover bg-center bg-no-repeat"
@@ -105,14 +105,14 @@ export default function CareersPage() {
                 Help us build the future of digital innovation. We're always looking for talented individuals who are passionate about creating exceptional software solutions.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <div className="bg-white/60 backdrop-blur-sm rounded-full px-6 py-3">
-                  <span className="text-lg font-semibold">Remote-First Culture</span>
+                <div className="bg-white/60 rounded-full px-10 py-3">
+                  <span className="text-lg font-semibold whitespace-nowrap">Remote-First Culture</span>
                 </div>
-                <div className="bg-white/60 backdrop-blur-sm rounded-full px-6 py-3">
-                  <span className="text-lg font-semibold">Innovative Projects</span>
+                <div className="bg-white/60 rounded-full px-10 py-3">
+                  <span className="text-lg font-semibold whitespace-nowrap">Innovative Projects</span>
                 </div>
-                <div className="bg-white/60 backdrop-blur-sm rounded-full px-6 py-3">
-                  <span className="text-lg font-semibold">Growth Opportunities</span>
+                <div className="bg-white/60 rounded-full px-10 py-3">
+                  <span className="text-lg font-semibold whitespace-nowrap">Growth Opportunities</span>
                 </div>
               </div>
             </motion.div>

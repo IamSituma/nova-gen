@@ -825,7 +825,7 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-20 px-4 min-h-[60vh] flex items-center">
+      <section className="relative py-20 px-4 min-h-[70vh] flex items-center">
         {/* Background Image */}
         <div className="absolute inset-0">
           <div
