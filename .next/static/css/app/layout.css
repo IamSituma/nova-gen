@@ -536,6 +536,9 @@ video {
 .relative {
   position: relative;
 }
+.sticky {
+  position: sticky;
+}
 .inset-0 {
   inset: 0px;
 }
@@ -690,6 +693,9 @@ video {
 }
 .top-full {
   top: 100%;
+}
+.top-8 {
+  top: 2rem;
 }
 .z-10 {
   z-index: 10;
@@ -3940,6 +3946,9 @@ body {
 .hover\:text-white:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+.hover\:text-\[\#009696\]\/80:hover {
+  color: rgb(0 150 150 / 0.8);
 }
 .hover\:underline:hover {
   text-decoration-line: underline;

@@ -3,52 +3,69 @@
 import { motion } from "framer-motion"
 import { NavBar } from "@/components/nav-bar"
 import { Footer } from "@/components/footer"
-import { ExternalLink } from "lucide-react"
+import { ExternalLink, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useState } from "react"
 
 export default function ProjectsPage() {
+  const [selectedProject, setSelectedProject] = useState(0)
+
   const projects = [
     {
       id: "nova-legal",
       name: "Nova Legal",
       description: "A comprehensive legal management system that streamlines case management, client records, billing, and document workflows.",
-      image: "/images/glasspatch-screenshot.png",
-      previewUrl: "https://novalegal.app",
+      image: "/images/lawyer-novalegal.png",
+      companyLogo: "/logos/nova-legal.png",
+      companyName: "Nova Generation"
     },
     {
       id: "nova-suite",
       name: "Nova Suite",
       description: "Hotel management system that streamlines reservations, front desk operations, billing, and guest management in one powerful platform.",
-      image: "/images/norams-auto-screenshot.png",
-      previewUrl: "https://novasuite.app",
+      image: "/images/reservation.png",
+      companyLogo: "/logos/nova-suite.png",
+      companyName: "Nova Generation"
     },
     {
       id: "nova-coding",
       name: "Nova Coding Club",
       description: "Providing hands-on coding lessons that build creativity and problem-solving skills, and a strong foundation in technology.",
-      image: "/images/dreambox-screenshot.png",
-      previewUrl: "https://club.novageneration.tech/",
+      image: "/images/coding-nova-club.png",
+      companyLogo: "/images/NOVA GEN.svg",
+      companyName: "Nova Generation"
     },
     {
-      id: "nova-ecommerce",
-      name: "Nova E-Commerce Hub",
-      description: "Advanced e-commerce platform with multi-vendor support",
-      image: "/images/ecommerce-screenshot.png",
-      previewUrl: "https://nova-ecommerce.com",
+      id: "sprint",
+      name: "Sprint Internet Uganda",
+      description: "Developed a modern, responsive website for Sprint Internet, Uganda's leading internet service provider, featuring service showcases, customer portals, and seamless online experiences that improved user engagement by 40%.",
+      image: "/images/network-sprinttz.png",
+      companyLogo: "/logos/SprintUG PNG.png",
+      companyName: "Sprint Internet"
     },
     {
-      id: "nova-mobile",
-      name: "Nova Mobile Solutions",
-      description: "Cross-platform fitness tracking mobile application",
+      id: "inventory",
+      name: "Inventory Management System",
+      description: "Developed a comprehensive inventory management system with real-time stock tracking, automated reordering, barcode scanning, multi-location support, and detailed analytics dashboard for efficient warehouse and retail operations.",
       image: "/images/mobile-app-screenshot.png",
-      previewUrl: "https://nova-mobile.app",
+      companyLogo: "/images/NOVA GEN.svg",
+      companyName: "Nova Generation"
     },
     {
-      id: "nova-saas",
-      name: "Nova SaaS Platform",
-      description: "Cloud-based project management with team collaboration",
+      id: "sprint-tz",
+      name: "Sprint Internet Tanzania",
+      description: "Built a comprehensive corporate website for Sprint Internet Tanzania, featuring advanced service packages, online billing integration, customer support portals, and localized content that enhanced digital presence and customer engagement across Tanzania.",
       image: "/images/saas-screenshot.png",
-      previewUrl: "https://nova-saas.com",
+      companyLogo: "/logos//sprint-tz.png",
+      companyName: "Sprint Internet"
+    },
+    {
+      id: "sprint-sa",
+      name: "Sprint Internet South Africa",
+      description: "Created a modern, localized website for Sprint Internet South Africa, incorporating region-specific service offerings, multi-language support, integrated payment systems, customer service platforms, and SEO optimization that boosted online visibility and customer acquisition in the South African market.",
+      image: "/images/SprintSA.jpg",
+      companyLogo: "/logos/SprintRSA.png",
+      companyName: "Sprint Internet"
     }
   ]
 
@@ -129,42 +146,110 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      {/* Projects Grid */}
+      {/* Projects Showcase */}
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            {/* Project List - Left Side */}
+            <div className="lg:col-span-1">
               <motion.div
-                key={project.id}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+                className="sticky top-8"
+              >
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Our Projects</h3>
+                <div className="space-y-2">
+                  {projects.map((project, index) => (
+                    <motion.button
+                      key={project.id}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.1 }}
+                      onClick={() => setSelectedProject(index)}
+                      className={`w-full text-left p-4 rounded-lg transition-all duration-300 ${
+                        selectedProject === index
+                          ? 'bg-[#009696] text-white shadow-lg'
+                          : 'bg-white text-gray-700 hover:bg-gray-100 hover:shadow-md'
+                      }`}
+                    >
+                      <div>
+                        <div className="font-semibold">{project.name}</div>
+                        <div className={`text-sm ${
+                          selectedProject === index ? 'text-white/80' : 'text-gray-500'
+                        }`}>
+                          {project.companyName}
+                        </div>
+                      </div>
+                    </motion.button>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Project Details - Right Side */}
+            <div className="lg:col-span-2">
+              <motion.div
+                key={selectedProject}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                transition={{ duration: 0.6 }}
+                className="bg-white rounded-2xl shadow-xl overflow-hidden"
               >
                 {/* Project Image */}
                 <div className="aspect-video overflow-hidden">
                   <img
-                    src={project.image}
-                    alt={project.name}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    src={projects[selectedProject].image}
+                    alt={projects[selectedProject].name}
+                    className="w-full h-full object-cover"
                   />
                 </div>
 
                 {/* Project Content */}
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">{project.name}</h3>
-                  <p className="text-gray-600 mb-6 leading-relaxed">{project.description}</p>
+                <div className="p-8">
+                  <div className="flex items-start justify-between mb-6">
+                    <div className="flex items-center space-x-4">
+                      <img
+                        src={projects[selectedProject].companyLogo}
+                        alt={projects[selectedProject].companyName}
+                        className="w-16 h-16 object-contain rounded-lg bg-white p-3 shadow-sm"
+                      />
+                      <div>
+                        <h2 className="text-3xl font-bold text-gray-900 mb-2">
+                          {projects[selectedProject].name}
+                        </h2>
+                        <div className="flex items-center text-[#009696] font-medium">
+                          <span>by {projects[selectedProject].companyName}</span>
+                          <ArrowRight className="w-4 h-4 ml-2" />
+                        </div>
+                      </div>
+                    </div>
+                    <Button
+                      onClick={() => {
+                        const urls = {
+                          "nova-legal": "https://novalegal.app",
+                          "nova-suite": "https://novasuite.app",
+                          "nova-coding": "https://club.novageneration.tech/",
+                          "sprint": "https://sprintug.com",
+                          "inventory": "https://nova-mobile.app",
+                          "sprint-tz": "https://sprinttz.co.tz",
+                          "sprint-sa": "https://sprintsa.co.za"
+                        };
+                      }}
+                      className="bg-[#009696] hover:bg-[#009696]/90 text-white"
+                    >
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      Visit Website
+                    </Button>
+                  </div>
 
-                  <Button
-                    onClick={() => window.open(project.previewUrl, "_blank")}
-                    className="w-full bg-[#009696] hover:bg-[#009696]/90 text-white"
-                  >
-                    <ExternalLink className="w-4 h-4 mr-2" />
-                    Visit Website
-                  </Button>
+                  <p className="text-lg text-gray-600 leading-relaxed mb-8">
+                    {projects[selectedProject].description}
+                  </p>
+
                 </div>
               </motion.div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
@@ -192,11 +277,11 @@ export default function ProjectsPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-8 relative z-10">
               {[
-                { id: 1, title: "Discovery", description: "Understanding your requirements" },
+                { id: 1, title: "Discovery", description: "Gathering requirements" },
                 { id: 2, title: "Planning", description: "Creating project roadmap" },
-                { id: 3, title: "Design", description: "UI/UX design phase" },
+                { id: 3, title: "Design", description: "UI/UX design & prototype phase" },
                 { id: 4, title: "Development", description: "Building your solution" },
-                { id: 5, title: "Testing", description: "Quality assurance" },
+                { id: 5, title: "Testing", description: "Quality assurance & revisions" },
                 { id: 6, title: "Launch", description: "Deployment & support" }
               ].map((step, index) => (
                 <motion.div
