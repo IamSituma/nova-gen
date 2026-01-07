@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import Link from "next/link"
 import { CheckCircle, XCircle } from "lucide-react"
 import { NavBar } from "@/components/nav-bar"
 import { Footer } from "@/components/footer"
@@ -18,7 +17,6 @@ import { IndustriesSection } from "@/components/industries-section"
 export default function Home() {
   const [quotePopupOpen, setQuotePopupOpen] = useState(false)
 
-  // Form state
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -30,24 +28,21 @@ export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
-  // Input change handler
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
   }
 
-  // Form submit handler (connected to Google Sheets)
+  // Form submit connected to Google Sheets
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitStatus('idle')
 
     try {
-      const response = await fetch("https://script.google.com/macros/s/AKfycbxMESG2gw-v2t26zrYKPoRPbENz3RWN9GrNRxcmkxy7KsOFK0WnVy5KGLS6i6B8P5Cr/exec", { 
+      const response = await fetch("YOUR_WEB_APP_URL_HERE", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           formName: "QuoteForm",
           firstName: formData.firstName,
@@ -59,12 +54,13 @@ export default function Home() {
         })
       })
 
+      if (!response.ok) throw new Error(`HTTP error ${response.status}`)
+
       const result = await response.json()
+      console.log("Apps Script response:", result)
 
       if (result.status === "success") {
         setSubmitStatus('success')
-
-        // Reset form
         setFormData({
           firstName: '',
           lastName: '',
@@ -74,10 +70,10 @@ export default function Home() {
           message: ''
         })
       } else {
-        throw new Error(result.message || "Unknown error")
+        throw new Error(result.message || "Unknown error from Apps Script")
       }
-    } catch (error) {
-      console.error("Form submission error:", error)
+    } catch (err: any) {
+      console.error("Form submission error:", err)
       setSubmitStatus('error')
     } finally {
       setIsSubmitting(false)
@@ -91,29 +87,20 @@ export default function Home() {
         <NavBar />
         <ProfileDropdown />
 
-        {/* Hero Section */}
         <section className="relative min-h-[75vh] px-4 sm:px-6 overflow-hidden bg-gradient-to-br from-gray-50 to-white">
-          {/* Hero Background */}
-          <div
-            className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: "url('/images/nova-hero.webp')" }}
-          />
+          <div className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/images/nova-hero.webp')" }} />
           <div className="absolute inset-0 bg-black/30"></div>
 
-          {/* Content Grid */}
           <div className="relative z-10 max-w-7xl mx-auto py-32 min-h-[80vh] flex items-end pb-16">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
 
-              {/* Left Side - Hero Text */}
               <div className="space-y-8">
                 <Hero onQuoteClick={() => setQuotePopupOpen(true)} />
               </div>
 
-              {/* Right Side - Quote Form / Success Message */}
               <div className="lg:pl-8 flex justify-center items-start">
                 <div className="bg-white/5 backdrop-blur-sm rounded-2xl shadow-2xl p-8 border border-white/10 max-w-lg w-full min-h-[500px] flex flex-col">
-                  
-                  {/* Keep min-height fixed so hero section doesn’t jump */}
+
                   {submitStatus === 'success' ? (
                     <div className="flex items-center justify-center h-full min-h-[500px]">
                       <div className="text-center">
@@ -143,92 +130,34 @@ export default function Home() {
 
                       <form onSubmit={handleFormSubmit} className="space-y-4 flex-1 flex flex-col">
                         <div className="grid grid-cols-2 gap-4">
-                          <input
-                            type="text"
-                            name="firstName"
-                            placeholder="First Name"
-                            value={formData.firstName}
-                            onChange={handleInputChange}
-                            className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent"
-                            required
-                          />
-                          <input
-                            type="text"
-                            name="lastName"
-                            placeholder="Last Name"
-                            value={formData.lastName}
-                            onChange={handleInputChange}
-                            className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent"
-                            required
-                          />
+                          <input type="text" name="firstName" placeholder="First Name" value={formData.firstName} onChange={handleInputChange} className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent" required />
+                          <input type="text" name="lastName" placeholder="Last Name" value={formData.lastName} onChange={handleInputChange} className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent" required />
                         </div>
 
-                        <input
-                          type="email"
-                          name="email"
-                          placeholder="Email Address"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent"
-                          required
-                        />
-
-                        <input
-                          type="tel"
-                          name="phone"
-                          placeholder="Phone Number"
-                          value={formData.phone}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent"
-                        />
+                        <input type="email" name="email" placeholder="Email Address" value={formData.email} onChange={handleInputChange} className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent" required />
+                        <input type="tel" name="phone" placeholder="Phone Number" value={formData.phone} onChange={handleInputChange} className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent" />
 
                         <div className="relative">
-                          <select
-                            name="service"
-                            value={formData.service}
-                            onChange={handleInputChange}
-                            className="w-full px-4 py-3 pr-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent bg-white appearance-none"
-                            required
-                          >
+                          <select name="service" value={formData.service} onChange={handleInputChange} className="w-full px-4 py-3 pr-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent bg-white appearance-none" required>
                             <option value="">Select Service</option>
                             <option value="website">Website Development</option>
                             <option value="mobile">Mobile App</option>
                             <option value="ecommerce">E-Commerce</option>
                             <option value="enterprise">Enterprise Software</option>
                           </select>
-                          <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none">
-                            <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                            </svg>
-                          </div>
                         </div>
 
-                        <textarea
-                          name="message"
-                          placeholder="Project details..."
-                          rows={4}
-                          value={formData.message}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent resize-none flex-1"
-                          required
-                        />
+                        <textarea name="message" placeholder="Project details..." rows={4} value={formData.message} onChange={handleInputChange} className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent resize-none flex-1" required />
 
-                        <button
-                          type="submit"
-                          disabled={isSubmitting}
-                          className="w-full bg-[#009696] text-white py-3 px-6 rounded-lg font-semibold hover:bg-gray-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                        >
+                        <button type="submit" disabled={isSubmitting} className="w-full bg-[#009696] text-white py-3 px-6 rounded-lg font-semibold hover:bg-gray-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
                           {isSubmitting ? (
                             <div className="flex items-center justify-center">
-                              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
-                              Sending...
+                              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />Sending...
                             </div>
                           ) : 'Get Quote'}
                         </button>
 
-                        <div className="mt-3 text-center text-xs text-white">
-                          By submitting, you agree to our terms.
-                        </div>
+                        <div className="mt-3 text-center text-xs text-white">By submitting, you agree to our terms.</div>
                       </form>
                     </>
                   )}
@@ -239,7 +168,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Other sections */}
         <div className="bg-white">
           <ServicesViewportSection />
           <IndustriesSection />
