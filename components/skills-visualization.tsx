@@ -395,7 +395,7 @@ function RadarChart({
                   transition={{ duration: 0.5, delay: 1 + i * 0.1 }}
                   x={labelX}
                   y={labelY}
-                  textAnchor={textAnchor}
+                  textAnchor={textAnchor as "start" | "middle" | "end"}
                   dominantBaseline="middle"
                   fill="#d1d5db"
                   fontSize="12"
