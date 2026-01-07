@@ -1,8 +1,8 @@
 {
   "/_not-found/page": "/_not-found",
-  "/careers/page": "/careers",
-  "/page": "/",
   "/contact/page": "/contact",
-  "/services/page": "/services",
-  "/projects/page": "/projects"
+  "/page": "/",
+  "/projects/page": "/projects",
+  "/careers/page": "/careers",
+  "/services/page": "/services"
 }
