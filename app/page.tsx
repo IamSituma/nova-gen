@@ -43,7 +43,7 @@ export default function Home() {
     setSubmitStatus('idle')
 
     try {
-      const response = await fetch("https://script.google.com/macros/s/AKfycby5WGQxHltAhiV51lTOF5y0MS-1i0DbXb7XB1VO4o7Y2butd94sdPyKeSMx1xo0CNdw/exec", { 
+      const response = await fetch("https://script.google.com/macros/s/AKfycbxMESG2gw-v2t26zrYKPoRPbENz3RWN9GrNRxcmkxy7KsOFK0WnVy5KGLS6i6B8P5Cr/exec", { 
         method: "POST",
         headers: {
           "Content-Type": "application/json"
