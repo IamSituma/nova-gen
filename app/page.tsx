@@ -36,35 +36,52 @@ export default function Home() {
     setFormData(prev => ({ ...prev, [name]: value }))
   }
 
-  // Form submit handler
+  // Form submit handler (connected to Google Sheets)
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitStatus('idle')
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000))
-
-      setSubmitStatus('success')
-
-      // Reset form
-      setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        service: '',
-        message: ''
+      const response = await fetch("https://script.google.com/macros/s/AKfycby5WGQxHltAhiV51lTOF5y0MS-1i0DbXb7XB1VO4o7Y2butd94sdPyKeSMx1xo0CNdw/exec", { 
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          formName: "QuoteForm",
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          phone: formData.phone,
+          service: formData.service,
+          message: formData.message
+        })
       })
 
-      // Auto-hide success message after 5 seconds
-      setTimeout(() => setSubmitStatus('idle'), 5000)
+      const result = await response.json()
+
+      if (result.status === "success") {
+        setSubmitStatus('success')
+
+        // Reset form
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          service: '',
+          message: ''
+        })
+      } else {
+        throw new Error(result.message || "Unknown error")
+      }
     } catch (error) {
+      console.error("Form submission error:", error)
       setSubmitStatus('error')
-      setTimeout(() => setSubmitStatus('idle'), 5000)
     } finally {
       setIsSubmitting(false)
+      setTimeout(() => setSubmitStatus('idle'), 5000)
     }
   }
 
