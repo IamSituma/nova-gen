@@ -164,7 +164,7 @@ export default function ContactPage() {
                 </div>
 
                 <motion.button type="submit" disabled={isSubmitting}
-                  className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-primary to-emerald-500 text-white rounded-lg font-semibold flex items-center justify-center space-x-2"
+                  className="w-full px-8 py-4 bg-gradient-to-r from-primary to-emerald-500 text-white rounded-lg font-semibold flex items-center justify-center space-x-2"
                   whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
                 >
                   {isSubmitting ? (

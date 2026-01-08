@@ -460,9 +460,9 @@ export default function CareersPage() {
                   <motion.button
                     type="submit"
                     disabled={isSubmitting}
-                    className="bg-[#009696] hover:bg-[#009696]/90 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 flex items-center mx-auto disabled:opacity-50 disabled:cursor-not-allowed"
-                    whileHover={!isSubmitting ? { scale: 1.02 } : {}}
-                    whileTap={!isSubmitting ? { scale: 0.98 } : {}}
+                    className="w-full bg-[#009696] hover:bg-[#009696]/90 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+                    whileHover={!isSubmitting ? { scale: [1, 1.01, 1] } : {}}
+                    whileTap={!isSubmitting ? { scale: 0.99 } : {}}
                   >
                     {isSubmitting ? (
                       <div className="flex items-center space-x-3">
