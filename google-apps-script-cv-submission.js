@@ -51,10 +51,11 @@ function doPost(e) {
 
     // Create file in Google Drive
     let file;
-    if ("YOUR_FOLDER_ID_HERE" && "YOUR_FOLDER_ID_HERE" !== "YOUR_FOLDER_ID_HERE") {
+    const folderId = "YOUR_FOLDER_ID_HERE";
+    if (folderId && folderId !== "YOUR_FOLDER_ID_HERE") {
       // Upload to specific folder
-      Logger.log("Uploading to specific folder: YOUR_FOLDER_ID_HERE")
-      const folder = DriveApp.getFolderById("YOUR_FOLDER_ID_HERE");
+      Logger.log("Uploading to specific folder: " + folderId)
+      const folder = DriveApp.getFolderById(folderId);
       file = folder.createFile(blob);
     } else {
       // Upload to root directory
