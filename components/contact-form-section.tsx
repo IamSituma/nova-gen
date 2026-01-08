@@ -28,12 +28,9 @@ export function ContactFormSection() {
     setSubmitStatus('idle')
 
     try {
-      // Replace YOUR_WEB_APP_URL with your deployed Google Apps Script URL
-      const response = await fetch("https://script.google.com/macros/s/AKfycbzdkuPbAde2dF3NB8vBlXXrqOHwCSpMTk81lebxj-bF_LvGvNMzZpXh2lkAYiC8YWsk/exec", {
+      const response = await fetch("https://script.google.com/macros/s/AKfycbwjmN1IyIpoUOSnqQJtsUnoxBnzEvFNBTXjgC-mZmtUAQ-X6ow5Ze6u05HyzwAwYk9D/exec", {  // replace with your Google Apps Script URL
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData)
       })
 
@@ -41,8 +38,6 @@ export function ContactFormSection() {
 
       if (result.status === 'success') {
         setSubmitStatus('success')
-
-        // Reset form after successful submission
         setFormData({
           firstName: '',
           lastName: '',
@@ -52,8 +47,6 @@ export function ContactFormSection() {
           subject: '',
           message: ''
         })
-
-        // Reset success message after 5 seconds
         setTimeout(() => setSubmitStatus('idle'), 5000)
       } else {
         setSubmitStatus('error')
@@ -173,13 +166,67 @@ export function ContactFormSection() {
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* … all your input fields remain unchanged … */}
+                  {/* Name Fields */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="firstName" className="block text-sm font-medium text-gray-300 mb-2">First Name *</label>
+                      <input type="text" id="firstName" name="firstName" value={formData.firstName} onChange={handleInputChange} required
+                        className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-white/30 transition-colors" placeholder="John" />
+                    </div>
+                    <div>
+                      <label htmlFor="lastName" className="block text-sm font-medium text-gray-300 mb-2">Last Name *</label>
+                      <input type="text" id="lastName" name="lastName" value={formData.lastName} onChange={handleInputChange} required
+                        className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-white/30 transition-colors" placeholder="Doe" />
+                    </div>
+                  </div>
 
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-[#009696] to-teal-600 text-white py-4 px-6 rounded-lg font-semibold hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
-                  >
+                  {/* Contact Info */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">Email Address *</label>
+                      <input type="email" id="email" name="email" value={formData.email} onChange={handleInputChange} required
+                        className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-white/30 transition-colors" placeholder="john@example.com" />
+                    </div>
+                    <div>
+                      <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-2">Phone Number</label>
+                      <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleInputChange}
+                        className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-white/30 transition-colors" placeholder="0700 123 456" />
+                    </div>
+                  </div>
+
+                  {/* Company and Subject */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-2">Company</label>
+                      <input type="text" id="company" name="company" value={formData.company} onChange={handleInputChange}
+                        className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-white/30 transition-colors" placeholder="Your Company" />
+                    </div>
+                    <div>
+                      <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2">Subject *</label>
+                      <select id="subject" name="subject" value={formData.subject} onChange={handleInputChange} required
+                        className="w-full px-4 pr-10 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-white/30 transition-colors appearance-none">
+                        <option value="" className="text-gray-900">Select a subject</option>
+                        <option value="web-development" className="text-gray-900">Web Development</option>
+                        <option value="mobile-app" className="text-gray-900">Mobile App Development</option>
+                        <option value="consultation" className="text-gray-900">Project Consultation</option>
+                        <option value="support" className="text-gray-900">Technical Support</option>
+                        <option value="partnership" className="text-gray-900">Partnership Inquiry</option>
+                        <option value="other" className="text-gray-900">Other</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  {/* Message */}
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">Message *</label>
+                    <textarea id="message" name="message" value={formData.message} onChange={handleInputChange} required rows={5}
+                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-white/30 transition-colors resize-none"
+                      placeholder="Tell us about your project..." />
+                  </div>
+
+                  {/* Submit Button */}
+                  <button type="submit" disabled={isSubmitting}
+                    className="w-full bg-gradient-to-r from-[#009696] to-teal-600 text-white py-4 px-6 rounded-lg font-semibold hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2">
                     {isSubmitting ? (
                       <>
                         <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
