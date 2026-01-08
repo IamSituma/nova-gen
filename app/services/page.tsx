@@ -388,8 +388,7 @@ export default function ServicesPage() {
 
                     <div className="flex items-center justify-between">
                       <Button
-                        size="sm"
-                        className="bg-[#009696] hover:bg-[#009696]/90 text-white group-hover:scale-105 transition-transform"
+                        className="w-full bg-[#009696] hover:bg-[#009696]/90 text-white group-hover:scale-105 transition-transform px-6 py-2"
                         onClick={() => {
                           setSelectedServiceForQuote(service)
                           setQuotePopupOpen(true)

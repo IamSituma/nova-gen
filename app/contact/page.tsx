@@ -9,6 +9,7 @@ import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from "lucide-reac
 
 interface FormData {
   name: string
+  phone: string
   email: string
   subject: string
   message: string
@@ -17,6 +18,7 @@ interface FormData {
 export default function ContactPage() {
   const [formData, setFormData] = useState<FormData>({
     name: "",
+    phone: "",
     email: "",
     subject: "",
     message: "",
@@ -49,7 +51,7 @@ export default function ContactPage() {
 
       // ✅ Assume success even with no-cors
       setSubmitStatus("success")
-      setFormData({ name: "", email: "", subject: "", message: "" })
+      setFormData({ name: "", phone: "", email: "", subject: "", message: "" })
       setTimeout(() => setSubmitStatus("idle"), 5000)
 
     } catch (error) {
@@ -64,7 +66,6 @@ export default function ContactPage() {
   const contactInfo = [
     { icon: Mail, title: "Email", description: "info@novageneration.tech" },
     { icon: Phone, title: "Phone", description: "+256 741 004 466" },
-    { icon: MapPin, title: "Office", description: "Bandali Rise, Studio House" },
   ]
 
   return (
@@ -138,29 +139,40 @@ export default function ContactPage() {
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <label className="block text-sm font-medium mb-2">Full Name *</label>
+                  <input type="text" name="name" value={formData.name} onChange={handleInputChange} required
+                    className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                    placeholder="Enter your full name"/>
+                </div>
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium mb-2">Full Name *</label>
-                    <input type="text" name="name" value={formData.name} onChange={handleInputChange} required
-                      className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"/>
+                    <label className="block text-sm font-medium mb-2">Phone Number *</label>
+                    <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} required
+                      className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                      placeholder="+256 XXX XXX XXX"/>
                   </div>
                   <div>
                     <label className="block text-sm font-medium mb-2">Email Address *</label>
                     <input type="email" name="email" value={formData.email} onChange={handleInputChange} required
-                      className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"/>
+                      className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                      placeholder="your.email@example.com"/>
                   </div>
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium mb-2">Subject *</label>
                   <input type="text" name="subject" value={formData.subject} onChange={handleInputChange} required
-                    className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"/>
+                    className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                    placeholder="What's this about?"/>
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium mb-2">Message *</label>
                   <textarea name="message" value={formData.message} onChange={handleInputChange} required rows={6}
-                    className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary resize-none"/>
+                    className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary resize-none"
+                    placeholder="Tell us about your project, requirements, timeline, and any specific questions you have..."/>
                 </div>
 
                 <motion.button type="submit" disabled={isSubmitting}
@@ -215,57 +227,36 @@ export default function ContactPage() {
                     </div>
                   </div>
                 ))}
+
+                {/* Map Section */}
+                <div className="mt-8">
+                <h2 className="text-2xl md:text-3xl font-bold mb-4">Visit Our Office</h2>
+                  <div className="h-96 w-full rounded-xl overflow-hidden shadow-xl border border-border">
+                    <iframe
+                      src="https://maps.google.com/maps?q=Bandali%20Rise%20Studio%20House%20Bugolobi%20Kampala%20Uganda&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                      width="100%"
+                      height="100%"
+                      style={{ border: 0 }}
+                      allowFullScreen={true}
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Novagen Office Location - Bandali Rise, Studio House, Bugolobi"
+                      className="w-full h-full"
+                    />
+                  </div>
+                  <div className="mt-4 text-center">
+                    <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary/10 to-emerald-500/10 px-4 py-2 rounded-full border border-primary/20">
+                      <MapPin className="w-4 h-4 text-primary" />
+                      <span className="text-xs font-medium text-foreground">
+                        Bandali Rise, Studio House, Bugolobi, Kampala, Uganda
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </motion.div>
 
           </div>
-        </div>
-      </section>
-
-      {/* Map Section */}
-      <section className="py-16 bg-background">
-        <div className="max-w-7xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-8"
-          >
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">Visit Our Office</h2>
-            <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
-              Located in the heart of Bugolobi, our office at Bandali Rise, Studio House is easily accessible and ready to welcome you.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="w-full"
-          >
-            <div className="aspect-video w-full rounded-xl overflow-hidden shadow-2xl border border-border">
-              <iframe
-                src="https://maps.google.com/maps?q=Bandali%20Rise%20Studio%20House%20Bugolobi%20Kampala%20Uganda&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen={true}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Novagen Office Location - Bandali Rise, Studio House, Bugolobi"
-                className="w-full h-full"
-              />
-            </div>
-
-            <div className="mt-6 text-center">
-              <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary/10 to-emerald-500/10 px-6 py-3 rounded-full border border-primary/20">
-                <MapPin className="w-5 h-5 text-primary" />
-                <span className="text-sm font-medium text-foreground">
-                  Bandali Rise, Studio House, Bugolobi, Kampala, Uganda
-                </span>
-              </div>
-            </div>
-          </motion.div>
         </div>
       </section>
 
