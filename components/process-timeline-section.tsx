@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import Link from "next/link"
 import {
   Search,
   Palette,
@@ -163,15 +164,17 @@ export function ProcessTimelineSection() {
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <div className="inline-flex items-center space-x-4 bg-gray-900 text-white rounded-full px-8 py-4 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer">
-            <span className="font-semibold">Ready to start your project?</span>
-            <motion.div
-              animate={{ x: [0, 5, 0] }}
-              transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-            >
-              <ArrowRight className="w-5 h-5" />
-            </motion.div>
-          </div>
+          <Link href="/contact">
+            <div className="inline-flex items-center space-x-4 bg-gray-900 text-white rounded-full px-8 py-4 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer">
+              <span className="font-semibold">Ready to start your project?</span>
+              <motion.div
+                animate={{ x: [0, 5, 0] }}
+                transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+              >
+                <ArrowRight className="w-5 h-5" />
+              </motion.div>
+            </div>
+          </Link>
         </motion.div>
       </div>
     </section>
