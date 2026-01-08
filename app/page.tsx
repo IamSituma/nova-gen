@@ -17,19 +17,22 @@ import { IndustriesSection } from "@/components/industries-section"
 export default function Home() {
   const [quotePopupOpen, setQuotePopupOpen] = useState(false)
 
-  // Form state
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    service: '',
-    message: ''
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    service: "",
+    message: ""
   })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
-  // Input change handler
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] =
+    useState<"idle" | "success" | "error">("idle")
+
+  // ---------------------------
+  // INPUT HANDLER
+  // ---------------------------
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
@@ -37,15 +40,20 @@ export default function Home() {
     setFormData(prev => ({ ...prev, [name]: value }))
   }
 
-  // Form submit handler
+  // ---------------------------
+  // SUBMIT HANDLER (FIXED)
+  // ---------------------------
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (isSubmitting) return
+
     setIsSubmitting(true)
-    setSubmitStatus('idle')
+    setSubmitStatus("idle")
 
     try {
       const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbx1O5C393QcM0ezXx_KjffHmXjeek18H92wRrIYsFZHTleA4t-4cBsvinV-JiF8Wa4N/exec", // replace with your deployed script URL
+        "https://script.google.com/macros/s/AKfycbzdkuPbAde2dF3NB8vBlXXrqOHwCSpMTk81lebxj-bF_LvGvNMzZpXh2lkAYiC8YWsk/exec",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -53,30 +61,28 @@ export default function Home() {
         }
       )
 
-      const result = await response.json()
+      // 🔥 CRITICAL FIX
+      const text = await response.text()
+      const result = JSON.parse(text)
 
       if (result.status === "success") {
-        setSubmitStatus('success')
-
-        // Reset form
+        setSubmitStatus("success")
         setFormData({
-          firstName: '',
-          lastName: '',
-          email: '',
-          phone: '',
-          service: '',
-          message: ''
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          service: "",
+          message: ""
         })
       } else {
-        throw new Error(result.message || "Unknown error")
+        throw new Error(result.message || "Submission failed")
       }
     } catch (error) {
       console.error("Form submission error:", error)
-      setSubmitStatus('error')
+      setSubmitStatus("error")
     } finally {
       setIsSubmitting(false)
-      // Hide success/error after 5 seconds
-      setTimeout(() => setSubmitStatus('idle'), 5000)
     }
   }
 
@@ -86,170 +92,79 @@ export default function Home() {
         <NavBar />
         <ProfileDropdown />
 
-        {/* Hero Section */}
         <section className="relative min-h-[75vh] px-4 sm:px-6 overflow-hidden bg-gradient-to-br from-gray-50 to-white">
           <div
-            className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
+            className="absolute inset-0 w-full h-full bg-cover bg-center"
             style={{ backgroundImage: "url('/images/nova-hero.webp')" }}
           />
-          <div className="absolute inset-0 bg-black/30"></div>
+          <div className="absolute inset-0 bg-black/30" />
 
           <div className="relative z-10 max-w-7xl mx-auto py-32 min-h-[80vh] flex items-end pb-16">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
-              {/* Left Side - Hero */}
-              <div className="space-y-8">
-                <Hero onQuoteClick={() => setQuotePopupOpen(true)} />
-              </div>
 
-              {/* Right Side - Quote Form */}
-              <div className="lg:pl-8 flex justify-center items-start">
+              <Hero onQuoteClick={() => setQuotePopupOpen(true)} />
+
+              <div className="lg:pl-8 flex justify-center">
                 <div className="bg-white/5 backdrop-blur-sm rounded-2xl shadow-2xl p-8 border border-white/10 max-w-lg w-full min-h-[500px] flex flex-col">
-                  
-                  {submitStatus === 'success' ? (
-                    <div className="flex items-center justify-center h-full min-h-[500px]">
+
+                  {submitStatus === "success" ? (
+                    <div className="flex items-center justify-center h-full">
                       <div className="text-center">
-                        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                          <CheckCircle className="w-8 h-8 text-green-600" />
-                        </div>
-                        <h3 className="text-xl font-bold text-green-800 mb-2">
+                        <CheckCircle className="w-12 h-12 text-green-600 mx-auto mb-4" />
+                        <h3 className="text-xl font-bold text-green-800">
                           Quote Request Sent!
                         </h3>
                         <p className="text-green-700">
-                          Thank you! We'll get back to you within 24 hours.
+                          We’ll contact you within 24 hours.
                         </p>
                       </div>
                     </div>
-                  ) : submitStatus === 'error' ? (
-                    <div className="flex items-center justify-center h-full min-h-[500px]">
+                  ) : submitStatus === "error" ? (
+                    <div className="flex items-center justify-center h-full">
                       <div className="text-center">
-                        <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                          <XCircle className="w-8 h-8 text-red-600" />
-                        </div>
-                        <h3 className="text-xl font-bold text-red-800 mb-2">
-                          Something went wrong
+                        <XCircle className="w-12 h-12 text-red-600 mx-auto mb-4" />
+                        <h3 className="text-xl font-bold text-red-800">
+                          Submission Failed
                         </h3>
                         <p className="text-red-700">
-                          Please try again or contact us directly.
+                          Please try again.
                         </p>
                       </div>
                     </div>
                   ) : (
-                    <>
-                      <div className="text-center mb-4">
-                        <h3 className="text-xl font-bold text-white mb-1">
-                          Get a Free Quote
-                        </h3>
-                        <p className="text-sm text-white">
-                          We'll respond within 24 hours
-                        </p>
-                      </div>
+                    <form onSubmit={handleFormSubmit} className="space-y-4 flex-1">
+                      <input name="firstName" value={formData.firstName} onChange={handleInputChange} placeholder="First Name" required />
+                      <input name="lastName" value={formData.lastName} onChange={handleInputChange} placeholder="Last Name" required />
+                      <input name="email" type="email" value={formData.email} onChange={handleInputChange} placeholder="Email" required />
+                      <input name="phone" value={formData.phone} onChange={handleInputChange} placeholder="Phone" />
+                      <select name="service" value={formData.service} onChange={handleInputChange} required>
+                        <option value="">Select Service</option>
+                        <option value="website">Website</option>
+                        <option value="mobile">Mobile App</option>
+                        <option value="enterprise">Enterprise</option>
+                      </select>
+                      <textarea name="message" value={formData.message} onChange={handleInputChange} placeholder="Project details" required />
 
-                      <form
-                        onSubmit={handleFormSubmit}
-                        className="space-y-4 flex-1 flex flex-col"
-                      >
-                        <div className="grid grid-cols-2 gap-4">
-                          <input
-                            type="text"
-                            name="firstName"
-                            placeholder="First Name"
-                            value={formData.firstName}
-                            onChange={handleInputChange}
-                            className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent"
-                            required
-                          />
-                          <input
-                            type="text"
-                            name="lastName"
-                            placeholder="Last Name"
-                            value={formData.lastName}
-                            onChange={handleInputChange}
-                            className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent"
-                            required
-                          />
-                        </div>
-
-                        <input
-                          type="email"
-                          name="email"
-                          placeholder="Email Address"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent"
-                          required
-                        />
-
-                        <input
-                          type="tel"
-                          name="phone"
-                          placeholder="Phone Number"
-                          value={formData.phone}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent"
-                        />
-
-                        <div className="relative">
-                          <select
-                            name="service"
-                            value={formData.service}
-                            onChange={handleInputChange}
-                            className="w-full px-4 py-3 pr-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent bg-white appearance-none"
-                            required
-                          >
-                            <option value="">Select Service</option>
-                            <option value="website">Website Development</option>
-                            <option value="mobile">Mobile App</option>
-                            <option value="ecommerce">E-Commerce</option>
-                            <option value="enterprise">Enterprise Software</option>
-                          </select>
-                        </div>
-
-                        <textarea
-                          name="message"
-                          placeholder="Project details..."
-                          rows={4}
-                          value={formData.message}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent resize-none flex-1"
-                          required
-                        />
-
-                        <button
-                          type="submit"
-                          disabled={isSubmitting}
-                          className="w-full bg-[#009696] text-white py-3 px-6 rounded-lg font-semibold hover:bg-gray-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                        >
-                          {isSubmitting ? (
-                            <div className="flex items-center justify-center">
-                              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
-                              Sending...
-                            </div>
-                          ) : 'Get Quote'}
-                        </button>
-
-                        <div className="mt-3 text-center text-xs text-white">
-                          By submitting, you agree to our terms.
-                        </div>
-                      </form>
-                    </>
+                      <button disabled={isSubmitting} className="w-full bg-[#009696] text-white py-3 rounded-lg">
+                        {isSubmitting ? "Sending..." : "Get Quote"}
+                      </button>
+                    </form>
                   )}
+
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Other sections */}
-        <div className="bg-white">
-          <ServicesViewportSection />
-          <IndustriesSection />
-          <TechnologiesSection />
-          <WhyWorkWithUsSection />
-          <ProcessTimelineSection />
-          <FAQSection />
-          <ContactFormSection />
-          <Footer />
-        </div>
+        <ServicesViewportSection />
+        <IndustriesSection />
+        <TechnologiesSection />
+        <WhyWorkWithUsSection />
+        <ProcessTimelineSection />
+        <FAQSection />
+        <ContactFormSection />
+        <Footer />
       </div>
     </main>
   )
