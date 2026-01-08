@@ -51,12 +51,15 @@ export default function Home() {
         "https://script.google.com/macros/s/AKfycbzdkuPbAde2dF3NB8vBlXXrqOHwCSpMTk81lebxj-bF_LvGvNMzZpXh2lkAYiC8YWsk/exec",
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          mode: "no-cors", // ✅ VERY IMPORTANT
+          headers: {
+            "Content-Type": "application/json"
+          },
           body: JSON.stringify(formData)
         }
       )
   
-      // ✅ If fetch did NOT throw, treat as success
+      // ✅ If fetch completes, assume success
       setSubmitStatus("success")
   
       setFormData({
@@ -75,7 +78,6 @@ export default function Home() {
     }
   }
   
-
   return (
     <main className="relative min-h-screen text-foreground overflow-x-hidden">
       <div className="relative z-10 bg-white">
