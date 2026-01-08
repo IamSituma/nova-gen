@@ -21,46 +21,43 @@ export function ContactFormSection() {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
   }
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (isSubmitting) return
+  
     setIsSubmitting(true)
-    setSubmitStatus('idle')
-
+    setSubmitStatus("idle")
+  
     try {
-      const response = await fetch("https://script.google.com/macros/s/AKfycbwjmN1IyIpoUOSnqQJtsUnoxBnzEvFNBTXjgC-mZmtUAQ-X6ow5Ze6u05HyzwAwYk9D/exec", {  // replace with your Google Apps Script URL
+      await fetch("https://script.google.com/macros/s/AKfycbwjmN1IyIpoUOSnqQJtsUnoxBnzEvFNBTXjgC-mZmtUAQ-X6ow5Ze6u05HyzwAwYk9D/exec", {
         method: "POST",
+        mode: "no-cors", // ✅ bypass CORS
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData)
       })
-
-      const result = await response.json()
-
-      if (result.status === 'success') {
-        setSubmitStatus('success')
-        setFormData({
-          firstName: '',
-          lastName: '',
-          email: '',
-          phone: '',
-          company: '',
-          subject: '',
-          message: ''
-        })
-        setTimeout(() => setSubmitStatus('idle'), 5000)
-      } else {
-        setSubmitStatus('error')
-        setTimeout(() => setSubmitStatus('idle'), 5000)
-      }
+  
+      // ✅ If fetch completes, assume success
+      setSubmitStatus("success")
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        company: "",
+        subject: "",
+        message: ""
+      })
+      setTimeout(() => setSubmitStatus("idle"), 5000)
+  
     } catch (error) {
-      console.error("Error submitting form:", error)
-      setSubmitStatus('error')
-      setTimeout(() => setSubmitStatus('idle'), 5000)
+      console.error("Submission failed:", error)
+      setSubmitStatus("error")
+      setTimeout(() => setSubmitStatus("idle"), 5000)
     } finally {
       setIsSubmitting(false)
     }
   }
-
+  
   const contactInfo = [
     { icon: Mail, title: "Email Us", details: "info@novageneration.tech" },
     { icon: Phone, title: "Call Us", details: "256 741 004 466" },
