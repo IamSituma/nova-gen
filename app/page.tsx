@@ -48,7 +48,7 @@ export default function Home() {
   
     try {
       await fetch(
-        "https://script.google.com/macros/s/AKfycbzdkuPbAde2dF3NB8vBlXXrqOHwCSpMTk81lebxj-bF_LvGvNMzZpXh2lkAYiC8YWsk/exec",
+        "https://script.google.com/macros/s/AKfycbwjmN1IyIpoUOSnqQJtsUnoxBnzEvFNBTXjgC-mZmtUAQ-X6ow5Ze6u05HyzwAwYk9D/exec",
         {
           method: "POST",
           mode: "no-cors", // ✅ VERY IMPORTANT
