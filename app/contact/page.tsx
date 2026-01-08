@@ -222,6 +222,53 @@ export default function ContactPage() {
         </div>
       </section>
 
+      {/* Map Section */}
+      <section className="py-16 bg-background">
+        <div className="max-w-7xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-8"
+          >
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">Visit Our Office</h2>
+            <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
+              Located in the heart of Bugolobi, our office at Bandali Rise, Studio House is easily accessible and ready to welcome you.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="w-full"
+          >
+            <div className="aspect-video w-full rounded-xl overflow-hidden shadow-2xl border border-border">
+              <iframe
+                src="https://maps.google.com/maps?q=Bandali%20Rise%20Studio%20House%20Bugolobi%20Kampala%20Uganda&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen={true}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Novagen Office Location - Bandali Rise, Studio House, Bugolobi"
+                className="w-full h-full"
+              />
+            </div>
+
+            <div className="mt-6 text-center">
+              <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary/10 to-emerald-500/10 px-6 py-3 rounded-full border border-primary/20">
+                <MapPin className="w-5 h-5 text-primary" />
+                <span className="text-sm font-medium text-foreground">
+                  Bandali Rise, Studio House, Bugolobi, Kampala, Uganda
+                </span>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       <Footer />
     </main>
   )
