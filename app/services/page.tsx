@@ -71,6 +71,20 @@ export default function ServicesPage() {
     return () => document.removeEventListener('keydown', handleEscKey)
   }, [quotePopupOpen])
 
+  // Reset form and status when service selection changes
+  useEffect(() => {
+    setSubmitStatus('idle')
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      company: '',
+      projectDetails: '',
+      budget: '',
+      timeline: ''
+    })
+  }, [selectedServiceForQuote])
+
   // Click outside handler
   const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget) {
@@ -138,6 +152,42 @@ export default function ServicesPage() {
       ]
     }
   ]
+  const handleServicesQuoteSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
+    e.preventDefault()
+
+    const form = e.currentTarget
+
+    const payload = {
+      formType: "services-quote",
+      service: (form.service as HTMLInputElement)?.value || "",
+      fullName: (form.fullName as HTMLInputElement)?.value || "",
+      email: (form.email as HTMLInputElement)?.value || "",
+      phone: (form.phone as HTMLInputElement)?.value || "",
+      company: (form.company as HTMLInputElement)?.value || "",
+      details: (form.details as HTMLTextAreaElement)?.value || "",
+      budget: (form.budget as HTMLInputElement)?.value || "",
+      timeline: (form.timeline as HTMLInputElement)?.value || ""
+    }
+
+    try {
+      await fetch(
+        "https://script.google.com/macros/s/AKfycbwjmN1IyIpoUOSnqQJtsUnoxBnzEvFNBTXjgC-mZmtUAQ-X6ow5Ze6u05HyzwAwYk9D/exec",
+        {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        }
+      )
+
+      alert("Request submitted successfully!")
+      form.reset()
+    } catch (error) {
+      alert("Submission failed. Please try again.")
+    }
+  }
 
   const services = [
     {
@@ -148,8 +198,7 @@ export default function ServicesPage() {
       graphic: <WebDevGraphic />,
       color: "emerald",
       pricing: {
-        usd: { min: 2000, max: 15000 },
-        ugx: { min: 7500000, max: 56250000 }
+        usd: { min: 1000, max: 3500 },
       }
     },
     {
@@ -161,7 +210,6 @@ export default function ServicesPage() {
       color: "blue",
       pricing: {
         usd: { min: 5000, max: 25000 },
-        ugx: { min: 18750000, max: 93750000 }
       }
     },
     {
@@ -172,8 +220,7 @@ export default function ServicesPage() {
       graphic: <SEOGraphic />,
       color: "purple",
       pricing: {
-        usd: { min: 3000, max: 20000 },
-        ugx: { min: 11250000, max: 75000000 }
+        usd: { min: 8000, max: 50000 },
       }
     },
     {
@@ -184,8 +231,7 @@ export default function ServicesPage() {
       graphic: <DigitalTransformationGraphic />,
       color: "pink",
       pricing: {
-        usd: { min: 1500, max: 8000 },
-        ugx: { min: 5625000, max: 30000000 }
+        usd: { min: 1500, max: 5000 },
       }
     },
     {
@@ -196,8 +242,7 @@ export default function ServicesPage() {
       graphic: <PatentGraphic />,
       color: "cyan",
       pricing: {
-        usd: { min: 2000, max: 12000 },
-        ugx: { min: 7500000, max: 45000000 }
+        usd: { min: 2000, max: 15000 },
       }
     },
     {
@@ -209,19 +254,17 @@ export default function ServicesPage() {
       color: "black",
       pricing: {
         usd: { min: 4000, max: 30000 },
-        ugx: { min: 15000000, max: 112500000 }
       }
     },
     {
-      icon: <LucideFileQuestion className="w-8 h-8"/>,
+      icon: <LucideFileQuestion className="w-8 h-8" />,
       title: "IT Consultation",
       description: "We offer IT Consultation services to both individuals, SMEs and large organizations",
       features: ["Consultation", "Consultation", "Consultation", "Consultation"],
-      graphic: <MechanicalGraphic/>,
+      graphic: <MechanicalGraphic />,
       color: "Teal",
       pricing: {
         usd: { min: 500, max: 5000 },
-        ugx: { min: 1875000, max: 18750000 }
       }
     },
     {
@@ -233,11 +276,11 @@ export default function ServicesPage() {
       color: "black",
     },
     {
-      icon: <LucideFileQuestion className="w-8 h-8"/>,
+      icon: <LucideFileQuestion className="w-8 h-8" />,
       title: "IT Consultation",
       description: "We offer IT Consultation services to both individuals, SMEs and large organizations",
       features: ["Consultation", "Consultation", "Consultation", "Consultation"],
-      graphic: <MechanicalGraphic/>,
+      graphic: <MechanicalGraphic />,
       color: "Teal",
     },
   ]
@@ -435,22 +478,19 @@ export default function ServicesPage() {
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     viewport={{ once: true }}
                     onClick={() => setSelectedService(index)}
-                    className={`w-full text-left p-6 rounded-xl border transition-all duration-300 ${
-                      selectedService === index
+                    className={`w-full text-left p-6 rounded-xl border transition-all duration-300 ${selectedService === index
                         ? 'bg-emerald-50 border-emerald-300 shadow-lg'
                         : 'bg-gray-50 border-gray-200 hover:bg-gray-100 hover:border-gray-300'
-                    }`}
+                      }`}
                   >
                     <div className="flex items-start space-x-4">
-                      <div className={`w-1 h-12 rounded-full transition-all duration-300 ${
-                        selectedService === index
+                      <div className={`w-1 h-12 rounded-full transition-all duration-300 ${selectedService === index
                           ? 'bg-emerald-600'
                           : 'bg-gradient-to-r from-emerald-500 to-teal-500'
-                      }`}></div>
+                        }`}></div>
                       <div>
-                        <h3 className={`text-lg font-bold transition-colors duration-300 ${
-                          selectedService === index ? 'text-emerald-900' : 'text-gray-900'
-                        }`}>
+                        <h3 className={`text-lg font-bold transition-colors duration-300 ${selectedService === index ? 'text-emerald-900' : 'text-gray-900'
+                          }`}>
                           {service.title}
                         </h3>
                         <p className="text-sm text-gray-600 mt-1">{service.description}</p>
@@ -608,7 +648,7 @@ export default function ServicesPage() {
               <div className="bg-[#009696] rounded-2xl p-8 text-white shadow-2xl">
                 <div className="mb-6">
                   <svg className="w-12 h-12 text-white/80 mb-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                   </svg>
                 </div>
                 <blockquote className="text-xl leading-relaxed mb-6 italic">
@@ -643,7 +683,7 @@ export default function ServicesPage() {
                 <div className="absolute -bottom-4 -right-4 bg-white rounded-full p-4 shadow-lg">
                   <div className="w-16 h-16 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full flex items-center justify-center">
                     <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                     </svg>
                   </div>
                 </div>
@@ -652,7 +692,7 @@ export default function ServicesPage() {
               <div className="mt-8 text-center lg:text-left">
                 <h3 className="text-2xl font-bold text-black mb-2">Nabilah Kitiibwa</h3>
                 <p className="text-lg text-black mb-4">Nova Generation Limited</p>
-                  <div className="flex justify-center lg:justify-start space-x-4">
+                <div className="flex justify-center lg:justify-start space-x-4">
                   <a
                     href="https://linkedin.com/company/nova-generation-limited"
                     target="_blank"
@@ -660,13 +700,13 @@ export default function ServicesPage() {
                     className="flex items-center text-black hover:text-[#009696] transition-colors duration-200"
                   >
                     <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                     </svg>
                     LinkedIn
                   </a>
                   <div className="flex items-center text-black">
                     <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
                     </svg>
                     5+ Years Leading Tech Innovation
                   </div>
@@ -923,7 +963,6 @@ export default function ServicesPage() {
                       <div className="text-3xl font-bold text-emerald-600 mb-2">
                         ${selectedServiceForQuote.pricing.usd.min.toLocaleString()} - ${selectedServiceForQuote.pricing.usd.max.toLocaleString()}
                       </div>
-                      <div className="text-gray-600">USD</div>
                     </div>
                     <p className="text-sm text-gray-500 mt-4 text-left">
                       * Final pricing depends on project scope and requirements. Fill out the form for a detailed quote.
@@ -956,21 +995,57 @@ export default function ServicesPage() {
                       <p className="text-red-700">Please try again or contact us directly.</p>
                     </div>
                   ) : (
-                    <form onSubmit={async (e) => {
-                      e.preventDefault()
-                      setIsSubmitting(true)
+                    <form
+                      onSubmit={async (e) => {
+                        e.preventDefault()
+                        setIsSubmitting(true)
+                        setSubmitStatus("idle")
 
-                      try {
-                        // Here you would typically send the data to your backend
-                        // For now, we'll simulate a successful submission
-                        await new Promise(resolve => setTimeout(resolve, 2000))
-                        setSubmitStatus('success')
-                      } catch (error) {
-                        setSubmitStatus('error')
-                      } finally {
-                        setIsSubmitting(false)
-                      }
-                    }} className="space-y-4">
+                        const payload = {
+                          formType: "services-quote",
+                          service: selectedServiceForQuote.title,
+                          fullName: formData.name,
+                          email: formData.email,
+                          phone: formData.phone,
+                          company: formData.company,
+                          details: formData.projectDetails,
+                          budget: formData.budget,
+                          timeline: formData.timeline,
+                        }
+
+                        try {
+                          console.log("Sending payload:", payload)
+                          await fetch(
+                            "https://script.google.com/macros/s/AKfycbwjmN1IyIpoUOSnqQJtsUnoxBnzEvFNBTXjgC-mZmtUAQ-X6ow5Ze6u05HyzwAwYk9D/exec",
+                            {
+                              method: "POST",
+                              mode: "no-cors",
+                              headers: { "Content-Type": "application/json" },
+                              body: JSON.stringify(payload),
+                            }
+                          )
+
+                          console.log("Request sent successfully (no-cors mode)")
+                          setSubmitStatus("success")
+                          setFormData({
+                            name: "",
+                            email: "",
+                            phone: "",
+                            company: "",
+                            projectDetails: "",
+                            budget: "",
+                            timeline: "",
+                          })
+                        } catch (err) {
+                          console.error("Fetch error:", err)
+                          setSubmitStatus("error")
+                        } finally {
+                          setIsSubmitting(false)
+                        }
+                      }}
+                      className="space-y-4"
+                    >
+
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
@@ -978,7 +1053,7 @@ export default function ServicesPage() {
                             type="text"
                             required
                             value={formData.name}
-                            onChange={(e) => setFormData({...formData, name: e.target.value})}
+                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                             placeholder="Your full name"
                           />
@@ -989,7 +1064,7 @@ export default function ServicesPage() {
                             type="email"
                             required
                             value={formData.email}
-                            onChange={(e) => setFormData({...formData, email: e.target.value})}
+                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                             placeholder="your@email.com"
                           />
@@ -1003,7 +1078,7 @@ export default function ServicesPage() {
                             type="tel"
                             required
                             value={formData.phone}
-                            onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                             placeholder="+256 XXX XXX XXX"
                           />
@@ -1014,7 +1089,7 @@ export default function ServicesPage() {
                             type="text"
                             required
                             value={formData.company}
-                            onChange={(e) => setFormData({...formData, company: e.target.value})}
+                            onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                             placeholder="Company name"
                           />
@@ -1027,7 +1102,7 @@ export default function ServicesPage() {
                           required
                           rows={4}
                           value={formData.projectDetails}
-                          onChange={(e) => setFormData({...formData, projectDetails: e.target.value})}
+                          onChange={(e) => setFormData({ ...formData, projectDetails: e.target.value })}
                           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                           placeholder="Tell us about your project requirements, goals, and any specific features you need..."
                         />
@@ -1039,7 +1114,7 @@ export default function ServicesPage() {
                           <select
                             required
                             value={formData.budget}
-                            onChange={(e) => setFormData({...formData, budget: e.target.value})}
+                            onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
                             className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent appearance-none"
                           >
                             <option value="">Select budget range</option>
@@ -1054,7 +1129,7 @@ export default function ServicesPage() {
                           <select
                             required
                             value={formData.timeline}
-                            onChange={(e) => setFormData({...formData, timeline: e.target.value})}
+                            onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
                             className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent appearance-none"
                           >
                             <option value="">Select timeline</option>
