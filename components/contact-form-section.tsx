@@ -24,18 +24,22 @@ export function ContactFormSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (isSubmitting) return
-  
+
     setIsSubmitting(true)
     setSubmitStatus("idle")
-  
+
     try {
-      await fetch("https://script.google.com/macros/s/AKfycbwjmN1IyIpoUOSnqQJtsUnoxBnzEvFNBTXjgC-mZmtUAQ-X6ow5Ze6u05HyzwAwYk9D/exec", {
+      await fetch("https://script.google.com/macros/s/AKfycbwjmN1IyIpoUOSnqQJtsUnoxBnzEvFNBTXjgC-mZmtUAQ-X6ow5Ze6u05HyzwAwYk9D/exec"
+        , {
         method: "POST",
         mode: "no-cors", // ✅ bypass CORS
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          formType: "cta-contact",
+          ...formData
+        })
       })
-  
+
       // ✅ If fetch completes, assume success
       setSubmitStatus("success")
       setFormData({
@@ -48,7 +52,7 @@ export function ContactFormSection() {
         message: ""
       })
       setTimeout(() => setSubmitStatus("idle"), 5000)
-  
+
     } catch (error) {
       console.error("Submission failed:", error)
       setSubmitStatus("error")
@@ -57,7 +61,7 @@ export function ContactFormSection() {
       setIsSubmitting(false)
     }
   }
-  
+
   const contactInfo = [
     { icon: Mail, title: "Email Us", details: "info@novageneration.tech" },
     { icon: Phone, title: "Call Us", details: "256 741 004 466" },
