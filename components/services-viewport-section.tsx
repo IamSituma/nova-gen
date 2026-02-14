@@ -45,10 +45,6 @@ const services = [
       { icon: <Shield className="w-5 h-5" />, text: "Enterprise-grade security" },
     ],
     technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Node.js", "PostgreSQL"],
-    stats: [
-      { label: "Conversion Rate Boost", value: "127%" },
-      { label: "Client Satisfaction", value: "98%" },
-    ],
     gradient: "from-[#009696] via-teal-900 to-[#009696]",
     bgGradient: "from-gray-400/20 via-gray-400/10 to-gray-400/20",
     accentColor: "text-black",
@@ -65,11 +61,6 @@ const services = [
       { icon: <BarChart className="w-5 h-5" />, text: "Built-in analytics" },
     ],
     technologies: ["React Native", "Flutter", "Swift", "Kotlin", "Firebase", "MongoDB"],
-    stats: [
-      { label: "App Store Rating", value: "4.8★" },
-      { label: "User Retention", value: "85%" },
-      { label: "Development Speed", value: "2x Faster" },
-    ],
     gradient: "from-purple-500 via-pink-400 to-purple-600",
     bgGradient: "from-purple-500/20 via-pink-400/10 to-purple-600/20",
     accentColor: "text-black",
@@ -86,11 +77,6 @@ const services = [
       { icon: <Award className="w-5 h-5" />, text: "Workflow" },
     ],
     technologies: [".NET", "Java", "Spring Boot", "SQL Server", "Docker", "Kubernetes"],
-    stats: [
-      { label: "Design Accuracy", value: "99.9%" },
-      { label: "Time to Prototype", value: "72hrs" },
-      { label: "Manufacturing Ready", value: "100%" },
-    ],
     gradient: "from-orange-500 via-red-400 to-orange-600",
     bgGradient: "from-orange-500/20 via-red-400/10 to-orange-600/20",
     accentColor: "text-black",
@@ -107,11 +93,6 @@ const services = [
       { icon: <Star className="w-5 h-5" />, text: "DevOps Solutions" },
     ],
     technologies: ["AWS", "Azure", "Docker", "Kubernetes", "Terraform", "Jenkins"],
-    stats: [
-      { label: "Success Rate", value: "92%" },
-      { label: "Time to Market", value: "40% Faster" },
-      { label: "ROI Average", value: "3.2x" },
-    ],
     gradient: "from-indigo-500 via-purple-400 to-indigo-600",
     bgGradient: "from-indigo-500/20 via-purple-400/10 to-indigo-600/20",
     accentColor: "text-black",
@@ -127,11 +108,6 @@ const services = [
       { icon: <Shield className="w-5 h-5" />, text: "Prototyping" },
     ],
     technologies: ["Figma", "Adobe XD", "Sketch", "InVision", "Principle", "Framer"],
-    stats: [
-      { label: "Projects Completed", value: "98+" },
-      { label: "Client Satisfaction", value: "96%" },
-      { label: "On-Time Delivery", value: "98%" },
-    ],
     gradient: "from-pink-500 via-rose-400 to-pink-600",
     bgGradient: "from-pink-500/20 via-rose-400/10 to-pink-600/20",
     accentColor: "text-black",
@@ -146,11 +122,6 @@ const services = [
       { icon: <Layers className="w-5 h-5" />, text: "Software Blueprinting" },
     ],
     technologies: ["Electron", "Qt", "WPF", ".NET", "C#", "Python"],
-    stats: [
-      { label: "Projects Completed", value: "20+" },
-      { label: "Client Satisfaction", value: "96%" },
-      { label: "On-Time Delivery", value: "98%" },
-    ],
     gradient: "from-pink-500 via-rose-400 to-pink-600",
     bgGradient: "from-pink-500/20 via-rose-400/10 to-pink-600/20",
     accentColor: "text-black",
@@ -248,25 +219,6 @@ export function ServicesViewportSection() {
                         <span className="text-sm text-gray-600 group-hover:text-gray-700 transition-colors">
                           {feature.text}
                         </span>
-                      </motion.div>
-                    ))}
-                  </div>
-
-                  {/* Stats */}
-                  <div className="grid grid-cols-2 gap-4">
-                    {service.stats.slice(0, 2).map((stat, statIndex) => (
-                      <motion.div
-                        key={statIndex}
-                        className="text-center p-3 bg-gray-50 rounded-xl group-hover:bg-gray-100 transition-colors"
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: index * 0.1 + statIndex * 0.1 }}
-                        viewport={{ once: true }}
-                      >
-                        <div className="text-lg font-bold bg-gradient-to-r from-[#009696] via-teal-900 to-[#009696] bg-clip-text text-transparent">
-                          {stat.value}
-                        </div>
-                        <div className="text-xs text-gray-500">{stat.label}</div>
                       </motion.div>
                     ))}
                   </div>
