@@ -31,14 +31,14 @@ export function ContactFormSection() {
     try {
       await fetch("https://script.google.com/macros/s/AKfycbwjmN1IyIpoUOSnqQJtsUnoxBnzEvFNBTXjgC-mZmtUAQ-X6ow5Ze6u05HyzwAwYk9D/exec"
         , {
-        method: "POST",
-        mode: "no-cors", // ✅ bypass CORS
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          formType: "cta-contact",
-          ...formData
+          method: "POST",
+          mode: "no-cors", // ✅ bypass CORS
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            formType: "cta-contact",
+            ...formData
+          })
         })
-      })
 
       // ✅ If fetch completes, assume success
       setSubmitStatus("success")

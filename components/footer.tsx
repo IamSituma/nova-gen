@@ -15,7 +15,7 @@ export function Footer() {
     { label: "About Us", href: "/about" },
     { label: "Our Projects", href: "/projects" },
     { label: "Careers", href: "/careers" },
-    { label: "Contact", href: "/contact" },
+    { label: "Contact Us", href: "/contact" },
   ]
 
   const socialLinks = [
@@ -72,7 +72,7 @@ export function Footer() {
             <ul className="space-y-2 md:space-y-3">
               {services.map((service, i) => (
                 <li key={i}>
-                  <a className="text-sm md:text-base text-white/70 hover:text-white flex items-center group">
+                  <a href={service.href} className="text-sm md:text-base text-white/70 hover:text-white flex items-center group">
                     {service.label}
                     <ArrowRight className="w-4 h-4 ml-2 opacity-0 group-hover:opacity-100 transition" />
                   </a>
@@ -93,7 +93,7 @@ export function Footer() {
             <ul className="space-y-2 md:space-y-3">
               {company.map((item, i) => (
                 <li key={i}>
-                  <a className="text-sm md:text-base text-white/70 hover:text-white flex items-center group">
+                  <a href={item.href} className="text-sm md:text-base text-white/70 hover:text-white flex items-center group">
                     {item.label}
                     <ArrowRight className="w-4 h-4 ml-2 opacity-0 group-hover:opacity-100 transition" />
                   </a>

@@ -79,8 +79,8 @@ export default function ContactPage() {
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: "url('/images/nova-contact-hero.webp')" }}
         />
-        <div className="absolute inset-0 bg-black/70"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-emerald-500/10 to-transparent"></div>
+        <div className="absolute inset-0 bg-black/90"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-[#009696]/30 via-white-300/90 to-transparent"></div>
 
         <div className="max-w-7xl mx-auto px-4 pt-24 pb-16 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
@@ -149,9 +149,23 @@ export default function ContactPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-medium mb-2">Phone Number *</label>
-                    <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} required
+                    <input
+                      type="tel"
+                      name="phone"
+                      required
+                      pattern="[0-9]{10}"
+                      maxLength={10}
+                      value={formData.phone}
+                      onChange={(e) => {
+                        const value = e.target.value.replace(/\D/g, ''); // Only allow digits
+                        if (value.length <= 10) {
+                          setFormData({ ...formData, phone: value });
+                        }
+                      }}
                       className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                      placeholder="+256 XXX XXX XXX"/>
+                      placeholder="0712345678"
+                    />
+                    <p className="text-xs text-muted-foreground mt-1">Enter 10 digits (e.g., 0712345678)</p>
                   </div>
                   <div>
                     <label className="block text-sm font-medium mb-2">Email Address *</label>
@@ -248,7 +262,7 @@ export default function ContactPage() {
                     <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary/10 to-emerald-500/10 px-4 py-2 rounded-full border border-primary/20">
                       <MapPin className="w-4 h-4 text-primary" />
                       <span className="text-xs font-medium text-foreground">
-                        Bandali Rise, Studio House, Bugolobi, Kampala, Uganda
+                        Bandali Rise, Studio House, Level 4, Bugolobi
                       </span>
                     </div>
                   </div>

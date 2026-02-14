@@ -323,63 +323,54 @@ export default function ServicesPage() {
       <NavBar />
 
       {/* Hero Section */}
-      <section className="relative min-h-[50vh] sm:min-h-[70vh] flex items-center overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <div
-            className="w-full h-full bg-cover bg-center bg-no-repeat"
-            style={{
-              backgroundImage: `url('/images/novagen-hero.png')`,
-            }}
-          />
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-black/60" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/30" />
-        </div>
+      <section className="relative min-h-[40vh] sm:min-h-[60vh] flex items-center justify-center overflow-hidden w-full max-w-full">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: "url('/images/code-novagen.png')" }}
+        />
+        <div className="absolute inset-0 bg-black/90"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-[#009696]/30 via-white-300/90 to-transparent"></div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 py-32">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
+        <div className="max-w-7xl mx-auto px-4 pt-24 pb-16 relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1 }}
-              className="text-center lg:text-left"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="space-y-6"
             >
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-8 leading-tight">
-                <span className="text-white block mb-2">Elevate Your Software Solutions</span>
-              </h1>
-              <p className="text-lg text-white max-w-xl mx-auto lg:mx-0 mb-12 leading-relaxed">
-                From MVPs to enterprise systems, we build scalable software solutions that transform businesses. Our expert developers deliver high-quality code, innovative architectures, and seamless user experiences.
-              </p>
+              <motion.h1
+                className="text-2xl sm:text-3xl lg:text-4xl font-bold"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                <span className="text-white"> Elevate your Software Solutions</span>
+              </motion.h1>
+
+              <motion.p
+                className="text-base sm:text-lg text-white max-w-3xl mx-auto leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
+                From design to deployment, we deliver scalable web platforms, business sytems, and digital tools that power efficiency and innovation.
+              </motion.p>
             </motion.div>
 
-            {/* Right Content - Stats/Highlights */}
+            {/* Floating Elements */}
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.3 }}
-              className="hidden lg:block"
-            >
-            </motion.div>
-          </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2, duration: 1 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        >
-          <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
+              className="absolute top-1/4 left-1/4 w-20 h-20 bg-emerald-400/20 rounded-full blur-xl"
+              animate={{ y: [0, -20, 0], x: [0, 10, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            />
             <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-              className="w-1 h-3 bg-gray-600 rounded-full mt-2"
+              className="absolute bottom-1/4 right-1/4 w-32 h-32 bg-primary/10 rounded-full blur-xl"
+              animate={{ y: [0, 20, 0], x: [0, -15, 0] }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
             />
           </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* Services Section */}
@@ -479,14 +470,14 @@ export default function ServicesPage() {
                     viewport={{ once: true }}
                     onClick={() => setSelectedService(index)}
                     className={`w-full text-left p-6 rounded-xl border transition-all duration-300 ${selectedService === index
-                        ? 'bg-emerald-50 border-emerald-300 shadow-lg'
-                        : 'bg-gray-50 border-gray-200 hover:bg-gray-100 hover:border-gray-300'
+                      ? 'bg-emerald-50 border-emerald-300 shadow-lg'
+                      : 'bg-gray-50 border-gray-200 hover:bg-gray-100 hover:border-gray-300'
                       }`}
                   >
                     <div className="flex items-start space-x-4">
                       <div className={`w-1 h-12 rounded-full transition-all duration-300 ${selectedService === index
-                          ? 'bg-emerald-600'
-                          : 'bg-gradient-to-r from-emerald-500 to-teal-500'
+                        ? 'bg-emerald-600'
+                        : 'bg-gradient-to-r from-emerald-500 to-teal-500'
                         }`}></div>
                       <div>
                         <h3 className={`text-lg font-bold transition-colors duration-300 ${selectedService === index ? 'text-emerald-900' : 'text-gray-900'
@@ -1077,11 +1068,19 @@ export default function ServicesPage() {
                           <input
                             type="tel"
                             required
+                            pattern="[0-9]{10}"
+                            maxLength={10}
                             value={formData.phone}
-                            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                            onChange={(e) => {
+                              const value = e.target.value.replace(/\D/g, ''); // Only allow digits
+                              if (value.length <= 10) {
+                                setFormData({ ...formData, phone: value });
+                              }
+                            }}
                             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
-                            placeholder="+256 XXX XXX XXX"
+                            placeholder="0712345678"
                           />
+                          <p className="text-xs text-gray-500 mt-1">Enter 10 digits (e.g., 0712345678)</p>
                         </div>
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-2">Company *</label>

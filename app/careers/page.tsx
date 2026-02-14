@@ -202,12 +202,12 @@ export default function CareersPage() {
 
       try {
         await fetch("https://script.google.com/macros/s/AKfycbwjmN1IyIpoUOSnqQJtsUnoxBnzEvFNBTXjgC-mZmtUAQ-X6ow5Ze6u05HyzwAwYk9D/exec",
-           {
-          method: "POST",
-          mode: "no-cors", // ✅ bypass CORS
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
-        })
+          {
+            method: "POST",
+            mode: "no-cors", // ✅ bypass CORS
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+          })
 
         // ✅ Assume success even with no-cors
         setSubmitStatus("success")
@@ -240,7 +240,7 @@ export default function CareersPage() {
   // Handle share job
   const handleShareJob = (job: JobListing) => {
     const jobUrl = `${window.location.origin}/careers?job=${job.id}`
-    
+
     // Try native share if available
     if (navigator.share) {
       navigator.share({
@@ -264,49 +264,56 @@ export default function CareersPage() {
       <NavBar />
 
       {/* Hero Section */}
-      <section className="relative min-h-[25vh] sm:min-h-[45vh] flex items-center overflow-hidden">
-        <div className="absolute inset-0">
-          <div
-            className="w-full h-full bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: 'url("/images/job-novagen.jpg")' }}
-          />
-          <div className="absolute inset-0 bg-black/60" />
-        </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 py-32">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <section className="relative min-h-[40vh] sm:min-h-[60vh] flex items-center justify-center overflow-hidden w-full max-w-full">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: "url('/images/job-novagen.jpg')" }}
+        />
+        <div className="absolute inset-0 bg-black/90"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-[#009696]/30 via-white-300/90 to-transparent"></div>
+
+        <div className="max-w-7xl mx-auto px-4 pt-24 pb-16 relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1 }}
-              className="text-center lg:text-left"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="space-y-6"
             >
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black mb-8 leading-tight">
-                <span className="text-white block mb-2">Join Our Team</span>
-              </h1>
-              <p className="text-base sm:text-lg text-white max-w-xl mx-auto lg:mx-0 mb-12 leading-relaxed">
-                Help us build the future of digital innovation. We're always looking for talented individuals who are passionate about creating exceptional software solutions.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <div className="bg-white/60 rounded-full px-10 py-3">
-                  <span className="text-base font-semibold whitespace-nowrap">Remote-First Culture</span>
-                </div>
-                <div className="bg-white/60 rounded-full px-10 py-3">
-                  <span className="text-base font-semibold whitespace-nowrap">Innovative Projects</span>
-                </div>
-                <div className="bg-white/60 rounded-full px-10 py-3">
-                  <span className="text-base font-semibold whitespace-nowrap">Growth Opportunities</span>
-                </div>
-              </div>
+              <motion.h1
+                className="text-2xl sm:text-3xl lg:text-4xl font-bold"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                <span className="text-white"> Join our Team </span>
+              </motion.h1>
+
+              <motion.p
+                className="text-base sm:text-lg text-white max-w-3xl mx-auto leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
+                Working on meaningful projects, solve real-world challenges, and build technology that changes lives. Your  next opportunity starts here.
+              </motion.p>
             </motion.div>
+
+            {/* Floating Elements */}
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.3 }}
-              className="hidden lg:block"
+              className="absolute top-1/4 left-1/4 w-20 h-20 bg-emerald-400/20 rounded-full blur-xl"
+              animate={{ y: [0, -20, 0], x: [0, 10, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.div
+              className="absolute bottom-1/4 right-1/4 w-32 h-32 bg-primary/10 rounded-full blur-xl"
+              animate={{ y: [0, 20, 0], x: [0, -15, 0] }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
             />
           </div>
         </div>
       </section>
+
 
       {/* Job Listings Section */}
       <section className="py-16 px-4">
@@ -336,11 +343,10 @@ export default function CareersPage() {
               <button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
-                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
-                  selectedCategory === category.id
-                    ? "bg-[#009696] text-white shadow-lg"
-                    : "bg-white text-gray-700 border border-gray-300 hover:border-[#009696] hover:text-[#009696]"
-                }`}
+                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${selectedCategory === category.id
+                  ? "bg-[#009696] text-white shadow-lg"
+                  : "bg-white text-gray-700 border border-gray-300 hover:border-[#009696] hover:text-[#009696]"
+                  }`}
               >
                 {category.label} ({category.count})
               </button>
@@ -373,9 +379,9 @@ export default function CareersPage() {
                             {job.category.charAt(0).toUpperCase() + job.category.slice(1)}
                           </span>
                         </div>
-                        
+
                         <p className="text-gray-600 mb-4 leading-relaxed">{job.description}</p>
-                        
+
                         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
                           <div className="flex items-center space-x-2 text-sm text-gray-700">
                             <Briefcase className="w-5 h-5 text-[#009696] flex-shrink-0" />
@@ -591,7 +597,22 @@ export default function CareersPage() {
                   </div>
                   <div>
                     <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#009696] focus:border-transparent transition-colors" placeholder="0700 123 456" />
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      pattern="[0-9]{10}"
+                      maxLength={10}
+                      onChange={(e) => {
+                        const value = e.target.value.replace(/\D/g, ''); // Only allow digits
+                        if (value.length <= 10) {
+                          e.target.value = value;
+                        }
+                      }}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#009696] focus:border-transparent transition-colors"
+                      placeholder="0712345678"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">Enter 10 digits (e.g., 0712345678)</p>
                   </div>
                 </div>
 
@@ -719,7 +740,7 @@ export default function CareersPage() {
                       exit={{ opacity: 0, y: -10 }}
                       className="flex items-center space-x-3 p-4 bg-green-500/10 border border-green-500/20 rounded-lg mt-4"
                     >
-                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0"/>
+                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
                       <p className="text-green-700 dark:text-green-300">Thank you! Your resume has been submitted successfully.</p>
                     </motion.div>
                   )}
@@ -730,7 +751,7 @@ export default function CareersPage() {
                       exit={{ opacity: 0, y: -10 }}
                       className="flex items-center space-x-3 p-4 bg-red-500/10 border border-red-500/20 rounded-lg mt-4"
                     >
-                      <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0"/>
+                      <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0" />
                       <p className="text-red-700 dark:text-red-300">Sorry, there was an error submitting your resume. Please try again.</p>
                     </motion.div>
                   )}
@@ -909,11 +930,19 @@ export default function CareersPage() {
                       <input
                         type="tel"
                         required
+                        pattern="[0-9]{10}"
+                        maxLength={10}
                         value={applicationFormData.phone}
-                        onChange={(e) => setApplicationFormData({ ...applicationFormData, phone: e.target.value })}
+                        onChange={(e) => {
+                          const value = e.target.value.replace(/\D/g, ''); // Only allow digits
+                          if (value.length <= 10) {
+                            setApplicationFormData({ ...applicationFormData, phone: value });
+                          }
+                        }}
                         className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#009696] focus:border-transparent"
-                        placeholder="+256 XXX XXX XXX"
+                        placeholder="0712345678"
                       />
+                      <p className="text-xs text-gray-500 mt-1">Enter 10 digits (e.g., 0712345678)</p>
                     </div>
                   </div>
 
