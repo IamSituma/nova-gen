@@ -62,13 +62,12 @@ export default function ProjectsPage() {
   }
 
   const projects = [
-    { id: "nova-legal", name: "Nova Legal", description: "A comprehensive legal management system that streamlines case management, client records, billing, and document workflows.", image: "/images/lawyer-novalegal.png", companyLogo: "/logos/nova-legal.png", companyName: "Nova Generation" },
-    { id: "nova-suite", name: "Nova Suite", description: "Hotel management system that streamlines reservations, front desk operations, billing, and guest management in one powerful platform.", image: "/images/reservation.png", companyLogo: "/logos/nova-suite.png", companyName: "Nova Generation" },
-    { id: "nova-coding", name: "Nova Coding Club", description: "Providing hands-on coding lessons that build creativity and problem-solving skills, and a strong foundation in technology.", image: "/images/coding-nova-club.png", companyLogo: "/images/NOVA GEN.svg", companyName: "Nova Generation" },
-    { id: "sprint", name: "Sprint Internet Uganda", description: "Developed a modern, responsive website for Sprint Internet, Uganda's leading internet service provider, featuring service showcases, customer portals, and seamless online experiences that improved user engagement by 40%.", image: "/images/network-sprinttz.png", companyLogo: "/logos/SprintUG PNG.png", companyName: "Sprint Internet" },
-    { id: "inventory", name: "Inventory Management System", description: "Developed a comprehensive inventory management system with real-time stock tracking, automated reordering, barcode scanning, multi-location support, and detailed analytics dashboard for efficient warehouse and retail operations.", image: "/images/mobile-app-screenshot.png", companyLogo: "/images/NOVA GEN.svg", companyName: "Nova Generation" },
-    { id: "sprint-tz", name: "Sprint Internet Tanzania", description: "Built a comprehensive corporate website for Sprint Internet Tanzania, featuring advanced service packages, online billing integration, customer support portals, and localized content that enhanced digital presence and customer engagement across Tanzania.", image: "/images/saas-screenshot.png", companyLogo: "/logos//sprint-tz.png", companyName: "Sprint Internet" },
-    { id: "sprint-sa", name: "Sprint Internet South Africa", description: "Created a modern, localized website for Sprint Internet South Africa, incorporating region-specific service offerings, multi-language support, integrated payment systems, customer service platforms, and SEO optimization that boosted online visibility and customer acquisition in the South African market.", image: "/images/SprintSA.jpg", companyLogo: "/logos/SprintRSA.png", companyName: "Sprint Internet" }
+    { id: "nova-legal", name: "Nova Legal", description: "A comprehensive legal management system that streamlines case management, client records, billing, and document workflows.", image: "/images/lawyer-novalegal.png"},
+    { id: "nova-suite", name: "Nova Suite", description: "Hotel management system that streamlines reservations, front desk operations, billing, and guest management in one powerful platform.", image: "/images/reservation.png"},
+    { id: "sprint", name: "Sprint Internet Uganda", description: "Developed a modern, responsive website for Sprint Internet, Uganda's leading internet service provider, featuring service showcases, customer portals, and seamless online experiences that improved user engagement by 40%.", image: "/images/network-sprinttz.png"},
+    { id: "inventory", name: "Inventory Management System", description: "Developed a comprehensive inventory management system with real-time stock tracking, automated reordering, barcode scanning, multi-location support, and detailed analytics dashboard for efficient warehouse and retail operations.", image: "/images/mobile-app-screenshot.png" },
+    { id: "sprint-tz", name: "Sprint Internet Tanzania", description: "Built a comprehensive corporate website for Sprint Internet Tanzania, featuring advanced service packages, online billing integration, customer support portals, and localized content that enhanced digital presence and customer engagement across Tanzania.", image: "/images/saas-screenshot.png" },
+    { id: "sprint-sa", name: "Sprint Internet South Africa", description: "Created a modern, localized website for Sprint Internet South Africa, incorporating region-specific service offerings, multi-language support, integrated payment systems, customer service platforms, and SEO optimization that boosted online visibility and customer acquisition in the South African market.", image: "/images/SprintSA.jpg"}
   ]
 
   return (
@@ -126,19 +125,6 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-
-      {/* Header Section */}
-      <section className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 py-16">
-          <div className="text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Featured Work</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Discover our diverse range of successful projects across web development, mobile apps, SaaS platforms, and more.
-            </p>
-          </div>
-        </div>
-      </section>
-
       {/* Projects Showcase */}
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
@@ -151,7 +137,6 @@ export default function ProjectsPage() {
                     <motion.button key={project.id} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.4, delay: index * 0.1 }} onClick={() => setSelectedProject(index)} className={`w-full text-left p-4 rounded-lg transition-all duration-300 ${selectedProject === index ? 'bg-[#009696] text-white shadow-lg' : 'bg-white text-gray-700 hover:bg-gray-100 hover:shadow-md'}`}>
                       <div>
                         <div className="font-semibold">{project.name}</div>
-                        <div className={`text-sm ${selectedProject === index ? 'text-white/80' : 'text-gray-500'}`}>{project.companyName}</div>
                       </div>
                     </motion.button>
                   ))}
@@ -167,16 +152,6 @@ export default function ProjectsPage() {
 
                 <div className="p-8">
                   <div className="flex items-start justify-between mb-6">
-                    <div className="flex items-center space-x-4">
-                      <img src={projects[selectedProject].companyLogo} alt={projects[selectedProject].companyName} className="w-16 h-16 object-contain rounded-lg bg-white p-3 shadow-sm" />
-                      <div>
-                        <h2 className="text-3xl font-bold text-gray-900 mb-2">{projects[selectedProject].name}</h2>
-                        <div className="flex items-center text-[#009696] font-medium">
-                          <span>by {projects[selectedProject].companyName}</span>
-                          <ArrowRight className="w-4 h-4 ml-2" />
-                        </div>
-                      </div>
-                    </div>
                     <Button className="bg-[#009696] hover:bg-[#009696]/90 text-white">
                       <ExternalLink className="w-4 h-4 mr-2" /> Visit Website
                     </Button>

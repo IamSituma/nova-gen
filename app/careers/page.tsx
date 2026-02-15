@@ -327,9 +327,6 @@ export default function CareersPage() {
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
               Open Positions
             </h2>
-            <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
-              Discover exciting career opportunities and be part of our mission to transform businesses through technology.
-            </p>
           </motion.div>
 
           {/* Filter Categories */}

@@ -105,7 +105,6 @@ export default function ServicesPage() {
   const tailoredServices = [
     {
       title: "Enterprise Software Development",
-      icon: <Globe className="w-6 h-6" />,
       description: "Scalable, robust enterprise-grade applications designed for large organizations",
       details: [
         "Custom ERP systems with modular architecture",
@@ -117,7 +116,6 @@ export default function ServicesPage() {
     },
     {
       title: "MVP Development",
-      icon: <Zap className="w-6 h-6" />,
       description: "Rapid prototyping and minimum viable product development to validate your business ideas",
       details: [
         "2-8 week development cycles",
@@ -129,7 +127,6 @@ export default function ServicesPage() {
     },
     {
       title: "SaaS Development",
-      icon: <Cloud className="w-6 h-6" />,
       description: "Cloud-based software-as-a-service solutions with subscription-based business models",
       details: [
         "Multi-tenant architecture design",
@@ -141,7 +138,6 @@ export default function ServicesPage() {
     },
     {
       title: "Product Development",
-      icon: <ShoppingBag className="w-6 h-6" />,
       description: "End-to-end product development from concept to market-ready solution",
       details: [
         "Market research and competitive analysis",
@@ -191,7 +187,6 @@ export default function ServicesPage() {
 
   const services = [
     {
-      icon: <Code className="w-8 h-8" />,
       title: "Web Development",
       description: "Custom websites and web applications built with cutting-edge technologies",
       features: ["React & Next.js", "Full-Stack Development", "API Integration", "Database Design"],
@@ -202,7 +197,6 @@ export default function ServicesPage() {
       }
     },
     {
-      icon: <Smartphone className="w-8 h-8" />,
       title: "Mobile App Development",
       description: "Native and cross-platform mobile applications for iOS and Android",
       features: ["React Native", "iOS & Android", "App Store Deployment", "Push Notifications"],
@@ -213,7 +207,6 @@ export default function ServicesPage() {
       }
     },
     {
-      icon: <ShoppingBag className="w-8 h-8" />,
       title: "Desktop App Development",
       description: "Designing and building reliable desktop software",
       features: ["Cross-platform compatibility", "High performance", "Secure architecture", "Offline functionality"],
@@ -224,7 +217,6 @@ export default function ServicesPage() {
       }
     },
     {
-      icon: <Palette className="w-8 h-8" />,
       title: "UI/UX Design",
       description: "Beautiful, intuitive designs that convert visitors into customers",
       features: ["User Research", "Wireframing", "Prototyping", "Design Systems"],
@@ -235,7 +227,6 @@ export default function ServicesPage() {
       }
     },
     {
-      icon: <Cloud className="w-8 h-8" />,
       title: "Cloud Solutions",
       description: "Scalable cloud infrastructure and deployment solutions",
       features: ["AWS/Vercel Setup", "CI/CD Pipelines", "Database Hosting", "Performance Monitoring"],
@@ -246,7 +237,6 @@ export default function ServicesPage() {
       }
     },
     {
-      icon: <ShoppingCart className="w-8 h-8" />,
       title: "E-commerce Development",
       description: "Complete online stores with payment processing and inventory management",
       features: ["Shopify/Custom", "Payment Integration", "Inventory Management", "Order Processing"],
@@ -257,7 +247,6 @@ export default function ServicesPage() {
       }
     },
     {
-      icon: <LucideFileQuestion className="w-8 h-8" />,
       title: "IT Consultation",
       description: "We offer IT Consultation services to both individuals, SMEs and large organizations",
       features: ["Consultation", "Consultation", "Consultation", "Consultation"],
@@ -268,7 +257,6 @@ export default function ServicesPage() {
       }
     },
     {
-      icon: <ShoppingCart className="w-8 h-8" />,
       title: "E-commerce Development",
       description: "Complete online stores with payment processing and inventory management",
       features: ["Shopify/Custom", "Payment Integration", "Inventory Management", "Order Processing"],
@@ -276,7 +264,6 @@ export default function ServicesPage() {
       color: "black",
     },
     {
-      icon: <LucideFileQuestion className="w-8 h-8" />,
       title: "IT Consultation",
       description: "We offer IT Consultation services to both individuals, SMEs and large organizations",
       features: ["Consultation", "Consultation", "Consultation", "Consultation"],
@@ -376,21 +363,6 @@ export default function ServicesPage() {
       {/* Services Section */}
       <section id="services" className="py-20 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 text-gray-900">
-              Services We Offer
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Discover our full range of digital solutions designed to accelerate your business growth
-            </p>
-          </motion.div>
-
           {/* Services Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.slice(0, 6).map((service, index) => (
@@ -407,8 +379,7 @@ export default function ServicesPage() {
                   {service.graphic}
 
                   <div className="relative z-10">
-                    <div className={`${colorMap[service.color] ?? "text-white"} mb-6`}>{service.icon}</div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4">{service.title}</h3>
+                    <h3 className="text-xl font-bold text-gray-900 mb-4">{service.title}</h3>
                     <p className="text-gray-600 mb-6 leading-relaxed">{service.description}</p>
 
                     <div className="space-y-2 mb-6">
@@ -449,10 +420,10 @@ export default function ServicesPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 text-gray-900">
+            <h2 className="text-xl sm:text-xl lg:text-3xl font-bold mb-6 text-gray-900">
               From MVPs to Enterprise Solutions: Tailored Development Services
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-l sm:text-xl text-gray-600 max-w-3xl mx-auto">
               We specialize in delivering custom software solutions that scale with your business needs, from rapid MVPs to comprehensive enterprise systems
             </p>
           </motion.div>
@@ -528,13 +499,32 @@ export default function ServicesPage() {
                 </div>
 
                 <div className="mt-8 text-center">
-                  <Link href="/contact">
-                    <Button className="bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-8 py-3 font-semibold hover:shadow-lg transition-all duration-300">
-                      Get Started with {tailoredServices[selectedService].title}
-                      <ArrowRight className="w-5 h-5 ml-2" />
-                    </Button>
-                  </Link>
-                </div>
+  <Link href="/contact" className="inline-block w-full sm:w-auto">
+    <Button
+      className="
+        w-full sm:w-auto
+        px-5 sm:px-8
+        py-4 sm:py-3
+        min-h-[56px] sm:min-h-0
+
+        bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-semibold
+        flex items-center justify-center gap-2
+        text-center
+        whitespace-normal break-words
+
+        rounded-xl
+        hover:shadow-lg transition-all duration-300
+      "
+    >
+      <span>
+        Get Started with {tailoredServices[selectedService].title}
+      </span>
+      <ArrowRight className="w-5 h-5 shrink-0" />
+    </Button>
+  </Link>
+</div>
+
+              
               </motion.div>
             </div>
           </div>
@@ -554,7 +544,7 @@ export default function ServicesPage() {
             <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 text-gray-900">
               What Our Clients Say
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-l sm:text-xl text-gray-600 max-w-2xl mx-auto">
               Don't just take our word for it - hear from the businesses we've helped transform
             </p>
           </motion.div>
@@ -613,100 +603,108 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* CEO Message Section */}
-      <section className="py-20 px-4 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 text-gray-900">
-              A Message from Our CEO
-            </h2>
-          </motion.div>
+{/* CEO Message Section */}
+<section className="py-24 px-4 bg-white overflow-hidden">
+  <div className="max-w-7xl mx-auto">
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="order-2 lg:order-1"
-            >
-              <div className="bg-[#009696] rounded-2xl p-8 text-white shadow-2xl">
-                <div className="mb-6">
-                  <svg className="w-12 h-12 text-white/80 mb-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                  </svg>
-                </div>
-                <blockquote className="text-xl leading-relaxed mb-6 italic">
-                  "At Nova Gen, we believe technology should empower businesses, not complicate them. Our mission is to deliver innovative solutions that drive real results and transform how our clients operate in the digital world.
-                  <br /><br />
-                  With over 5 years of experience and a team of passionate experts, we've helped countless businesses achieve their digital transformation goals. We don't just build software – we build partnerships that last.
-                  <br /><br />
-                  Choose Nova Gen for excellence, innovation, and results that matter."
-                </blockquote>
-                <div className="border-t border-white/30 pt-6">
-                  <div className="font-bold text-xl">Nabilah Kitiibwa</div>
-                  <div className="text-white/80">Chief Executive Officer</div>
-                </div>
-              </div>
-            </motion.div>
+    {/* Header */}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+      className="text-center mb-20"
+    >
+      <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900">
+        A Message from Our CEO
+      </h2>
+    </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="order-1 lg:order-2 text-center lg:text-left"
-            >
-              <div className="relative">
-                <div className="w-80 h-80 mx-auto bg-gradient-to-br from-emerald-400 to-teal-500 rounded-full flex items-center justify-center shadow-2xl overflow-hidden">
-                  <img
-                    src="/images/ceo-nabilah.jpg"
-                    alt="Nabilah Kitiibwa - CEO"
-                    className="w-72 h-72 object-cover object-top rounded-full"
-                  />
-                </div>
-                <div className="absolute -bottom-4 -right-4 bg-white rounded-full p-4 shadow-lg">
-                  <div className="w-16 h-16 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full flex items-center justify-center">
-                    <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                    </svg>
-                  </div>
-                </div>
-              </div>
 
-              <div className="mt-8 text-center lg:text-left">
-                <h3 className="text-2xl font-bold text-black mb-2">Nabilah Kitiibwa</h3>
-                <p className="text-lg text-black mb-4">Nova Generation Limited</p>
-                <div className="flex justify-center lg:justify-start space-x-4">
-                  <a
-                    href="https://linkedin.com/company/nova-generation-limited"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center text-black hover:text-[#009696] transition-colors duration-200"
-                  >
-                    <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                    </svg>
-                    LinkedIn
-                  </a>
-                  <div className="flex items-center text-black">
-                    <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-                    </svg>
-                    5+ Years Leading Tech Innovation
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+
+      {/* IMAGE SIDE */}
+      <motion.div
+        initial={{ opacity: 0, x: -60 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="relative flex justify-center"
+      >
+
+        {/* Accent background block */}
+        <div className="absolute w-[85%] h-[85%] bg-[#009696]/20 rounded-3xl rotate-6"></div>
+
+        {/* Larger image */}
+        <div className="
+          relative
+          w-80 h-80
+          sm:w-96 sm:h-96
+          lg:w-[520px] lg:h-[640px]
+          rounded-3xl
+          overflow-hidden
+          shadow-2xl
+          border-4 border-[#009696]
+        ">
+          <img
+            src="/images/ceo-nabilah.jpg"
+            alt="Nabilah Kitiibwa - CEO"
+            className="w-full h-full object-cover object-top"
+          />
         </div>
-      </section>
+      </motion.div>
+
+
+      {/* TEXT SIDE */}
+      <motion.div
+        initial={{ opacity: 0, x: 60 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        <div className="bg-white rounded-3xl shadow-xl p-10 md:p-14 border border-gray-100">
+
+          {/* Quote mark */}
+          <div className="text-[#009696] text-5xl mb-6">“</div>
+
+          {/* Quote */}
+          <blockquote className="text-gray-700 text-l md:text-xl leading-relaxed italic mb-10">
+            At Nova Gen, we believe technology should empower businesses, not complicate them.
+            Our mission is to deliver innovative solutions that create real impact and long-term value.
+            <br /><br />
+            With years of experience and a passionate team, we help businesses transform digitally
+            and grow confidently into the future.
+            <br /><br />
+            We don’t just build software, we build lasting partnerships.
+          </blockquote>
+
+          {/* Footer */}
+          <div className="border-t pt-6">
+            <h3 className="text-xl font-bold text-gray-900">
+              Nabilah Kitiibwa
+            </h3>
+
+            <p className="text-gray-500 mb-4">
+              Chief Executive Officer • Nova Generation Limited
+            </p>
+
+            <a
+              href="https://linkedin.com/company/nova-generation-limited"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#009696] font-medium hover:underline"
+            >
+              Connect on LinkedIn →
+            </a>
+          </div>
+
+        </div>
+      </motion.div>
+
+    </div>
+  </div>
+</section>
+
 
       {/* Quality Control Practices Section */}
       <section className="py-20 px-4 bg-gray-50">
@@ -721,7 +719,7 @@ export default function ServicesPage() {
             <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 text-gray-900">
               Our Quality Control Practices
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-l sm:text-xl text-gray-600 max-w-3xl mx-auto">
               We maintain the highest standards of quality through rigorous testing and validation processes at every stage of development
             </p>
           </motion.div>
@@ -767,7 +765,7 @@ export default function ServicesPage() {
                 viewport={{ once: true }}
                 className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300"
               >
-                <div className="w-16 h-16 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center text-white mb-6">
+                <div className="w-16 h-16 bg-[#009696] text-white rounded-xl flex items-center justify-center text-white mb-6">
                   {practice.icon}
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">{practice.title}</h3>
@@ -851,48 +849,6 @@ export default function ServicesPage() {
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="relative py-20 px-4 min-h-[50vh] sm:min-h-[70vh] flex items-center">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <div
-            className="w-full h-full bg-cover bg-center bg-no-repeat"
-            style={{
-              backgroundImage: `url('/images/cta-novagen.jpg')`,
-            }}
-          />
-          {/* Black Overlay */}
-          <div className="absolute inset-0 bg-black/70" />
-        </div>
-
-        <div className="relative z-10 max-w-4xl mx-auto text-center w-full">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="px-4 py-8"
-          >
-            <div className="mb-8">
-              <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-4">
-                Ready to Transform Your Business?
-              </h3>
-              <p className="text-white/90 text-xl mb-8 max-w-2xl mx-auto leading-relaxed">
-                Let's discuss your project and bring your vision to life with our expert team and cutting-edge solutions
-              </p>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact">
-                <Button className="bg-emerald-500 text-white hover:bg-emerald-600 px-8 py-4 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300">
-                  Start Your Project
-                </Button>
-              </Link>
-            </div>
-          </motion.div>
         </div>
       </section>
 
