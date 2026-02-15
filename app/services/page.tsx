@@ -499,9 +499,9 @@ export default function ServicesPage() {
                 </div>
 
                 <div className="mt-8 text-center">
-  <Link href="/contact" className="inline-block w-full sm:w-auto">
-    <Button
-      className="
+                  <Link href="/contact" className="inline-block w-full sm:w-auto">
+                    <Button
+                      className="
         w-full sm:w-auto
         px-5 sm:px-8
         py-4 sm:py-3
@@ -515,16 +515,16 @@ export default function ServicesPage() {
         rounded-xl
         hover:shadow-lg transition-all duration-300
       "
-    >
-      <span>
-        Get Started with {tailoredServices[selectedService].title}
-      </span>
-      <ArrowRight className="w-5 h-5 shrink-0" />
-    </Button>
-  </Link>
-</div>
+                    >
+                      <span>
+                        Get Started with {tailoredServices[selectedService].title}
+                      </span>
+                      <ArrowRight className="w-5 h-5 shrink-0" />
+                    </Button>
+                  </Link>
+                </div>
 
-              
+
               </motion.div>
             </div>
           </div>
@@ -603,40 +603,40 @@ export default function ServicesPage() {
         </div>
       </section>
 
-{/* CEO Message Section */}
-<section className="py-24 px-4 bg-white overflow-hidden">
-  <div className="max-w-7xl mx-auto">
+      {/* CEO Message Section */}
+      <section className="py-24 px-4 bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto">
 
-    {/* Header */}
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-      viewport={{ once: true }}
-      className="text-center mb-20"
-    >
-      <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900">
-        A Message from Our CEO
-      </h2>
-    </motion.div>
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-20"
+          >
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900">
+              A Message from Our CEO
+            </h2>
+          </motion.div>
 
 
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
 
-      {/* IMAGE SIDE */}
-      <motion.div
-        initial={{ opacity: 0, x: -60 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="relative flex justify-center"
-      >
+            {/* IMAGE SIDE */}
+            <motion.div
+              initial={{ opacity: 0, x: -60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="relative flex justify-center"
+            >
 
-        {/* Accent background block */}
-        <div className="absolute w-[85%] h-[85%] bg-[#009696]/20 rounded-3xl rotate-6"></div>
+              {/* Accent background block */}
+              <div className="absolute w-[85%] h-[85%] bg-[#009696]/20 rounded-3xl rotate-6"></div>
 
-        {/* Larger image */}
-        <div className="
+              {/* Larger image */}
+              <div className="
           relative
           w-80 h-80
           sm:w-96 sm:h-96
@@ -646,64 +646,64 @@ export default function ServicesPage() {
           shadow-2xl
           border-4 border-[#009696]
         ">
-          <img
-            src="/images/ceo-nabilah.jpg"
-            alt="Nabilah Kitiibwa - CEO"
-            className="w-full h-full object-cover object-top"
-          />
-        </div>
-      </motion.div>
+                <img
+                  src="/images/ceo-nabilah.jpg"
+                  alt="Nabilah Kitiibwa - CEO"
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
+            </motion.div>
 
 
-      {/* TEXT SIDE */}
-      <motion.div
-        initial={{ opacity: 0, x: 60 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-      >
-        <div className="bg-white rounded-3xl shadow-xl p-10 md:p-14 border border-gray-100">
-
-          {/* Quote mark */}
-          <div className="text-[#009696] text-5xl mb-6">“</div>
-
-          {/* Quote */}
-          <blockquote className="text-gray-700 text-l md:text-xl leading-relaxed italic mb-10">
-            At Nova Gen, we believe technology should empower businesses, not complicate them.
-            Our mission is to deliver innovative solutions that create real impact and long-term value.
-            <br /><br />
-            With years of experience and a passionate team, we help businesses transform digitally
-            and grow confidently into the future.
-            <br /><br />
-            We don’t just build software, we build lasting partnerships.
-          </blockquote>
-
-          {/* Footer */}
-          <div className="border-t pt-6">
-            <h3 className="text-xl font-bold text-gray-900">
-              Nabilah Kitiibwa
-            </h3>
-
-            <p className="text-gray-500 mb-4">
-              Chief Executive Officer • Nova Generation Limited
-            </p>
-
-            <a
-              href="https://linkedin.com/company/nova-generation-limited"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#009696] font-medium hover:underline"
+            {/* TEXT SIDE */}
+            <motion.div
+              initial={{ opacity: 0, x: 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
             >
-              Connect on LinkedIn →
-            </a>
+              <div className="bg-white rounded-3xl shadow-xl p-10 md:p-14 border border-gray-100">
+
+                {/* Quote mark */}
+                <div className="text-[#009696] text-5xl mb-6">“</div>
+
+                {/* Quote */}
+                <blockquote className="text-gray-700 text-l md:text-xl leading-relaxed italic mb-10">
+                  At Nova Gen, we believe technology should empower businesses, not complicate them.
+                  Our mission is to deliver innovative solutions that create real impact and long-term value.
+                  <br /><br />
+                  With years of experience and a passionate team, we help businesses transform digitally
+                  and grow confidently into the future.
+                  <br /><br />
+                  We don’t just build software, we build lasting partnerships.
+                </blockquote>
+
+                {/* Footer */}
+                <div className="border-t pt-6">
+                  <h3 className="text-xl font-bold text-gray-900">
+                    Nabilah Kitiibwa
+                  </h3>
+
+                  <p className="text-gray-500 mb-4">
+                    Chief Executive Officer • Nova Generation Limited
+                  </p>
+
+                  <a
+                    href="https://linkedin.com/company/nova-generation-limited"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#009696] font-medium hover:underline"
+                  >
+                    Connect on LinkedIn →
+                  </a>
+                </div>
+
+              </div>
+            </motion.div>
+
           </div>
-
         </div>
-      </motion.div>
-
-    </div>
-  </div>
-</section>
+      </section>
 
 
       {/* Quality Control Practices Section */}

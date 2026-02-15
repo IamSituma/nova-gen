@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { NavBar } from "@/components/nav-bar"
 import { Footer } from "@/components/footer"
-import { ExternalLink, ArrowRight, Loader2 } from "lucide-react"
+import { ExternalLink, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
 
@@ -17,7 +17,8 @@ interface FormData {
 }
 
 export default function ProjectsPage() {
-  const [selectedProject, setSelectedProject] = useState(0)
+  const [selectedProject, setSelectedProject] = useState<number | null>(0)
+
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
@@ -29,7 +30,9 @@ export default function ProjectsPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
   }
@@ -62,18 +65,54 @@ export default function ProjectsPage() {
   }
 
   const projects = [
-    { id: "nova-legal", name: "Nova Legal", description: "A comprehensive legal management system that streamlines case management, client records, billing, and document workflows.", image: "/images/lawyer-novalegal.png"},
-    { id: "nova-suite", name: "Nova Suite", description: "Hotel management system that streamlines reservations, front desk operations, billing, and guest management in one powerful platform.", image: "/images/reservation.png"},
-    { id: "sprint", name: "Sprint Internet Uganda", description: "Developed a modern, responsive website for Sprint Internet, Uganda's leading internet service provider, featuring service showcases, customer portals, and seamless online experiences that improved user engagement by 40%.", image: "/images/network-sprinttz.png"},
-    { id: "inventory", name: "Inventory Management System", description: "Developed a comprehensive inventory management system with real-time stock tracking, automated reordering, barcode scanning, multi-location support, and detailed analytics dashboard for efficient warehouse and retail operations.", image: "/images/mobile-app-screenshot.png" },
-    { id: "sprint-tz", name: "Sprint Internet Tanzania", description: "Built a comprehensive corporate website for Sprint Internet Tanzania, featuring advanced service packages, online billing integration, customer support portals, and localized content that enhanced digital presence and customer engagement across Tanzania.", image: "/images/saas-screenshot.png" },
-    { id: "sprint-sa", name: "Sprint Internet South Africa", description: "Created a modern, localized website for Sprint Internet South Africa, incorporating region-specific service offerings, multi-language support, integrated payment systems, customer service platforms, and SEO optimization that boosted online visibility and customer acquisition in the South African market.", image: "/images/SprintSA.jpg"}
+    {
+      id: "nova-legal",
+      name: "Nova Legal",
+      description:
+        "A comprehensive legal management system that streamlines case management, client records, billing, and document workflows.",
+      image: "/images/lawyer-novalegal.png"
+    },
+    {
+      id: "nova-suite",
+      name: "Nova Suite",
+      description:
+        "Hotel management system that streamlines reservations, front desk operations, billing, and guest management in one powerful platform.",
+      image: "/images/reservation.png"
+    },
+    {
+      id: "sprint",
+      name: "Sprint Internet Uganda",
+      description:
+        "Developed a modern, responsive website for Sprint Internet, Uganda's leading internet service provider, featuring service showcases, customer portals, and seamless online experiences that improved user engagement by 40%.",
+      image: "/images/network-sprinttz.png"
+    },
+    {
+      id: "inventory",
+      name: "Inventory Management System",
+      description:
+        "Developed a comprehensive inventory management system with real-time stock tracking, automated reordering, barcode scanning, multi-location support, and detailed analytics dashboard for efficient warehouse and retail operations.",
+      image: "/images/mobile-app-screenshot.png"
+    },
+    {
+      id: "sprint-tz",
+      name: "Sprint Internet Tanzania",
+      description:
+        "Built a comprehensive corporate website for Sprint Internet Tanzania, featuring advanced service packages, online billing integration, customer support portals, and localized content that enhanced digital presence and customer engagement across Tanzania.",
+      image: "/images/saas-screenshot.png"
+    },
+    {
+      id: "sprint-sa",
+      name: "Sprint Internet South Africa",
+      description:
+        "Created a modern, localized website for Sprint Internet South Africa, incorporating region-specific service offerings, multi-language support, integrated payment systems, customer service platforms, and SEO optimization that boosted online visibility and customer acquisition in the South African market.",
+      image: "/images/SprintSA.jpg"
+    }
   ]
 
   return (
     <div className="min-h-screen bg-gray-50">
       <NavBar />
-      {/* Hero Section */}
+
       {/* Hero Section */}
       <section className="relative min-h-[40vh] sm:min-h-[60vh] flex items-center justify-center overflow-hidden w-full max-w-full">
         <div
@@ -106,71 +145,149 @@ export default function ProjectsPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                From web platforms to enterprise systems, we design and build practical solutions that solve real problems and create measurable impact. 
+                From web platforms to enterprise systems, we design and build practical solutions that solve real problems and create measurable impact.
               </motion.p>
             </motion.div>
-
-            {/* Floating Elements */}
-            <motion.div
-              className="absolute top-1/4 left-1/4 w-20 h-20 bg-emerald-400/20 rounded-full blur-xl"
-              animate={{ y: [0, -20, 0], x: [0, 10, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            />
-            <motion.div
-              className="absolute bottom-1/4 right-1/4 w-32 h-32 bg-primary/10 rounded-full blur-xl"
-              animate={{ y: [0, 20, 0], x: [0, -15, 0] }}
-              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            />
           </div>
         </div>
       </section>
 
-      {/* Projects Showcase */}
+      {/* Header Section */}
+      <section className="bg-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 py-16">
+          <div className="text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Featured Work</h2>
+            <p className="text-l sm:text-xl text-gray-600 max-w-3xl mx-auto">
+              Discover our diverse range of successful projects across web development, mobile apps, SaaS platforms, and more.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= Projects Showcase ================= */}
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+
+          {/* MOBILE: Accordion */}
+          <div className="lg:hidden space-y-4">
+            {projects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                className="bg-white rounded-xl shadow-md overflow-hidden"
+              >
+                <button
+                  onClick={() =>
+                    setSelectedProject(selectedProject === index ? null : index)
+                  }
+                  className="w-full p-4 text-left flex items-center justify-between font-semibold"
+                >
+                  {project.name}
+                  <span className="text-[#009696]">
+                    {selectedProject === index ? "−" : "+"}
+                  </span>
+                </button>
+
+                {selectedProject === index && (
+                  <div className="border-t">
+                    <img
+                      src={project.image}
+                      alt={project.name}
+                      className="w-full h-48 object-cover"
+                    />
+                    <div className="p-5 space-y-4">
+                      <p className="text-gray-600">{project.description}</p>
+                      <Button className="w-full bg-[#009696] text-white flex items-center justify-center">
+                        <ExternalLink className="w-4 h-4 mr-2" />
+                        Visit Website
+                      </Button>
+                    </div>
+                  </div>
+                )}
+              </motion.div>
+            ))}
+          </div>
+
+          {/* DESKTOP: Original Layout */}
+          <div className="hidden lg:grid grid-cols-1 lg:grid-cols-3 gap-12">
+
+            {/* Left list */}
             <div className="lg:col-span-1">
-              <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} className="sticky top-8">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+                className="sticky top-8"
+              >
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">Our Projects</h3>
+
                 <div className="space-y-2">
                   {projects.map((project, index) => (
-                    <motion.button key={project.id} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.4, delay: index * 0.1 }} onClick={() => setSelectedProject(index)} className={`w-full text-left p-4 rounded-lg transition-all duration-300 ${selectedProject === index ? 'bg-[#009696] text-white shadow-lg' : 'bg-white text-gray-700 hover:bg-gray-100 hover:shadow-md'}`}>
-                      <div>
-                        <div className="font-semibold">{project.name}</div>
-                      </div>
+                    <motion.button
+                      key={project.id}
+                      onClick={() => setSelectedProject(index)}
+                      className={`w-full text-left p-4 rounded-lg transition-all duration-300 ${
+                        selectedProject === index
+                          ? "bg-[#009696] text-white shadow-lg"
+                          : "bg-white text-gray-700 hover:bg-gray-100 hover:shadow-md"
+                      }`}
+                    >
+                      <div className="font-semibold">{project.name}</div>
                     </motion.button>
                   ))}
                 </div>
               </motion.div>
             </div>
 
+            {/* Right details */}
             <div className="lg:col-span-2">
-              <motion.div key={selectedProject} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="bg-white rounded-2xl shadow-xl overflow-hidden">
-                <div className="aspect-video overflow-hidden">
-                  <img src={projects[selectedProject].image} alt={projects[selectedProject].name} className="w-full h-full object-cover" />
-                </div>
-
-                <div className="p-8">
-                  <div className="flex items-start justify-between mb-6">
-                    <Button className="bg-[#009696] hover:bg-[#009696]/90 text-white">
-                      <ExternalLink className="w-4 h-4 mr-2" /> Visit Website
-                    </Button>
+              {selectedProject !== null && (
+                <motion.div
+                  key={selectedProject}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  className="bg-white rounded-2xl shadow-xl overflow-hidden"
+                >
+                  <div className="aspect-video overflow-hidden">
+                    <img
+                      src={projects[selectedProject].image}
+                      alt={projects[selectedProject].name}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
 
-                  <p className="text-lg text-gray-600 leading-relaxed mb-8">{projects[selectedProject].description}</p>
-                </div>
-              </motion.div>
+                  <div className="p-8">
+                    <Button className="bg-[#009696] text-white">
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      Visit Website
+                    </Button>
+                    <p className="text-lg text-gray-600 leading-relaxed mt-6">
+                      {projects[selectedProject].description}
+                    </p>
+                  </div>
+                </motion.div>
+              )}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Process Section */}
+      {/* ================= Process Section ================= */}
       <section className="py-20 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">How We Work</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">Our streamlined process ensures efficient project delivery from concept to completion.</p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">How We Work</h2>
+            <p className="text-l sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Our streamlined process ensures efficient project delivery from concept to completion.
+            </p>
           </motion.div>
 
           <div className="relative">
@@ -183,7 +300,13 @@ export default function ProjectsPage() {
                 { id: 5, title: "Testing", description: "Quality assurance & revisions" },
                 { id: 6, title: "Launch", description: "Deployment & support" }
               ].map((step, index) => (
-                <motion.div key={step.id} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: index * 0.1 }} className="text-center">
+                <motion.div
+                  key={step.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="text-center"
+                >
                   <div className="bg-gray-50 rounded-xl p-6 hover:bg-[#009696]/5 transition-colors duration-300">
                     <div className="bg-[#009696] text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mx-auto mb-4">{step.id}</div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">{step.title}</h3>
@@ -200,8 +323,8 @@ export default function ProjectsPage() {
       <section className="py-20 px-4 bg-black">
         <div className="max-w-4xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Ready to Start Your Project?</h2>
-            <p className="text-xl text-white/90 mb-8">Get a free consultation and quote for your next project</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Ready to Start Your Project?</h2>
+            <p className="text-l sm:text-xl text-white/90 mb-8">Get a free consultation and quote for your next project</p>
           </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="bg-white rounded-2xl shadow-lg p-8">
