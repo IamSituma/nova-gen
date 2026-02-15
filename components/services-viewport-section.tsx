@@ -158,10 +158,10 @@ export function ServicesViewportSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black mb-6 text-gray-900">
+          <h2 className="text-l sm:text-xl lg:text-4xl font-black mb-6 text-gray-900">
             Services We Excel In
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-l text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Transform your business with our comprehensive suite of digital solutions,
             each crafted to deliver exceptional results and drive growth.
           </p>
@@ -185,20 +185,13 @@ export function ServicesViewportSection() {
 
                 {/* Content */}
                 <div className="relative z-10">
-                  {/* Service Number */}
-                  <div className="flex items-center justify-start mb-6">
-                    <div className="w-12 h-12 rounded-2xl bg-[#009696] flex items-center justify-center text-white font-bold text-lg shadow-lg">
-                      {index + 1}
-                    </div>
-                  </div>
-
                   {/* Title */}
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-gray-800 transition-colors">
+                  <h3 className="text-l sm:text-xl font-bold text-gray-900 mb-4 group-hover:text-gray-800 transition-colors">
                     {service.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-gray-600 mb-6 leading-relaxed group-hover:text-gray-700 transition-colors">
+                  <p className="text-l sm:text-xl text-gray-600 mb-6 leading-relaxed group-hover:text-gray-700 transition-colors">
                     {service.description}
                   </p>
 
@@ -231,7 +224,7 @@ export function ServicesViewportSection() {
                   whileHover={{ opacity: 1, scale: 1 }}
                 >
                   <div className="text-center mb-4">
-                    <h4 className="text-lg font-bold text-gray-900 mb-3">Technologies Used</h4>
+                    <h4 className="text-l sm:text-xl font-bold text-gray-900 mb-3">Technologies Used</h4>
                     <div className="flex flex-wrap justify-center gap-2">
                       {service.technologies.map((tech, techIndex) => (
                         <motion.span

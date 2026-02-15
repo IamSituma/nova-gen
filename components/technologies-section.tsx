@@ -121,71 +121,82 @@ export function TechnologiesSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black mb-6 text-gray-900">
+          <h2 className="text-l sm:text-xl font-black mb-6 text-gray-900">
             Technologies We Master
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-l sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             We leverage cutting-edge technologies and tools to deliver exceptional digital solutions
             that drive results for your business.
           </p>
         </motion.div>
 
         {/* Technologies Grid - 3 Columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {technologyCategories.map((category, index) => {
-            const IconComponent = category.icon
-            return (
-              <motion.div
-                key={category.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className={`relative ${category.bgColor} rounded-2xl p-6 border border-gray-100 hover:shadow-xl transition-all duration-300 group`}
-              >
-                {/* Icon */}
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-xl bg-[#009696] text-white mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <IconComponent className="w-8 h-8" />
-                </div>
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  {technologyCategories.map((category, index) => {
+    const IconComponent = category.icon
+    return (
+      <motion.div
+        key={category.id}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: index * 0.1 }}
+        viewport={{ once: true }}
+        className={`relative ${category.bgColor} rounded-2xl p-6 border border-gray-100 hover:shadow-xl transition-all duration-300 group`}
+      >
+        {/* Icon and Title - same line for all screens */}
+        <div className="flex flex-row items-center mb-4">
+          <div
+            className={`inline-flex items-center justify-center 
+                        w-10 h-10 md:w-16 md:h-16 
+                        rounded-xl bg-[#009696] text-white 
+                        mr-4 group-hover:scale-110 transition-transform duration-300`}
+          >
+            <IconComponent className="w-5 h-5 md:w-8 md:h-8" />
+          </div>
 
-                {/* Title and Description */}
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  {category.title}
-                </h3>
-                <p className="text-gray-600 text-sm mb-6 leading-relaxed">
-                  {category.description}
-                </p>
-
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-2">
-                  {category.technologies.map((tech, techIndex) => (
-                    <motion.div
-                      key={tech.name}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{
-                        duration: 0.5,
-                        delay: index * 0.1 + techIndex * 0.05
-                      }}
-                      viewport={{ once: true }}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <Badge
-                        className={`${tech.color} px-3 py-1 text-xs font-medium border-0 shadow-sm hover:shadow-md hover:text-white transition-all cursor-default`}
-                      >
-                        {tech.name}
-                      </Badge>
-                    </motion.div>
-                  ))}
-                </div>
-
-                {/* Hover Effect Overlay */}
-                <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${category.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300 pointer-events-none`} />
-              </motion.div>
-            )
-          })}
+          <h3 className="text-xl font-bold text-gray-900">
+            {category.title}
+          </h3>
         </div>
+
+        {/* Description */}
+        <p className="text-gray-600 text-sm mb-6 leading-relaxed">
+          {category.description}
+        </p>
+
+        {/* Technologies */}
+        <div className="flex flex-wrap gap-2">
+          {category.technologies.map((tech, techIndex) => (
+            <motion.div
+              key={tech.name}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{
+                duration: 0.5,
+                delay: index * 0.1 + techIndex * 0.05
+              }}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Badge
+                className={`${tech.color} px-3 py-1 text-xs font-medium border-0 shadow-sm hover:shadow-md hover:text-white transition-all cursor-default`}
+              >
+                {tech.name}
+              </Badge>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Hover Effect Overlay */}
+        <div
+          className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${category.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300 pointer-events-none`}
+        />
+      </motion.div>
+    )
+  })}
+</div>
+
       </div>
     </section>
   )

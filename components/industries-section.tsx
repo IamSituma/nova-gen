@@ -78,10 +78,10 @@ export function IndustriesSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black mb-6 text-gray-900">
+          <h2 className="text-l sm:text-xl lg:text-4xl font-black mb-6 text-gray-900">
             Industries We Serve
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-l sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             We bring deep industry expertise and tailored solutions to businesses across diverse sectors,
             helping organizations of all sizes achieve their digital transformation goals.
           </p>
@@ -89,38 +89,48 @@ export function IndustriesSection() {
 
         {/* Industries Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {industries.map((industry, index) => {
-            const IconComponent = industry.icon
-            return (
-              <motion.div
-                key={industry.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className={`relative ${industry.bgColor} rounded-2xl p-6 border border-gray-100 hover:shadow-xl transition-all duration-300 group`}
-              >
-                {/* Icon */}
-                <div className={`inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-r ${industry.color} text-white mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                  <IconComponent className="w-7 h-7" />
-                </div>
+  {industries.map((industry, index) => {
+    const IconComponent = industry.icon
+    return (
+      <motion.div
+        key={industry.id}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: index * 0.1 }}
+        viewport={{ once: true }}
+        className={`relative ${industry.bgColor} rounded-2xl p-6 border border-gray-100 hover:shadow-xl transition-all duration-300 group`}
+      >
+        {/* Icon and Title - same line for all screens */}
+        <div className="flex flex-row items-center mb-4">
+          <div
+            className={`inline-flex items-center justify-center 
+                        w-10 h-10 md:w-14 md:h-14 
+                        rounded-xl bg-gradient-to-r ${industry.color} 
+                        text-white mr-4 
+                        group-hover:scale-110 transition-transform duration-300`}
+          >
+            <IconComponent className="w-5 h-5 md:w-7 md:h-7" />
+          </div>
 
-                {/* Content */}
-                <div className="mb-4">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">
-                    {industry.name}
-                  </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    {industry.description}
-                  </p>
-                </div>
-
-                {/* Hover Effect */}
-                <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${industry.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300 pointer-events-none`} />
-              </motion.div>
-            )
-          })}
+          <h3 className="text-xl font-bold text-gray-900">
+            {industry.name}
+          </h3>
         </div>
+
+        {/* Description */}
+        <p className="text-gray-600 text-sm leading-relaxed">
+          {industry.description}
+        </p>
+
+        {/* Hover Effect */}
+        <div
+          className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${industry.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300 pointer-events-none`}
+        />
+      </motion.div>
+    )
+  })}
+</div>
+
       </div>
     </section>
   )

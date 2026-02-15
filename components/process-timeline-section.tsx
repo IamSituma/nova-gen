@@ -71,106 +71,91 @@ export function ProcessTimelineSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black mb-6">
+          <h2 className="text-l sm:text-xl lg:text-4xl font-black mb-6">
             Our Software Development Process
           </h2>
 
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-l sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             From concept to completion, we follow a proven methodology to deliver exceptional
             digital solutions that exceed expectations.
           </p>
         </motion.div>
 
 
-        {/* Timeline */}
-        <div className="relative">
+       {/* Timeline */}
+<div className="relative">
 
-          {/* Line */}
-          <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gray-200"></div>
+  {/* Line */}
+  <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gray-200"></div>
 
-          <div className="space-y-12 lg:space-y-0">
+  <div className="space-y-12 lg:space-y-0">
 
-            {processSteps.map((step, index) => {
-              const IconComponent = step.icon
-              const isEven = index % 2 === 0
+    {processSteps.map((step, index) => {
+      const IconComponent = step.icon
+      const isEven = index % 2 === 0
 
-              return (
-                <motion.div
-                  key={step.id}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className={`relative flex flex-col lg:flex-row items-center ${
-                    isEven ? "lg:flex-row" : "lg:flex-row-reverse"
-                  }`}
-                >
+      return (
+        <motion.div
+          key={step.id}
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: index * 0.1 }}
+          viewport={{ once: true }}
+          className={`relative flex flex-col lg:flex-row items-center ${
+            isEven ? "lg:flex-row" : "lg:flex-row-reverse"
+          }`}
+        >
 
-                  {/* Timeline Dot */}
-                  <div className="hidden lg:flex absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white border-4 border-[#009696] rounded-full shadow-lg z-10">
-                    <div className="w-full h-full bg-[#009696] rounded-full animate-pulse"></div>
-                  </div>
-
-
-                  {/* Step Number (Mobile) */}
-                  <div className="lg:hidden flex items-center justify-center w-12 h-12 bg-[#009696] text-white rounded-full font-bold mb-4">
-                    {step.id}
-                  </div>
-
-
-                  {/* Card */}
-                  <div className={`w-full lg:w-5/12 ${isEven ? "lg:pr-8" : "lg:pl-8"}`}>
-                    <motion.div
-                      whileHover={{ scale: 1.02 }}
-                      transition={{ duration: 0.3 }}
-                      className="bg-gray-50 rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300"
-                    >
-
-                      {/* Icon + Title */}
-                      <div className="flex items-start space-x-4 mb-4">
-
-                        {/* Icon container */}
-                        <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-[#009696] flex items-center justify-center">
-                          <IconComponent className="w-6 h-6 text-white" />
-                        </div>
-
-                        <div>
-                          <h3 className="text-xl font-bold text-gray-900 mb-2">
-                            {step.title}
-                          </h3>
-
-                          {/* Step label */}
-                          <div className="hidden lg:flex items-center space-x-2 text-sm font-medium text-[#009696]">
-                            <span>Step {step.id}</span>
-                            <ArrowRight className="w-4 h-4 text-[#009696]" />
-                          </div>
-                        </div>
-                      </div>
-
-
-                      {/* Description */}
-                      <p className="text-gray-600 leading-relaxed">
-                        {step.description}
-                      </p>
-
-
-                      {/* Mobile indicator */}
-                      <div className="lg:hidden flex items-center justify-center mt-4">
-                        <div className="flex items-center space-x-2 text-sm text-gray-500">
-                          <CheckCircle className="w-4 h-4 text-[#009696]" />
-                          <span>Step {step.id} of 6</span>
-                        </div>
-                      </div>
-
-                    </motion.div>
-                  </div>
-
-                  <div className="hidden lg:block w-2/12"></div>
-                </motion.div>
-              )
-            })}
+          {/* Timeline Dot */}
+          <div className="hidden lg:flex absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white border-4 border-[#009696] rounded-full shadow-lg z-10">
+            <div className="w-full h-full bg-[#009696] rounded-full animate-pulse"></div>
           </div>
-        </div>
+
+          {/* Card */}
+          <div className={`w-full lg:w-5/12 ${isEven ? "lg:pr-8" : "lg:pl-8"}`}>
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+              className="bg-gray-50 rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300"
+            >
+
+              {/* Icon + Title */}
+              <div className="flex items-start space-x-4 mb-4">
+
+                {/* Icon container */}
+                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-[#009696] flex items-center justify-center">
+                  <IconComponent className="w-6 h-6 text-white" />
+                </div>
+
+                <div>
+                  <h3 className="text-l sm:text-xl font-bold text-gray-900 mb-1">
+                    {step.title}
+                  </h3>
+
+                  {/* Step label - always under title, hidden only on small screens if needed */}
+                  <div className="flex items-center space-x-2 text-sm font-medium text-[#009696] mt-1">
+                    <span>Step {step.id}</span>
+                    <ArrowRight className="w-4 h-4 text-[#009696]" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Description */}
+              <p className="text-l sm:text-xl text-gray-600 leading-relaxed">
+                {step.description}
+              </p>
+
+            </motion.div>
+          </div>
+
+          {/* Spacer for layout on desktop */}
+          <div className="hidden lg:block w-2/12"></div>
+        </motion.div>
+      )
+    })}
+  </div>
+</div>
+
 
 
         {/* CTA */}

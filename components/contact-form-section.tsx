@@ -79,10 +79,10 @@ export function ContactFormSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black mb-6 text-white">
+          <h2 className="text-l sm:text-xl lg:text-4xl font-black mb-6 text-white">
             Get In Touch
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-l sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Ready to start your project? Let's discuss how we can help bring your vision to life.
             Fill out the form below and we'll get back to you within 24 hours.
           </p>
@@ -99,8 +99,8 @@ export function ContactFormSection() {
           >
             <div className="space-y-8">
               <div>
-                <h3 className="text-xl font-bold mb-6 text-white">Let's Start a Conversation</h3>
-                <p className="text-gray-300 mb-8">
+                <h3 className="text-l sm:text-xl font-bold mb-6 text-white">Let's Start a Conversation</h3>
+                <p className="text-l sm:text-xl text-gray-300 mb-8">
                   Whether you have a specific project in mind or just want to explore possibilities,
                   we're here to help you achieve your goals.
                 </p>

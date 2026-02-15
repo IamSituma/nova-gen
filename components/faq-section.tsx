@@ -49,10 +49,10 @@ export function FAQSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black mb-6 text-gray-900">
+          <h2 className="text-l sm:text-xl lg:text-4xl font-black mb-6 text-gray-900">
             Frequently Asked Questions
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-l sm:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Get answers to common questions about our services, process, and partnership approach.
           </p>
         </motion.div>
@@ -72,7 +72,7 @@ export function FAQSection() {
                 onClick={() => toggleFAQ(index)}
                 className="w-full px-6 py-6 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200"
               >
-                <h3 className="text-lg font-semibold text-gray-900 pr-4">
+                <h3 className="text-l sm:text-xl font-semibold text-gray-900 pr-4">
                   {faq.question}
                 </h3>
                 <div className="flex-shrink-0">
