@@ -34,14 +34,14 @@ function Hero({ onQuoteClick }: HeroProps) {
     <div className="space-y-8">
       <div className="flex gap-4 flex-col">
         <div className="text-left">
-          <h1 className="text-5xl md:text-7xl max-w-4xl tracking-tighter font-semibold">
+          <h1 className="text-3xl md:text-7xl max-w-4xl tracking-tighter font-semibold">
             <span className="text-white">Let's Build Tomorrow's</span>
           </h1>
           <div className="relative h-20 mt-4 flex overflow-hidden">
             {titles.map((title, index) => (
               <motion.div
                 key={index}
-                className="absolute font-black text-5xl md:text-7xl text-white"
+                className="absolute font-black text-3xl md:text-7xl text-white"
                 initial={{ opacity: 0, y: 50 }}
                 transition={{ type: "spring", stiffness: 50 }}
                 animate={
@@ -67,18 +67,19 @@ function Hero({ onQuoteClick }: HeroProps) {
         </p>
       </div>
 
-      <div className="flex flex-col sm:flex-row gap-4">
-        <button className="px-8 py-4 bg-white text-black rounded-lg font-semibold text-lg hover:bg-gray-200">
-          Our Services
-        </button>
+      <div className="grid grid-cols-2 sm:flex sm:flex-row gap-4">
+  <button className="px-6 sm:px-8 py-3 sm:py-4 bg-white text-black rounded-lg font-semibold text-sm sm:text-lg hover:bg-gray-200 transition-colors">
+    Our Services
+  </button>
 
-        <button
-          onClick={onQuoteClick}
-          className="px-8 py-4 border-2 border-white text-white rounded-lg font-semibold text-lg hover:bg-blue-50 hover:text-black transition-colors"
-        >
-          Contact Us
-        </button>
-      </div>
+  <button
+    onClick={onQuoteClick}
+    className="px-6 sm:px-8 py-3 sm:py-4 border-2 border-white text-white rounded-lg font-semibold text-sm sm:text-lg hover:bg-blue-50 hover:text-black transition-colors"
+  >
+    Contact Us
+  </button>
+</div>
+
     </div>
   );
 }
