@@ -47,13 +47,13 @@ function Hero({ onQuoteClick }: HeroProps) {
                 animate={
                   titleNumber === index
                     ? {
-                        y: 0,
-                        opacity: 1,
-                      }
+                      y: 0,
+                      opacity: 1,
+                    }
                     : {
-                        y: titleNumber > index ? -80 : 80,
-                        opacity: 0,
-                      }
+                      y: titleNumber > index ? -80 : 80,
+                      opacity: 0,
+                    }
                 }
               >
                 {title}
@@ -68,17 +68,17 @@ function Hero({ onQuoteClick }: HeroProps) {
       </div>
 
       <div className="grid grid-cols-2 sm:flex sm:flex-row gap-4">
-  <button className="px-6 sm:px-8 py-3 sm:py-4 bg-white text-black rounded-lg font-semibold text-sm sm:text-lg hover:bg-gray-200 transition-colors">
-    Our Services
-  </button>
+        <button className="px-6 sm:px-8 py-3 sm:py-4 bg-white text-black rounded-lg font-semibold text-sm sm:text-lg hover:bg-gray-200 transition-colors">
+          Our Services
+        </button>
 
-  <button
-    onClick={onQuoteClick}
-    className="px-6 sm:px-8 py-3 sm:py-4 border-2 border-white text-white rounded-lg font-semibold text-sm sm:text-lg hover:bg-blue-50 hover:text-black transition-colors"
-  >
-    Contact Us
-  </button>
-</div>
+        <button
+          onClick={onQuoteClick}
+          className="px-6 sm:px-8 py-3 sm:py-4 border-2 border-white text-white rounded-lg font-semibold text-sm sm:text-lg hover:bg-blue-50 hover:text-black transition-colors"
+        >
+          Contact Us
+        </button>
+      </div>
 
     </div>
   );

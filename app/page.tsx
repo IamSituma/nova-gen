@@ -93,146 +93,140 @@ export default function Home() {
           <div className="absolute inset-0 bg-black/30"></div>
 
           <div className="relative z-10 max-w-7xl mx-auto py-32 min-h-[80vh] flex items-end pb-16">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 flex flex-col justify-start items-start w-full">
               {/* Left Side - Hero */}
               <div className="space-y-8">
                 <Hero onQuoteClick={() => setQuotePopupOpen(true)} />
               </div>
 
               {/* Right Side - Quote Form */}
-              <div className="lg:pl-8 flex justify-center items-start">
-                <div className="bg-white/5 backdrop-blur-sm rounded-2xl shadow-2xl p-8 border border-white/10 max-w-lg w-full min-h-[500px] flex flex-col">
-                  
-                  {submitStatus === 'success' ? (
-                    <div className="flex items-center justify-center h-full min-h-[500px]">
-                      <div className="text-center">
-                        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                          <CheckCircle className="w-8 h-8 text-green-600" />
-                        </div>
-                        <h3 className="text-xl font-bold text-green-800 mb-2">
-                          Quote Request Sent!
-                        </h3>
-                        <p className="text-green-700">
-                          Thank you! We'll get back to you within 24 hours.
-                        </p>
-                      </div>
-                    </div>
-                  ) : submitStatus === 'error' ? (
-                    <div className="flex items-center justify-center h-full min-h-[500px]">
-                      <div className="text-center">
-                        <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                          <XCircle className="w-8 h-8 text-red-600" />
-                        </div>
-                        <h3 className="text-xl font-bold text-red-800 mb-2">
-                          Something went wrong
-                        </h3>
-                        <p className="text-red-700">
-                          Please try again or contact us directly.
-                        </p>
-                      </div>
-                    </div>
-                  ) : (
-                    <>
-                      <div className="text-center mb-4">
-                        <h3 className="text-xl font-bold text-white mb-1">
-                          Get a Free Quote
-                        </h3>
-                        <p className="text-sm text-white">
-                          We'll respond within 24 hours
-                        </p>
-                      </div>
+            {/* Right Side - Quote Form */}
+<div className="lg:pl-8 flex justify-center items-start">
+  <div className="bg-white/5 backdrop-blur-sm rounded-2xl shadow-2xl p-4 sm:p-8 border border-white/10 max-w-md sm:max-w-lg w-full min-h-[500px] flex flex-col">
+    
+    {submitStatus === 'success' ? (
+      <div className="flex items-center justify-center h-full">
+        <div className="text-center">
+          <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <CheckCircle className="w-8 h-8 text-green-600" />
+          </div>
+          <h3 className="text-xl font-bold text-green-800 mb-2">Quote Request Sent!</h3>
+          <p className="text-green-700">Thank you! We'll get back to you within 24 hours.</p>
+        </div>
+      </div>
+    ) : submitStatus === 'error' ? (
+      <div className="flex items-center justify-center h-full">
+        <div className="text-center">
+          <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <XCircle className="w-8 h-8 text-red-600" />
+          </div>
+          <h3 className="text-xl font-bold text-red-800 mb-2">Something went wrong</h3>
+          <p className="text-red-700">Please try again or contact us directly.</p>
+        </div>
+      </div>
+    ) : (
+      <>
+        <div className="text-center mb-4">
+          <h3 className="text-xl font-bold text-white mb-1">Get a Free Quote</h3>
+          <p className="text-sm text-white">We'll respond within 24 hours</p>
+        </div>
 
-                      <form
-                        onSubmit={handleFormSubmit}
-                        className="space-y-4 flex-1 flex flex-col"
-                      >
-                        <div className="grid grid-cols-2 gap-4">
-                          <input
-                            type="text"
-                            name="firstName"
-                            placeholder="First Name"
-                            value={formData.firstName}
-                            onChange={handleInputChange}
-                            className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent"
-                            required
-                          />
-                          <input
-                            type="text"
-                            name="lastName"
-                            placeholder="Last Name"
-                            value={formData.lastName}
-                            onChange={handleInputChange}
-                            className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent"
-                            required
-                          />
-                        </div>
+        <form onSubmit={handleFormSubmit} className="space-y-3 sm:space-y-4 flex-1 flex flex-col">
+          
+          {/* First & Last Name in 2 columns */}
+          <div className="grid grid-cols-2 gap-2 sm:gap-4">
+            <input
+              type="text"
+              name="firstName"
+              placeholder="First Name"
+              value={formData.firstName}
+              onChange={handleInputChange}
+              className="px-3 py-2 sm:px-4 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent"
+              required
+            />
+            <input
+              type="text"
+              name="lastName"
+              placeholder="Last Name"
+              value={formData.lastName}
+              onChange={handleInputChange}
+              className="px-3 py-2 sm:px-4 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent"
+              required
+            />
+          </div>
 
-                        <input
-                          type="email"
-                          name="email"
-                          placeholder="Email Address"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent"
-                          required
-                        />
+          {/* Email */}
+          <input
+            type="email"
+            name="email"
+            placeholder="Email Address"
+            value={formData.email}
+            onChange={handleInputChange}
+            className="w-full px-3 py-2 sm:px-4 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent"
+            required
+          />
 
-                        <input
-                          type="tel"
-                          name="phone"
-                          placeholder="Phone Number"
-                          value={formData.phone}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent"
-                        />
+          {/* Phone */}
+          <input
+            type="tel"
+            name="phone"
+            placeholder="Phone Number"
+            value={formData.phone}
+            onChange={handleInputChange}
+            className="w-full px-3 py-2 sm:px-4 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent"
+          />
 
-                        <div className="relative">
-                          <select
-                            name="service"
-                            value={formData.service}
-                            onChange={handleInputChange}
-                            className="w-full px-4 py-3 pr-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent bg-white appearance-none"
-                            required
-                          >
-                            <option value="">Select Service</option>
-                            <option value="website">Website Development</option>
-                            <option value="mobile">Mobile App</option>
-                            <option value="ecommerce">E-Commerce</option>
-                            <option value="enterprise">Enterprise Software</option>
-                          </select>
-                        </div>
+          {/* Service */}
+          <div className="relative">
+            <select
+              name="service"
+              value={formData.service}
+              onChange={handleInputChange}
+              className="w-full px-3 py-2 sm:px-4 sm:py-3 text-sm sm:text-base pr-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent bg-white appearance-none"
+              required
+            >
+              <option value="">Select Service</option>
+              <option value="website">Website Development</option>
+              <option value="mobile">Mobile App</option>
+              <option value="ecommerce">E-Commerce</option>
+              <option value="enterprise">Enterprise Software</option>
+            </select>
+          </div>
 
-                        <textarea
-                          name="message"
-                          placeholder="Project details..."
-                          rows={4}
-                          value={formData.message}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent resize-none flex-1"
-                          required
-                        />
+          {/* Message */}
+          <textarea
+            name="message"
+            placeholder="Project details..."
+            rows={3}
+            value={formData.message}
+            onChange={handleInputChange}
+            className="w-full px-3 py-2 sm:px-4 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#009696] focus:border-transparent resize-none flex-1"
+            required
+          />
 
-                        <button
-                          type="submit"
-                          disabled={isSubmitting}
-                          className="w-full bg-[#009696] text-white py-3 px-6 rounded-lg font-semibold hover:bg-gray-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                        >
-                          {isSubmitting ? (
-                            <div className="flex items-center justify-center">
-                              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
-                              Sending...
-                            </div>
-                          ) : 'Get Quote'}
-                        </button>
-
-                        <div className="mt-3 text-center text-xs text-white">
-                          By submitting, you agree to our terms.
-                        </div>
-                      </form>
-                    </>
-                  )}
-                </div>
+          {/* Submit */}
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full bg-[#009696] text-white py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg font-semibold hover:bg-gray-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {isSubmitting ? (
+              <div className="flex items-center justify-center">
+                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
+                Sending...
               </div>
+            ) : 'Get Quote'}
+          </button>
+
+          <div className="mt-2 sm:mt-3 text-center text-xs text-white">
+            By submitting, you agree to our terms.
+          </div>
+        </form>
+      </>
+    )}
+  </div>
+</div>
+
             </div>
           </div>
         </section>
