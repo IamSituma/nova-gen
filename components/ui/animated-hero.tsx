@@ -34,14 +34,14 @@ function Hero({ onQuoteClick }: HeroProps) {
     <div className="space-y-8">
       <div className="flex gap-4 flex-col">
         <div className="text-left">
-          <h1 className="text-3xl md:text-7xl max-w-4xl tracking-tighter font-semibold">
+          <h1 className="text-5xl md:text-7xl max-w-4xl tracking-tighter font-semibold">
             <span className="text-white">Let's Build Tomorrow's</span>
           </h1>
           <div className="relative h-20 mt-4 flex overflow-hidden">
             {titles.map((title, index) => (
               <motion.div
                 key={index}
-                className="absolute font-black text-3xl md:text-7xl text-white"
+                className="absolute font-black text-5xl md:text-7xl text-white"
                 initial={{ opacity: 0, y: 50 }}
                 transition={{ type: "spring", stiffness: 50 }}
                 animate={
